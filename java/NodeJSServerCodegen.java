@@ -26,6 +26,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
 
     public static final String GOOGLE_CLOUD_FUNCTIONS = "googleCloudFunctions";
     public static final String EXPORTED_NAME = "exportedName";
+    public static final String LOCAL_DATABASE = "localDatabase";
 
     protected String apiVersion = "1.0.0";
     protected int serverPort = 8080;
@@ -33,6 +34,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
 
     protected boolean googleCloudFunctions;
     protected String exportedName;
+    protected boolean localDatabase = false;
 
     public NodeJSServerCodegen() {
         super();
@@ -91,6 +93,9 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             "When the generated code will be deployed to Google Cloud Functions, this option can be "
                 + "used to update the name of the exported function. By default, it refers to the "
                 + "basePath. This does not affect normal standalone nodejs server code."));
+        cliOptions.add(CliOption.newBoolean(LOCAL_DATABASE,
+                "When specified, it will generate the code for a local Node.JS server with MongoDB "
+                    + "connection."));
     }
 
     @Override
@@ -183,6 +188,14 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
     public void setExportedName(String name) {
         exportedName = name;
     }
+    
+    public boolean getLocalDatabase() {
+        return localDatabase;
+    }
+
+    public void setLocalDatabase(boolean value) {
+        localDatabase = value;
+    }
 
     @Override
     public Map<String, Object> postProcessOperations(Map<String, Object> objs) {
@@ -261,11 +274,21 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             setGoogleCloudFunctions(
                 Boolean.valueOf(additionalProperties.get(GOOGLE_CLOUD_FUNCTIONS).toString()));
         }
-
+        
+        if (additionalProperties.containsKey(GOOGLE_CLOUD_FUNCTIONS)) {
+            setGoogleCloudFunctions(
+                Boolean.valueOf(additionalProperties.get(GOOGLE_CLOUD_FUNCTIONS).toString()));
+        }
+        
         if (additionalProperties.containsKey(EXPORTED_NAME)) {
             setExportedName((String)additionalProperties.get(EXPORTED_NAME));
         }
 
+        if (additionalProperties.containsKey(LOCAL_DATABASE)) {
+            setLocalDatabase(
+                Boolean.valueOf(additionalProperties.get(LOCAL_DATABASE).toString()));
+        }
+        
         /*
          * Supporting Files.  You can write single files for the generator with the
          * entire object tree available.  If the input file has a suffix of `.mustache
@@ -285,8 +308,17 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             writeOptional(outputFolder, new SupportingFile("index.mustache", "", "index.js"));
         }
         writeOptional(outputFolder, new SupportingFile("package.mustache", "", "package.json"));
+        
+        if(localDatabase) {
+        	writeOptional(outputFolder, new SupportingFile("config.mustache", "controllers", "config.json"));
+        }
+        
         writeOptional(outputFolder, new SupportingFile("mongoUtils.mustache", "utilities", "mongoUtils.js"));
-        writeOptional(outputFolder, new SupportingFile("manifest.mustache", "", "manifest.yml"));
+        
+        if(!localDatabase) {
+            writeOptional(outputFolder, new SupportingFile("manifest.mustache", "", "manifest.yml"));
+        }
+
         writeOptional(outputFolder, new SupportingFile("README.mustache", "", "README.md"));
         if (System.getProperty("noservice") == null) {
             apiTemplateFiles.put(

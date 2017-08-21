@@ -5,8 +5,6 @@
 //Paging and Range based Iterator to be added
 //Notification to be added add listener and implement hub
 
-//var config = require('./config.json');
-
 var util = require('util');
 
 var uuid = require('node-uuid');
@@ -18,11 +16,21 @@ var assert = require('assert');
 
 // Mongo URL
 
-//var argv = require('minimist')(process.argv);
-//var dbhost = argv.dbhost ? argv.dbhost: config.db_host;
-//const mongourl = config.db_prot + "://" + dbhost + ":" + config.db_port + "/" + config.db_name;
-//console.log(mongourl);
+// This is a global variable we'll use for handing the MongoDB client around
+var mongodb;
 
+{{#localDatabase}}
+{{! Local MongoDB is used}}
+var config = require('./config.json');
+
+var argv = require('minimist')(process.argv);
+var dbhost = argv.dbhost ? argv.dbhost: config.db_host;
+const mongourl = config.db_prot + "://" + dbhost + ":" + config.db_port + "/" + config.db_name;
+MongoClient.connect(mongourl, function (err, db) {
+{{/localDatabase}}
+
+{{^localDatabase}}
+{{! MongoDB in combination with Bluemix is used}}
 
 //This is copied from the tutorial
 // Now lets get cfenv and ask it to parse the environment variable
@@ -46,9 +54,6 @@ var credentials = mongodb_services[0].credentials;
 // connecting.
 var ca = [new Buffer(credentials.ca_certificate_base64, 'base64')];
 
-// This is a global variable we'll use for handing the MongoDB client around
-var mongodb;
-
 MongoClient.connect(credentials.uri, {
         mongos: {
             ssl: true,
@@ -59,6 +64,8 @@ MongoClient.connect(credentials.uri, {
         }
     },
     function(err, db) {
+{{/localDatabase}}
+      {{! This sectin is used for both local and online MongoDB}}
         if (err) {
             console.log(err);
         } else {
@@ -66,6 +73,8 @@ MongoClient.connect(credentials.uri, {
         }
     }
 );
+
+
 
 {{#operations}}
 {{#operation}}
@@ -91,6 +100,11 @@ exports.{{{operationId}}} = function(req, res, next) {
 
   {{#isRestfulIndex}}
   var args = req.swagger.params;
+
+  {{#localDatabase}}
+  MongoClient.connect(mongourl, function (err, db) {
+  {{/localDatabase}}
+  {{^localDatabase}}
   MongoClient.connect(credentials.uri, {
           mongos: {
               ssl: true,
@@ -101,6 +115,7 @@ exports.{{{operationId}}} = function(req, res, next) {
           }
       },
       function(err, db) {
+  {{/localDatabase}}
         try {
           assert.equal(null, err);
       }
@@ -136,6 +151,10 @@ exports.{{{operationId}}} = function(req, res, next) {
   {{#isRestfulDestroy}}
     var {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
 
+    {{#localDatabase}}
+    MongoClient.connect(mongourl, function (err, db) {
+    {{/localDatabase}}
+    {{^localDatabase}}
     MongoClient.connect(credentials.uri, {
             mongos: {
                 ssl: true,
@@ -146,6 +165,7 @@ exports.{{{operationId}}} = function(req, res, next) {
             }
         },
         function(err, db) {
+    {{/localDatabase}}
       if (err) throw err;
       var query = {
         id: {{{pathId}}}
@@ -175,6 +195,11 @@ exports.{{{operationId}}} = function(req, res, next) {
     });
   {{/isRestfulDestroy}}
   {{#isRestfulShow}}
+
+  {{#localDatabase}}
+  MongoClient.connect(mongourl, function (err, db) {
+  {{/localDatabase}}
+  {{^localDatabase}}
   MongoClient.connect(credentials.uri, {
           mongos: {
               ssl: true,
@@ -185,6 +210,7 @@ exports.{{{operationId}}} = function(req, res, next) {
           }
       },
       function(err, db) {
+  {{/localDatabase}}
       assert.equal(null, err);
       var collection = mongodb.collection('{{{baseNameLowerCamelCase}}}');
       var {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
@@ -239,6 +265,10 @@ exports.{{{operationId}}} = function(req, res, next) {
   {{{baseNameLowerCamelCase}}}.href = req.headers.origin + self;
 
   // Use connect method to connect to the server
+  {{#localDatabase}}
+  MongoClient.connect(mongourl, function (err, db) {
+  {{/localDatabase}}
+  {{^localDatabase}}
   MongoClient.connect(credentials.uri, {
           mongos: {
               ssl: true,
@@ -249,6 +279,7 @@ exports.{{{operationId}}} = function(req, res, next) {
           }
       },
       function(err, db) {
+  {{/localDatabase}}
           if (err) {
               console.log("Create {{{baseName}}}"+err);
           } else {
@@ -271,16 +302,21 @@ exports.{{{operationId}}} = function(req, res, next) {
   res.end(JSON.stringify({{{baseNameLowerCamelCase}}}));
   {{/isRestfulCreate}}
   {{#isRestfulUpdate}}
-   MongoClient.connect(credentials.uri, {
-           mongos: {
-               ssl: true,
-               sslValidate: true,
-               sslCA: ca,
-               poolSize: 1,
-               reconnectTries: 1
-           }
-       },
-       function(err, db) {
+  {{#localDatabase}}
+  MongoClient.connect(mongourl, function (err, doc) {
+  {{/localDatabase}}
+  {{^localDatabase}}
+  MongoClient.connect(credentials.uri, {
+          mongos: {
+              ssl: true,
+              sslValidate: true,
+              sslCA: ca,
+              poolSize: 1,
+              reconnectTries: 1
+          }
+      },
+      function(err, doc) {
+  {{/localDatabase}}
       assert.equal(null, err);
       var collection = mongodb.collection('{{{baseNameLowerCamelCase}}}');
 
@@ -308,6 +344,10 @@ exports.{{{operationId}}} = function(req, res, next) {
   })
   {{/isRestfulUpdate}}
   {{#isRestfulPatch}}
+  {{#localDatabase}}
+  MongoClient.connect(mongourl, function (err, doc) {
+  {{/localDatabase}}
+  {{^localDatabase}}
   MongoClient.connect(credentials.uri, {
           mongos: {
               ssl: true,
@@ -317,7 +357,8 @@ exports.{{{operationId}}} = function(req, res, next) {
               reconnectTries: 1
           }
       },
-      function(err, db) {
+      function(err, doc) {
+  {{/localDatabase}}
      assert.equal(null, err);
      var collection = mongodb.collection('{{{baseNameLowerCamelCase}}}');
 
