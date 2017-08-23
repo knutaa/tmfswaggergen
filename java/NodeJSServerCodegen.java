@@ -157,7 +157,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
      * @return the escaped term
      */
     @Override
-    public String escapeReservedWord(String name) {           
+    public String escapeReservedWord(String name) {
         if(this.reservedWordsMappings().containsKey(name)) {
             return this.reservedWordsMappings().get(name);
         }
@@ -188,7 +188,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
     public void setExportedName(String name) {
         exportedName = name;
     }
-    
+
     public boolean getLocalDatabase() {
         return localDatabase;
     }
@@ -275,11 +275,6 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
                 Boolean.valueOf(additionalProperties.get(GOOGLE_CLOUD_FUNCTIONS).toString()));
         }
         
-        if (additionalProperties.containsKey(GOOGLE_CLOUD_FUNCTIONS)) {
-            setGoogleCloudFunctions(
-                Boolean.valueOf(additionalProperties.get(GOOGLE_CLOUD_FUNCTIONS).toString()));
-        }
-        
         if (additionalProperties.containsKey(EXPORTED_NAME)) {
             setExportedName((String)additionalProperties.get(EXPORTED_NAME));
         }
@@ -288,7 +283,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             setLocalDatabase(
                 Boolean.valueOf(additionalProperties.get(LOCAL_DATABASE).toString()));
         }
-        
+
         /*
          * Supporting Files.  You can write single files for the generator with the
          * entire object tree available.  If the input file has a suffix of `.mustache
@@ -308,13 +303,13 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             writeOptional(outputFolder, new SupportingFile("index.mustache", "", "index.js"));
         }
         writeOptional(outputFolder, new SupportingFile("package.mustache", "", "package.json"));
-        
+
         if(localDatabase) {
         	writeOptional(outputFolder, new SupportingFile("config.mustache", "controllers", "config.json"));
         }
-        
+
         writeOptional(outputFolder, new SupportingFile("mongoUtils.mustache", "utilities", "mongoUtils.js"));
-        
+
         if(!localDatabase) {
             writeOptional(outputFolder, new SupportingFile("manifest.mustache", "", "manifest.yml"));
         }
@@ -354,7 +349,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             	LOGGER.warn("Host specified in the swagger file is not pointing to a Bluemix address!");
             }
             this.additionalProperties.put("bluemixHost", hostBuilder.length() > 0 ? hostBuilder.substring(0, hostBuilder.length() - 1): "");
-            
+
         }
         this.additionalProperties.put("serverPort", port);
 
