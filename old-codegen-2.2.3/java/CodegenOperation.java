@@ -1,7 +1,6 @@
 package io.swagger.codegen;
 
 import io.swagger.models.ExternalDocs;
-import io.swagger.models.Tag;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,15 +11,15 @@ import java.util.Arrays;
 
 public class CodegenOperation {
     public final List<CodegenProperty> responseHeaders = new ArrayList<CodegenProperty>();
-    public boolean hasAuthMethods, hasConsumes, hasProduces, hasParams, hasOptionalParams, hasRequiredParams,
+    public boolean hasAuthMethods, hasConsumes, hasProduces, hasParams, hasOptionalParams,
             returnTypeIsPrimitive, returnSimpleType, subresourceOperation, isMapContainer,
             isListContainer, isMultipart, hasMore = true,
             isResponseBinary = false, isResponseFile = false, hasReference = false,
             isRestfulIndex, isRestfulShow, isRestfulCreate, isRestfulUpdate, isRestfulPatch,
-            isRestfulDestroy, isUnregisterHub, isRegisterHub, hasId, 
-            isRestful, isDeprecated;
+            isRestfulDestroy, isRestful, isUnregisterHub, isRegisterHub, hasId;
     public String path, operationId, returnType, httpMethod, returnBaseType,
-            returnContainer, summary, unescapedNotes, notes, baseName, defaultResponse, discriminator, baseNameLowerCamelCase, pathId;
+            returnContainer, summary, unescapedNotes, notes, baseName, defaultResponse,
+            discriminator, baseNameLowerCamelCase, pathId;
     public List<Map<String, String>> consumes, produces, prioritizedContentTypes;
     public CodegenParameter bodyParam;
     public List<CodegenParameter> allParams = new ArrayList<CodegenParameter>();
@@ -29,17 +28,15 @@ public class CodegenOperation {
     public List<CodegenParameter> queryParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> headerParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> formParams = new ArrayList<CodegenParameter>();
-    public List<CodegenParameter> requiredParams = new ArrayList<CodegenParameter>();
     public List<CodegenSecurity> authMethods;
-    public List<Tag> tags;
+    public List<String> tags;
     public List<CodegenResponse> responses = new ArrayList<CodegenResponse>();
     public Set<String> imports = new HashSet<String>();
     public List<Map<String, String>> examples;
-    public List<Map<String, String>> requestBodyExamples;
     public ExternalDocs externalDocs;
     public Map<String, Object> vendorExtensions;
     public String nickname; // legacy support
-    public String operationIdLowerCase; // for markdown documentation
+    public String operationIdLowerCase; // for mardown documentation
     public String operationIdCamelCase; // for class names
     public String operationIdSnakeCase;
 
@@ -122,7 +119,7 @@ public class CodegenOperation {
      * @return true if act as Restful show method, false otherwise
      */
     public boolean isRestfulShow() {
-    	 return "GET".equalsIgnoreCase(httpMethod) && hasId;
+        return "GET".equalsIgnoreCase(httpMethod) && hasId;
     }
 
     /**
@@ -131,8 +128,8 @@ public class CodegenOperation {
      * @return true if act as Restful create method, false otherwise
      */
     public boolean isRestfulCreate() {
-    	 return "POST".equalsIgnoreCase(httpMethod) && !hasId && !"Hub".equals(baseName);
-   	 }
+        return "POST".equalsIgnoreCase(httpMethod) && !hasId && !"Hub".equals(baseName);
+    }
 
     /**
      * Check if act as Restful update method
@@ -144,7 +141,7 @@ public class CodegenOperation {
     }
     
     /**
-     * Check if act as Restful patch method
+     * Check if act as Restful update method
      *
      * @return true if act as Restful update method, false otherwise
      */
@@ -153,23 +150,14 @@ public class CodegenOperation {
     }
 
     /**
-     * Check if body param is allowed for the request method
-     *
-     * @return true request method is PUT, PATCH or POST; false otherwise
-     */
-    /*public boolean isBodyAllowed() {
-        return Arrays.asList("PUT", "PATCH", "POST").contains(httpMethod.toUpperCase());
-    }*/
-
-    /**
      * Check if act as Restful destroy method
      *
      * @return true if act as Restful destroy method, false otherwise
      */
     public boolean isRestfulDestroy() {
-    	return "DELETE".equalsIgnoreCase(httpMethod) && hasId && !"Hub".equals(baseName);
+        return "DELETE".equalsIgnoreCase(httpMethod) && hasId && !"Hub".equals(baseName);
     }
-    
+
     /**
      * Check if it is an register method for a hub
      * TMForum-Specific
@@ -193,7 +181,8 @@ public class CodegenOperation {
         String id = pathParams.get(0).baseName;
         return "DELETE".equalsIgnoreCase(httpMethod) && parts.length >= 2 && "hub".equals(parts[1]) && hasId;
     }
-
+    
+    
     /**
      * Check if Restful-style
      *
@@ -266,8 +255,6 @@ public class CodegenOperation {
         if (hasReference != that.hasReference)
             return false;
         if (isResponseFile != that.isResponseFile)
-            return false;
-        if (isDeprecated != that.isDeprecated)
             return false;
         if (path != null ? !path.equals(that.path) : that.path != null)
             return false;
@@ -353,7 +340,6 @@ public class CodegenOperation {
         result = 31 * result + (isResponseBinary ? 13:31);
         result = 31 * result + (isResponseFile ? 13:31);
         result = 31 * result + (hasReference ? 13:31);
-        result = 31 * result + (isDeprecated ? 13:31);
         result = 31 * result + (path != null ? path.hashCode() : 0);
         result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
         result = 31 * result + (returnType != null ? returnType.hashCode() : 0);
