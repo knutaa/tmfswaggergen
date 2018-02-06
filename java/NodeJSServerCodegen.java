@@ -342,8 +342,23 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
 
     @Override
     public void preprocessSwagger(Swagger swagger) {
-        String host = swagger.getHost();
+        //Added for TMForum
+        // If a local Database is used the following attributes have to be set as well
+    	// Host: localhost:8080
+    	// basePath: /docs
+    	// schemes: http
+        if (localDatabase) {
+        	swagger.setHost("localhost:8080");
+        	swagger.setBasePath("/docs");
+        	List<Scheme> schemes = new ArrayList<Scheme>();
+        	schemes.add(Scheme.HTTP);
+        	swagger.setSchemes(schemes);;
+        }
+    	
+    	String host = swagger.getHost();
         String port = "8080";
+
+        
         if (host != null) {
             String[] parts = host.split(":");
             if (parts.length > 1) {
