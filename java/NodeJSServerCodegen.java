@@ -86,7 +86,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
         additionalProperties.put("serverPort", serverPort);
         additionalProperties.put("implFolder", implFolder);
 
-        supportingFiles.add(new SupportingFile("writer.mustache", ("utils").replace(".", "/"), "writer.js"));
+        //supportingFiles.add(new SupportingFile("writer.mustache", ("utils").replace(".", "/"), "writer.js"));
 
         cliOptions.add(CliOption.newBoolean(GOOGLE_CLOUD_FUNCTIONS,
                 "When specified, it will generate the code which runs within Google Cloud Functions "
@@ -324,10 +324,10 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
         }
         writeOptional(outputFolder, new SupportingFile("package.mustache", "", "package.json"));
         if(localDatabase) {
-        	writeOptional(outputFolder, new SupportingFile("config.mustache", "controllers", "config.json"));
+        	writeOptional(outputFolder, new SupportingFile("config.mustache", "service", "config.json"));
         }
 
-        writeOptional(outputFolder, new SupportingFile("mongoUtils.mustache", "utilities", "mongoUtils.js"));
+        writeOptional(outputFolder, new SupportingFile("mongoUtils.mustache", "utils", "mongoUtils.js"));
 
         if(!localDatabase) {
             writeOptional(outputFolder, new SupportingFile("manifest.mustache", "", "manifest.yml"));
