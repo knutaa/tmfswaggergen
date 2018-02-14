@@ -35,9 +35,13 @@ elseif (!$s) {
   print_help
 }
 # check if a custom folder for templates is selected, but the folder isn't existing
-elseif($t -and ![System.IO.File]::Exists($t)) {
+elseif($t -and ![System.IO.Directory]::Exists($t)) {
   Write-Error "ERROR: Cannot find path to templates."
   print_help
+}
+
+if(!$t) {
+  $t = "./templates"
 }
 
 
@@ -100,13 +104,13 @@ mkdir $output
 
 #Run the local generator
 if ($l) {
-  java -jar ./tmf-swagger-codegen.jar generate -i $s -l nodejs-server -o $output -t ./templates -c ./config.json
+  java -jar ./tmf-swagger-codegen.jar generate -i $s -l nodejs-server -o $output -t $t -c ./config.json
 }
 
 
 #Run Bluemix generator and upload it to the cloud
 if ($b) {
-  java -jar ./tmf-swagger-codegen.jar generate -i $s -l nodejs-server -o $output -t ./templates
+  java -jar ./tmf-swagger-codegen.jar generate -i $s -l nodejs-server -o $output -t $t
   cd $OUTPUT
   bx login -a https://api.ng.bluemix.net -o tmforum -s apidev
   bx cf push
