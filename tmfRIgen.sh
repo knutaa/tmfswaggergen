@@ -113,13 +113,13 @@ mkdir $OUTPUT
 
 #Run the local generator
 if [ "$FLAG_LOCAL" = true ] ; then
-  java -jar ./tmf-swagger-codegen.jar generate -i $SWAGGER_FILE -l nodejs-server -o $OUTPUT -t ./templates -c ./config.json
+  java -jar ./tmf-swagger-codegen.jar generate -i $SWAGGER_FILE -l nodejs-server -o $OUTPUT -t $TEMPLATES -c ./config.json
 fi
 
 
 #Run Bluemix generator and upload it to the cloud
 if [ "$FLAG_BLUEMIX" = true ] ; then
-  java -jar ./tmf-swagger-codegen.jar generate -i $SWAGGER_FILE -l nodejs-server -o $OUTPUT -t ./templates
+  java -jar ./tmf-swagger-codegen.jar generate -i $SWAGGER_FILE -l nodejs-server -o $OUTPUT -t $TEMPLATES
   cd $OUTPUT
   bx login -a https://api.ng.bluemix.net -o tmforum -s apidev
   bx cf push
