@@ -94,13 +94,16 @@ else
   echo "using already downloade tmf-swagger-codegen.jar"
 fi
 
-if [ $TEMPLATES == 0 ] && ! [ -e "templates/" ] ; then
-  mkdir templates
-  cd templates
-  unzip -j  ../github_tmf_codegen.zip 'tmfswaggergen-master/templates/*'
-  cd ..
-else
-  echo "using existing templates"
+if [ $TEMPLATES == 0 ] ; then
+  TEMPLATES="./templates"
+  if ! [ -e "templates/" ] ; then
+    mkdir templates
+    cd templates
+    unzip -j  ../github_tmf_codegen.zip 'tmfswaggergen-master/templates/*'
+    cd ..
+  else
+    echo "using existing templates"
+  fi
 fi
 
 #Create a directory for the generated RI
