@@ -81,8 +81,9 @@ if ( ![System.IO.File]::Exists("tmf-swagger-codegen.jar") -Or ![System.IO.File]:
     Copy-Item -Path extract\tmfswaggergen-master\templates\* -Destination .\templates\
 
     #I need the following two lines to, since the generator under Windows seems to create the "Service" files in the controlle directory
-    (Get-Content .\templates\controller.mustache) -replace '../service/', './' | Set-Content .\templates\controller.mustache
-    (Get-Content .\templates\service.mustache) -replace './config.json', '../service/config.json' | Set-Content .\templates\service.mustache
+    # Now the windows is the primary platform and templates are changed in Unix shell script
+    #(Get-Content .\templates\controller.mustache) -replace '../service/', './' | Set-Content .\templates\controller.mustache
+    #(Get-Content .\templates\service.mustache) -replace './config.json', '../service/config.json' | Set-Content .\templates\service.mustache
 
   }
   else {

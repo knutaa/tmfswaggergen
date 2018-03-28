@@ -21,7 +21,7 @@ var mongodb;
 
 {{#localDatabase}}
 {{! Local MongoDB is used}}
-var config = require('./config.json');
+var config = require('../service/config.json');
 
 var argv = require('minimist')(process.argv);
 var dbhost = argv.dbhost ? argv.dbhost: config.db_host;
