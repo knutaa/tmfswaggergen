@@ -18,7 +18,7 @@ var assert = require('assert');
 
 // This is a global variable we'll use for handing the MongoDB client around
 var mongodb;
-
+ 
 {{#localDatabase}}
 {{! Local MongoDB is used}}
 var config = require('../service/config.json');
@@ -262,7 +262,7 @@ exports.{{{operationId}}} = function(req, res, next) {
 
   var self = req.url + "/" + {{{baseNameLowerCamelCase}}}.id;
 
-  {{{baseNameLowerCamelCase}}}.href = req.headers.origin + self;
+  {{{baseNameLowerCamelCase}}}.href = "https://"+req.headers.host + self;
 
   // Use connect method to connect to the server
   {{#localDatabase}}
@@ -297,8 +297,8 @@ exports.{{{operationId}}} = function(req, res, next) {
   );
 
   res.setHeader('Content-Type', 'application/json');
-
-  res.setHeader('Location', self);
+  res.statusCode = 201;
+  res.setHeader('Location',  {{{baseNameLowerCamelCase}}}.href);
   res.end(JSON.stringify({{{baseNameLowerCamelCase}}}));
   {{/isRestfulCreate}}
   {{#isRestfulUpdate}}
