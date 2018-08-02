@@ -108,8 +108,8 @@ if [ $TEMPLATES == 0 ] ; then
   fi
 fi
 
-sed -i "s/..\/service\/config.json/.\/config.json/g" $TEMPLATES'/service.mustache'
-sed -i "s/.\/{{classname}}Service/..\/service\/{{classname}}Service/g" $TEMPLATES'/controller.mustache'
+# sed -i "s/..\/service\/config.json/.\/config.json/g" $TEMPLATES'/service.mustache'
+# sed -i "s/.\/{{classname}}Service/..\/service\/{{classname}}Service/g" $TEMPLATES'/controller.mustache'
 
 #Create a directory for the generated RI
 if [ $OUTPUTDIR == 0 ] ; then
