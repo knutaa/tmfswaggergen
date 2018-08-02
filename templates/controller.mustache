@@ -3,7 +3,7 @@
 var url = require('url');
 {{#operations}}
 
-var {{classname}} = require('./{{classname}}Service');
+var {{classname}} = require('../service/{{classname}}Service');
 {{#operation}}
 
 module.exports.{{nickname}} = function {{nickname}} (req, res, next) {

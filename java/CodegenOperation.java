@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CodegenOperation {
     public final List<CodegenProperty> responseHeaders = new ArrayList<CodegenProperty>();
@@ -16,11 +18,21 @@ public class CodegenOperation {
             returnTypeIsPrimitive, returnSimpleType, subresourceOperation, isMapContainer,
             isListContainer, isMultipart, hasMore = true,
             isResponseBinary = false, isResponseFile = false, hasReference = false,
-            isRestfulIndex, isRestfulShow, isRestfulCreate, isRestfulUpdate, isRestfulPatch,
-            isRestfulDestroy, isUnregisterHub, isRegisterHub, hasId, 
+            isRestfulIndex, isRestfulShow, isRestfulCreate, isRestfulUpdate, isRestfulDestroy,
             isRestful, isDeprecated;
+    
+    // TMForum-specific
+    public boolean isAction;
+    public boolean isUnregisterHub, isRegisterHub, hasId;
+    // TMForum-specific end
+    
     public String path, operationId, returnType, httpMethod, returnBaseType,
-            returnContainer, summary, unescapedNotes, notes, baseName, defaultResponse, discriminator, baseNameLowerCamelCase, pathId;
+            returnContainer, summary, unescapedNotes, notes, baseName, defaultResponse, discriminator;
+    
+    // TMForum-specific 
+    public String baseNameLowerCamelCase, pathId, resource;
+    // TMForum-specific end
+    
     public List<Map<String, String>> consumes, produces, prioritizedContentTypes;
     public CodegenParameter bodyParam;
     public List<CodegenParameter> allParams = new ArrayList<CodegenParameter>();
@@ -39,6 +51,7 @@ public class CodegenOperation {
     public ExternalDocs externalDocs;
     public Map<String, Object> vendorExtensions;
     public String nickname; // legacy support
+    public String operationIdOriginal; // for plug-in
     public String operationIdLowerCase; // for markdown documentation
     public String operationIdCamelCase; // for class names
     public String operationIdSnakeCase;
@@ -67,7 +80,26 @@ public class CodegenOperation {
      * @return true if query parameter exists, false otherwise
      */
     public boolean getHasQueryParams() {
-        return nonempty(queryParams);
+        if (nonempty(queryParams)) {
+            return true;
+        }
+
+        // TMForum-specific 
+        
+        if (authMethods == null || authMethods.isEmpty()) {
+            return false;
+        }
+
+        // Check if one of the authMethods is a query param
+        for (CodegenSecurity sec : authMethods) {
+            if (sec.isKeyInQuery) {
+                return true;
+            }
+        }
+        
+        // TMForum-specific end  
+            
+        return false;
     }
 
     /**
@@ -112,8 +144,11 @@ public class CodegenOperation {
      * @return true if act as Restful index method, false otherwise
      */
     public boolean isRestfulIndex() {
+        // TMForum-specific
+        // return "GET".equalsIgnoreCase(httpMethod) && "".equals(pathWithoutBaseName());
     	String[] parts = path.split("/");
-        return "GET".equalsIgnoreCase(httpMethod) && parts.length == 2 && !hasId;
+        return "GET".equalsIgnoreCase(httpMethod) && !isMemberPath(); // && parts.length == 2 && !hasId;
+        // TMForum-specific end
     }
 
     /**
@@ -122,7 +157,10 @@ public class CodegenOperation {
      * @return true if act as Restful show method, false otherwise
      */
     public boolean isRestfulShow() {
-    	 return "GET".equalsIgnoreCase(httpMethod) && hasId;
+        // TMForum-specific
+        // return "GET".equalsIgnoreCase(httpMethod) && isMemberPath();
+        return "GET".equalsIgnoreCase(httpMethod) && hasId && isMemberPath();
+        // TMForum-specific end
     }
 
     /**
@@ -131,8 +169,11 @@ public class CodegenOperation {
      * @return true if act as Restful create method, false otherwise
      */
     public boolean isRestfulCreate() {
-    	 return "POST".equalsIgnoreCase(httpMethod) && !hasId && !"Hub".equals(baseName);
-   	 }
+        // TMForum-specific
+        // return "POST".equalsIgnoreCase(httpMethod) && "".equals(pathWithoutBaseName());
+        return "POST".equalsIgnoreCase(httpMethod) && !isRegisterHub(); 
+        // TMForum-specific end
+    }
 
     /**
      * Check if act as Restful update method
@@ -140,9 +181,19 @@ public class CodegenOperation {
      * @return true if act as Restful update method, false otherwise
      */
     public boolean isRestfulUpdate() {
-        return "PUT".equalsIgnoreCase(httpMethod) && hasId;
+        // TMForum-specific
+        // return Arrays.asList("PUT", "PATCH").contains(httpMethod.toUpperCase()) && isMemberPath();
+        String[] parts = path.split("/");
+        if(parts.length<1) {
+            return false;
+        }
+        int index = parts[parts.length-1].indexOf('{');
+        return "PUT".equalsIgnoreCase(httpMethod) && hasId(); // && (index<0);
+        // return "PUT".equalsIgnoreCase(httpMethod) && hasId && isMemberPath();
+        // TMForum-specific end        
     }
-    
+
+    // TMForum-specific 
     /**
      * Check if act as Restful patch method
      *
@@ -151,15 +202,16 @@ public class CodegenOperation {
     public boolean isRestfulPatch() {
         return "PATCH".equalsIgnoreCase(httpMethod) && hasId;
     }
-
+    // TMForum-specific end  
+    
     /**
      * Check if body param is allowed for the request method
      *
      * @return true request method is PUT, PATCH or POST; false otherwise
      */
-    /*public boolean isBodyAllowed() {
+    public boolean isBodyAllowed() {
         return Arrays.asList("PUT", "PATCH", "POST").contains(httpMethod.toUpperCase());
-    }*/
+    }
 
     /**
      * Check if act as Restful destroy method
@@ -167,9 +219,12 @@ public class CodegenOperation {
      * @return true if act as Restful destroy method, false otherwise
      */
     public boolean isRestfulDestroy() {
-    	return "DELETE".equalsIgnoreCase(httpMethod) && hasId && !"Hub".equals(baseName);
+        // TMForum-specific  
+        // return "DELETE".equalsIgnoreCase(httpMethod) && isMemberPath();
+        return "DELETE".equalsIgnoreCase(httpMethod) && hasId && !isUnregisterHub(); 
+        // TMForum-specific end  
     }
-    
+
     /**
      * Check if it is an register method for a hub
      * TMForum-Specific
@@ -178,7 +233,8 @@ public class CodegenOperation {
      */
     public boolean isRegisterHub() {
     	String[] parts = path.split("/");
-        return "POST".equalsIgnoreCase(httpMethod) && parts.length >= 2 && "hub".equals(parts[1]);
+        int len = parts.length;
+        return "POST".equalsIgnoreCase(httpMethod) && len>=2 && "hub".equals(parts[len-1]);
     }
     
     /**
@@ -188,19 +244,48 @@ public class CodegenOperation {
      * @return true if act as Restful destroy method, false otherwise
      */
     public boolean isUnregisterHub() {
+//    	String[] parts = path.split("/");
+//        if (pathParams.size() != 1) return false;
+//        String id = pathParams.get(0).baseName;
     	String[] parts = path.split("/");
-        if (pathParams.size() != 1) return false;
-        String id = pathParams.get(0).baseName;
-        return "DELETE".equalsIgnoreCase(httpMethod) && parts.length >= 2 && "hub".equals(parts[1]) && hasId;
+        int len = parts.length;
+        return "DELETE".equalsIgnoreCase(httpMethod) && hasId() && len >= 2 && "hub".equals(parts[len-2]);
     }
-
+    
+    /**
+     * Check if it is an action on resource
+     * TMForum-Specific
+     *
+     * @return true if act as action method, false otherwise
+     */
+    public boolean isAction() {
+//        System.err.println("isAction:: path: " + path + " hasId=" + hasId());
+//        String[] parts = path.split("/");
+//        if(parts.length<1) {
+//            return false;
+//        }
+//        int index = parts[parts.length-1].indexOf('{');
+//        return "POST".equalsIgnoreCase(httpMethod) && hasId() && (index<0);
+        return false;
+    }
+    
+    public boolean hasId() {
+        Pattern p = Pattern.compile("\\{[^\\}]+\\}"); //compile("\\{(.*?)\\}");
+        Matcher m = p.matcher(path);
+        return m.find();
+    }
+    
+    // TMForum-Specific end
+    
     /**
      * Check if Restful-style
      *
      * @return true if Restful-style, false otherwise
      */
     public boolean isRestful() {
-        return isRestfulIndex() || isRestfulShow() || isRestfulCreate() || isRestfulUpdate() || isRestfulDestroy();
+        return isAction() || isRegisterHub() || isUnregisterHub()
+                || isRestfulIndex() || isRestfulShow() || isRestfulCreate() 
+                || isRestfulUpdate() || isRestfulDestroy() || isRestfulPatch();
     }
 
     /**
@@ -208,7 +293,7 @@ public class CodegenOperation {
      *
      * @return the substring
      */
-    private String pathWithoutBaseName() {
+    public String pathWithoutBaseName() {
         return baseName != null ? path.replace("/" + baseName.toLowerCase(), "") : path;
     }
 
@@ -218,9 +303,20 @@ public class CodegenOperation {
      * @return true if path act as member
      */
     private boolean isMemberPath() {
-        if (pathParams.size() != 1) return false;
-        String id = pathParams.get(0).baseName;
-        return ("/{" + id + "}").equals(pathWithoutBaseName());
+        System.err.println("isMemberPath: pathParams: " + pathParams);
+        if (pathParams.size() < 1) return false;
+        String id = pathParams.get(pathParams.size()-1).baseName;
+        String pid = "{" + id + "}";
+        int index = path.lastIndexOf(pid);
+        System.err.println("isMemberPath: index=" + index + "  pid_len=" + pid.length() + " len=" + path.length());
+        if (index+pid.length() == path.length()) {
+            return true;
+        } 
+        return false;
+//        if (pathParams.size() != 1) return false;
+//        String id = pathParams.get(0).baseName;
+//        System.err.println("isMemberPath: " + id + " pathWithoutBaseName: " + pathWithoutBaseName());
+//        return ("/{" + id + "}").equals(pathWithoutBaseName());
     }
 
     @Override
@@ -329,6 +425,8 @@ public class CodegenOperation {
             return false;
         if ( prioritizedContentTypes != null ? !prioritizedContentTypes.equals(that.prioritizedContentTypes) : that.prioritizedContentTypes != null )
             return false;
+        if ( operationIdOriginal != null ? !operationIdOriginal.equals(that.operationIdOriginal) : that.operationIdOriginal != null )
+            return false;
         if ( operationIdLowerCase != null ? !operationIdLowerCase.equals(that.operationIdLowerCase) : that.operationIdLowerCase != null )
             return false;
         return operationIdCamelCase != null ? operationIdCamelCase.equals(that.operationIdCamelCase) : that.operationIdCamelCase == null;
@@ -384,6 +482,7 @@ public class CodegenOperation {
         result = 31 * result + (vendorExtensions != null ? vendorExtensions.hashCode() : 0);
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
         result = 31 * result + (prioritizedContentTypes != null ? prioritizedContentTypes.hashCode() : 0);
+        result = 31 * result + (operationIdOriginal != null ? operationIdOriginal.hashCode() : 0);
         result = 31 * result + (operationIdLowerCase != null ? operationIdLowerCase.hashCode() : 0);
         result = 31 * result + (operationIdCamelCase != null ? operationIdCamelCase.hashCode() : 0);
         return result;

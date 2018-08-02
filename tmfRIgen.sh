@@ -7,20 +7,22 @@ echo "This is the TMF-version of the swagger-code-generator! Based on a template
    -s <ARG> 	Path/URL to a swagger file (mandatory)	 
    -l -b	Generate a l(ocal) or IBM b(luemix) application
 		(one option is mandatory)
-   -t <ARG> 	Path to a template folder (optional)"
+   -t <ARG> 	Path to a template folder (optional)
+   -o <ARG>   Output to this directory"
 exit 2
 }
 
 #Configuration Variables
-GITHUB_CODEGEN=https://github.com/emanuelbearing/tmfswaggergen/archive/master.zip
+GITHUB_CODEGEN=https://github.com/knutaa/tmfswaggergen/archive/master.zip
 
 #Flags
 FLAG_LOCAL=false
 FLAG_BLUEMIX=false
 SWAGGER_FILE=0
 TEMPLATES=0
+OUTPUTDIR=0
 
-while getopts ":hlbt:s:" opt; do
+while getopts ":hlbt:s:o:" opt; do
   case $opt in
     h)
       print_help
@@ -38,6 +40,9 @@ while getopts ":hlbt:s:" opt; do
     s)
       SWAGGER_FILE=$OPTARG
       echo $SWAGGER_FILE
+      ;;
+    o)
+      OUTPUTDIR=$OPTARG
       ;;
     \?)
       echo "ERROR: Invalid option: -$OPTARG 
@@ -70,12 +75,9 @@ elif [ $TEMPLATES != 0 ] && ! [ -e $TEMPLATES ]  ; then
   print_help
 fi
 
-
-
-
 #Download codegenerator and default templates from GitHUB
 if ! [ -e "github_tmf_codegen.zip" ] ; then
-  curl -L https://github.com/emanuelbearing/tmfswaggergen/archive/master.zip > github_tmf_codegen.zip
+  curl -L https://github.com/knutaa/tmfswaggergen/archive/master.zip > github_tmf_codegen.zip
 else 
   echo "using exisitng zip from github"
 fi
@@ -110,13 +112,19 @@ sed -i "s/..\/service\/config.json/.\/config.json/g" $TEMPLATES'/service.mustach
 sed -i "s/.\/{{classname}}Service/..\/service\/{{classname}}Service/g" $TEMPLATES'/controller.mustache'
 
 #Create a directory for the generated RI
-OUTPUT="RI-"$(date +%Y%m%d-%T)
+if [ $OUTPUTDIR == 0 ] ; then
+  OUTPUT="RI-"$(date +%Y%m%d-%T)
+else
+  OUTPUT=$OUTPUTDIR
+fi
+rm -rf $OUTPUT 
 mkdir $OUTPUT
 
 
 #Run the local generator
 if [ "$FLAG_LOCAL" = true ] ; then
   java -jar ./tmf-swagger-codegen.jar generate -i $SWAGGER_FILE -l nodejs-server -o $OUTPUT -t $TEMPLATES -c ./config.json
+
 fi
 
 
@@ -127,3 +135,4 @@ if [ "$FLAG_BLUEMIX" = true ] ; then
   bx login -a https://api.ng.bluemix.net -o tmforum -s apidev
   bx cf push
 fi
+

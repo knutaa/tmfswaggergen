@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 
 public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig {
 
@@ -27,16 +28,23 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
     protected String implFolder = "service";
     public static final String GOOGLE_CLOUD_FUNCTIONS = "googleCloudFunctions";
     public static final String EXPORTED_NAME = "exportedName";
+    public static final String SERVER_PORT = "serverPort";
+    
+    // TMForum-specific
     public static final String LOCAL_DATABASE = "localDatabase";
+    // TMForum-specific end
 
     protected String apiVersion = "1.0.0";
-    protected int serverPort = 8080;
     protected String projectName = "swagger-server";
+    protected String defaultServerPort = "8080";
 
     protected boolean googleCloudFunctions;
     protected String exportedName;
-    protected boolean localDatabase = false;
 
+    // TMForum-specific
+    protected boolean localDatabase = false;
+    // TMForum-specific end
+    
     public NodeJSServerCodegen() {
         super();
 
@@ -83,10 +91,11 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
          * are available in models, apis, and supporting files
          */
         additionalProperties.put("apiVersion", apiVersion);
-        additionalProperties.put("serverPort", serverPort);
         additionalProperties.put("implFolder", implFolder);
 
-        //supportingFiles.add(new SupportingFile("writer.mustache", ("utils").replace(".", "/"), "writer.js"));
+        additionalProperties.put("localDatabase", localDatabase);
+        
+        supportingFiles.add(new SupportingFile("writer.mustache", ("utils").replace(".", File.separator), "writer.js"));
 
         cliOptions.add(CliOption.newBoolean(GOOGLE_CLOUD_FUNCTIONS,
                 "When specified, it will generate the code which runs within Google Cloud Functions "
@@ -97,9 +106,13 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
                 "When the generated code will be deployed to Google Cloud Functions, this option can be "
                         + "used to update the name of the exported function. By default, it refers to the "
                         + "basePath. This does not affect normal standalone nodejs server code."));
+        cliOptions.add(new CliOption(SERVER_PORT,
+                "TCP port to listen on."));
+        // TMForum-specific
         cliOptions.add(CliOption.newBoolean(LOCAL_DATABASE,
                 "When specified, it will generate the code for a local Node.JS server with MongoDB "
                 		+ "connection."));
+        // TMForum-specific
     }
 
     @Override
@@ -159,7 +172,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
     public String apiFilename(String templateName, String tag) {
         String result = super.apiFilename(templateName, tag);
 
-        if ( templateName.equals("service.mustache") ) {
+        if (templateName.equals("service.mustache")) {
             String stringToMatch = File.separator + "controllers" + File.separator;
             String replacement = File.separator + implFolder + File.separator;
             result = result.replaceAll(Pattern.quote(stringToMatch), replacement);
@@ -168,7 +181,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
     }
 
     private String implFileFolder(String output) {
-        return outputFolder + "/" + output + "/" + apiPackage().replace('.', '/');
+        return outputFolder + File.separator + output + File.separator + apiPackage().replace('.', File.separatorChar);
     }
 
     /**
@@ -178,7 +191,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
      * @return the escaped term
      */
     @Override
-    public String escapeReservedWord(String name) {           
+    public String escapeReservedWord(String name) {
         if(this.reservedWordsMappings().containsKey(name)) {
             return this.reservedWordsMappings().get(name);
         }
@@ -210,15 +223,17 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
         exportedName = name;
     }
 
+    // TMForum-specific
     public boolean isLocalDatabase() {
-		return localDatabase;
-	}
+        return localDatabase;
+    }
 
-	public void setLocalDatabase(boolean localDatabase) {
-		this.localDatabase = localDatabase;
-	}
-
-	@Override
+    public void setLocalDatabase(boolean localDatabase) {
+        this.localDatabase = localDatabase;
+    }
+    // TMForum-specific end
+        
+    @Override
     public Map<String, Object> postProcessOperations(Map<String, Object> objs) {
         @SuppressWarnings("unchecked")
         Map<String, Object> objectMap = (Map<String, Object>) objs.get("operations");
@@ -290,7 +305,9 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
     @Override
     public void processOpts() {
         super.processOpts();
-
+        
+        System.out.println("### processOpts: " + additionalProperties.keySet().toString());
+         
         if (additionalProperties.containsKey(GOOGLE_CLOUD_FUNCTIONS)) {
             setGoogleCloudFunctions(
                     Boolean.valueOf(additionalProperties.get(GOOGLE_CLOUD_FUNCTIONS).toString()));
@@ -299,10 +316,14 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
         if (additionalProperties.containsKey(EXPORTED_NAME)) {
             setExportedName((String)additionalProperties.get(EXPORTED_NAME));
         }
+
+        // TMForum-specific 
         if (additionalProperties.containsKey(LOCAL_DATABASE)) {
+            System.out.println("found local database as " + additionalProperties.get(LOCAL_DATABASE).toString());
             setLocalDatabase(
                 Boolean.valueOf(additionalProperties.get(LOCAL_DATABASE).toString()));
         }
+        // TMForum-specific end
         
         /*
          * Supporting Files.  You can write single files for the generator with the
@@ -323,15 +344,26 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
             writeOptional(outputFolder, new SupportingFile("index.mustache", "", "index.js"));
         }
         writeOptional(outputFolder, new SupportingFile("package.mustache", "", "package.json"));
+        
+        // TMForum-specific
         if(localDatabase) {
-        	writeOptional(outputFolder, new SupportingFile("config.mustache", "service", "config.json"));
+            writeOptional(outputFolder, new SupportingFile("config.mustache", "service", "config.json"));
         }
-
+        
         writeOptional(outputFolder, new SupportingFile("mongoUtils.mustache", "utils", "mongoUtils.js"));
-
+        
+        writeOptional(outputFolder, new SupportingFile("operationsUtils.mustache", "utils", "operationsUtils.js"));
+        
         if(!localDatabase) {
             writeOptional(outputFolder, new SupportingFile("manifest.mustache", "", "manifest.yml"));
         }
+        
+        supportingFiles.add(new SupportingFile("index.html_replacement.mustache",
+                "",
+                "index.html_replacement")
+        );
+        // TMForum-specific end
+        
         writeOptional(outputFolder, new SupportingFile("README.mustache", "", "README.md"));
         if (System.getProperty("noservice") == null) {
             apiTemplateFiles.put(
@@ -342,50 +374,39 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
 
     @Override
     public void preprocessSwagger(Swagger swagger) {
-        //Added for TMForum
+        
+        // TMForum-specific 
         // If a local Database is used the following attributes have to be set as well
     	// Host: localhost:8080
     	// basePath: /docs
     	// schemes: http
         if (localDatabase) {
         	swagger.setHost("localhost:8080");
-        	swagger.setBasePath("/docs");
+        	swagger.setBasePath("/tmf-api");
         	List<Scheme> schemes = new ArrayList<Scheme>();
         	schemes.add(Scheme.HTTP);
         	swagger.setSchemes(schemes);;
         }
-    	
-    	String host = swagger.getHost();
-        String port = "8080";
-
+        // TMForum-specific end
         
-        if (host != null) {
+        String host = swagger.getHost();
+        String port = defaultServerPort;
+
+        if (!StringUtils.isEmpty(host)) {
             String[] parts = host.split(":");
             if (parts.length > 1) {
                 port = parts[1];
             }
-        
-	        //Added for TMForum
-	        // In manifest.yml the host for bluemix.net is needed
-	        String[] domainParts = parts[0].split("\\.");
-	        StringBuilder hostBuilder = new StringBuilder();
-	        Boolean onBluemix = Arrays.asList(domainParts).contains("mybluemix");
-	        if (onBluemix){
-	            for (String part : domainParts) {
-	            	if ("mybluemix".equals(part)) {
-	            		break;
-	            	}
-	            	hostBuilder.append(part);
-	            	hostBuilder.append(".");
-	            }
-	        }
-	        else {
-	        	LOGGER.warn("Host specified in the swagger file is not pointing to a Bluemix address!");
-	        }
-	        this.additionalProperties.put("bluemixHost", hostBuilder.length() > 0 ? hostBuilder.substring(0, hostBuilder.length() - 1): "");
+        } else {
+            // host is empty, default to https://localhost
+            host = "http://localhost";
+            LOGGER.warn("'host' in the specification is empty or undefined. Default to http://localhost.");
         }
-        
-        this.additionalProperties.put("serverPort", port);
+
+        if (additionalProperties.containsKey(SERVER_PORT)) {
+            port = additionalProperties.get(SERVER_PORT).toString();
+        }
+        this.additionalProperties.put(SERVER_PORT, port);
 
         if (swagger.getInfo() != null) {
             Info info = swagger.getInfo();

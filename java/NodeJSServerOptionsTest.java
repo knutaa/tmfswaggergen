@@ -31,7 +31,9 @@ public class NodeJSServerOptionsTest extends AbstractOptionsTest {
         new Expectations(clientCodegen) {{
             clientCodegen.setSortParamsByRequiredFlag(Boolean.valueOf(NodeJSServerOptionsProvider.SORT_PARAMS_VALUE));
             clientCodegen.setGoogleCloudFunctions(Boolean.valueOf(NodeJSServerOptionsProvider.GOOGLE_CLOUD_FUNCTIONS));
+            // TMForum-specific
             clientCodegen.setLocalDatabase(Boolean.valueOf(NodeJSServerOptionsProvider.LOCAL_DATABASE));
+            // TMForum-specific end
             clientCodegen.setExportedName(NodeJSServerOptionsProvider.EXPORTED_NAME);
             times = 1;
         }};

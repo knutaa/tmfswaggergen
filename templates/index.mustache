@@ -2,12 +2,23 @@
 
 var fs = require('fs'),
     path = require('path'),
-    http = require('http');
+    http = require('http'),
+    mongoUtils = require('./utils/mongoUtils');
 
 var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var serverPort = {{serverPort}};
+
+// Correct the url in swagger-ui-dist that points to some demo (like the petstore)
+// And add additional useful options
+fs.copyFileSync(path.join(__dirname, './index.html_replacement'),
+        path.join(__dirname, './node_modules/swagger-ui-dist/index.html'), (err) => {
+  if(err) {
+    console.log('Unable to replace swagger-ui-dist/index.html file - something wrong with the installation ??');
+    process.exit(1);
+  }
+})
 
 // swaggerRouter configuration
 var options = {
@@ -27,13 +38,19 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerMetadata());
 
   // Validate Swagger requests
-  app.use(middleware.swaggerValidator());
+  app.use(middleware.swaggerValidator({
+        validateResponse: false
+  }));
+
+  // Error handling for validation
+  app.use(errorHandler);
 
   // Route validated requests to appropriate controller
   app.use(middleware.swaggerRouter(options));
 
   // Serve the Swagger documents and Swagger UI
-  app.use(middleware.swaggerUi());
+  // using the more up-to-date swagger-ui-dist - not the default app.use(middleware.swaggerUi())
+  app.use(middleware.swaggerUi({ swaggerUiDir: path.join(__dirname, 'node_modules', 'swagger-ui-dist') }));
 
   // Start the server
   http.createServer(app).listen(serverPort, function () {
@@ -42,3 +59,30 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   });
 
 });
+
+function errorHandler (err, req, res, next) {
+  if(err) {
+    if(err.failedValidation) {
+      res.setHeader('Content-Type', 'application/json');
+      delete err.results.warnings;
+      delete err.path;
+      err.results.errors.forEach(function(err){
+        delete err.path;
+        delete err.description;
+      });
+      res.end(JSON.stringify(err));
+    } else
+      // err.status and err.body in case of syntax error in incoming request
+      // not sending the body back
+      if(err.status) {
+        res.statusCode = err.status;
+        delete err.body;
+      } else {
+        res.statusCode = 400;
+      }
+      res.end(JSON.stringify(err));
+  } else {
+    next(err,req,res);
+  }
+};
+

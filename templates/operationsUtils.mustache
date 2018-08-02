@@ -1,0 +1,42 @@
+'use strict';
+
+
+module.exports = { updateCreateDocument, isMissingMandatoryParams };
+
+function updateCreateDocument(operation, doc) {
+  
+  console.log('updateCreateDocument: operation=' + operation);
+  var res = doc;
+
+  if(operation === 'tMF645serviceQualificationCreate') {
+  	if(!doc.serviceQualificationDate) {
+  	   doc.serviceQualificationDate = (new Date()).toString(); 
+  	}
+  	doc.state = 'acknowledged';
+  	if(doc.serviceQualificationItem) {
+	   doc.serviceQualificationItem.forEach(item => { item.state = doc.state});
+	}
+  };
+  
+  return res;
+};
+
+
+function isMissingMandatoryParams(operation, doc) {
+  
+  var error = null;
+
+  console.log('updateCreateDocument: operation=' + operation);
+  var res = doc;
+
+  if(operation === 'tMF645serviceQualificationCreate') {
+  	if(!doc.serviceQualificationItem) {
+  	  return {code: 23, 
+  	  		message: "Missing body field", 
+  	  		description: "At least one 'serviceQualificationItem' expected" };
+	};
+  };
+  
+  return error;
+
+};
