@@ -303,12 +303,12 @@ public class CodegenOperation {
      * @return true if path act as member
      */
     private boolean isMemberPath() {
-        System.err.println("isMemberPath: pathParams: " + pathParams);
+        // System.err.println("isMemberPath: pathParams: " + pathParams);
         if (pathParams.size() < 1) return false;
         String id = pathParams.get(pathParams.size()-1).baseName;
         String pid = "{" + id + "}";
         int index = path.lastIndexOf(pid);
-        System.err.println("isMemberPath: index=" + index + "  pid_len=" + pid.length() + " len=" + path.length());
+        // System.err.println("isMemberPath: index=" + index + "  pid_len=" + pid.length() + " len=" + path.length());
         if (index+pid.length() == path.length()) {
             return true;
         } 
