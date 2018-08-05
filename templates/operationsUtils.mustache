@@ -17,6 +17,14 @@ function updateCreateDocument(operation, doc) {
 	   doc.serviceQualificationItem.forEach(item => { item.state = doc.state});
 	}
   };
+	if (operation === 'tMF641serviceOrderCreate'){
+		doc.state = 'Acknowledged';
+		doc.startDate = (new Date()).toString(); 
+		doc.orderDate = (new Date()).toString();
+		doc.oderItem.forEach(function(item,index){
+			doc.orderItem[index].state = 'Acknowledged';
+		});
+	}
   
   return res;
 };
@@ -34,7 +42,7 @@ function isMissingMandatoryParams(operation, doc) {
   	  return {code: 23, 
   	  		message: "Missing body field", 
   	  		description: "At least one 'serviceQualificationItem' expected" };
-	};
+		};
   };
   
   return error;
