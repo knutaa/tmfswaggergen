@@ -37,6 +37,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
   app.use(middleware.swaggerMetadata());
 
+ // app.use(function (req, res, next) {
+ //     res.header("Access-Control-Allow-Origin", "*"); // CORS should be parametrized by configuration
+ //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ //     next();
+ // });
+
   // Validate Swagger requests
   app.use(middleware.swaggerValidator({
         validateResponse: false
@@ -60,17 +66,55 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
 });
 
+// handles timed out requests
+function haltOnTimedout(req, res, next) {
+    if (!req.timedout) {
+        next();
+    } else {
+        debug("\nrequest timed out!\n");
+        next("the request timed out", null, null, null, 504);
+    }
+}
+
 function errorHandler (err, req, res, next) {
   if(err) {
+    console.log("errorHandler: " + JSON.stringify(err));
     if(err.failedValidation) {
       res.setHeader('Content-Type', 'application/json');
-      delete err.results.warnings;
-      delete err.path;
-      err.results.errors.forEach(function(err){
-        delete err.path;
-        delete err.description;
+      // delete err.results.warnings;
+      // delete err.path;
+      // err.results.errors.forEach(function(err){
+      //   delete err.path;
+      //   delete err.description;
+      // });
+      // err is something like 
+      // {"code":"SCHEMA_VALIDATION_FAILED",
+      //       "failedValidation":true,
+      //       "results":{
+      //         "errors":[
+      //               {"code":"INVALID_TYPE",
+      //                "message":"Expected type array but found type object",
+      //                "path":["serviceQualificationItem"]}
+      //               ],
+      //         "warnings":[]},
+      //       "path":["paths","/serviceQualificationManagement/v3/serviceQualification",
+      //               "post","parameters","0"],
+      //       "paramName":"ServiceQualification"}
+
+      // rewrite to the TMForum error code format
+
+      var message = "";
+      err.results.errors.forEach(item => {
+        message = message + "Issue: " + item.message + ": " + item.path.join() + ' '; 
       });
-      res.end(JSON.stringify(err));
+      message = message.replace(/ $/g,'');
+      
+      const error = {
+        code: 24, 
+        reason: 'Invalid body field',
+        message: message
+      }
+      res.end(JSON.stringify(error));
     } else
       // err.status and err.body in case of syntax error in incoming request
       // not sending the body back
@@ -80,9 +124,11 @@ function errorHandler (err, req, res, next) {
       } else {
         res.statusCode = 400;
       }
-      res.end(JSON.stringify(err));
+      const error = {code: 24, reason: 'Invalid body field'};
+      // res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(error));
+      console.log("errorHandler: sending error=" + JSON.stringify(error));
   } else {
     next(err,req,res);
   }
 };
-

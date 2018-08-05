@@ -1,0 +1,38 @@
+'use strict';
+
+const validationRules = {
+  
+  tMF645serviceQualificationCreate: 
+    [{ $: [{$noneOf: ["id", "href", "serviceQualificationDate", "state", "qualificationResult", 
+                        "estimatedResponseDate", "effectiveQualificationDate", 
+                        "eligibilityUnavailabilityReason", "alternateServiceProposal",
+                        "expirationDate"]},
+           {$present: ['serviceQualificationItem']}]},
+     { "serviceQualificationItem": {$noneOf: ["expirationDate", "qualificationItemResult"]}}
+     ],
+
+  tMF641serviceOrderCreate:
+    [{ $: { $noneOf: ["id", "href", "state", "orderDate", "completionDate", 
+                        "expectedCompletionDate", "startDate"]}},
+    { $: {$eitherOf: ["orderItem"]}},
+    { "orderItem":  {$notEmpty: true}},
+    { "orderItem.state": {$presentIf: "action"}},
+    { "orderItem.appointment": {$eitherOf: ["id", "href"]}},
+    { "orderItem.orderItemRelationship": {$eitherOf: ["type", "id"]}},
+    { "orderItem": {$eitherOf: ["action", "id", "service"]}},
+    { "orderItem.service.serviceSpecification": {$eitherOf: ["id", "href"]}},  
+    { "orderItem.service.serviceRelationship": {$eitherOf: ["type", "service"] }},
+    { "orderItem.service.serviceCharacteristic": {$eitherOf: ["name", "valueType", "value"]}},
+    { "orderItem.service.place": {$eitherOf: ["id", "href"]}},
+    { "orderItem.service.place": {$present: ["role"]}},
+    { "orderItem.action": {$notEqual: "add", $eitherOf: ["service.id", "service.href"]}},
+    { "orderRelationship": {$eitherOf: ["id", "href"]}},
+    { "relatedParty": {$eitherOf: ["id", "href"]}},
+    { "note": {$eitherOf: ["author", "text"]}}
+  ]
+
+
+};
+
+
+module.exports = { validationRules };
