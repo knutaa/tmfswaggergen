@@ -3,10 +3,7 @@
 const validationRules = {
   
   tMF629patchCustomer:
-    [{$: {$noneOf: ["id","href","@baseType","@schemaLocation","@type"]}},
-     {$: {$noneOf: ["name","status","statusReason","validFor","engagedParty"]}},
-     {$: {$noneOf: ["type","account","paymentMethod","contactMedium","characteristic"]}},
-     {$: {$noneOf: ["creditProfile","agreement","relatedParty"]}}],
+    [{$: {$noneOf: ["id","href"]}}],
 
   tMF645serviceQualificationCreate: 
     [{ $: [{$noneOf: ["id", "href", "serviceQualificationDate", "state", "qualificationResult", 
