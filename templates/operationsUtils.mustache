@@ -42,7 +42,6 @@ function validateRequest(operation, doc) {
   var error = null;
   var res = doc;
 
-<<<<<<< HEAD
   const rule = ruleDefinitions.validationRules[operation];
   if(rule) {
     console.log(operation + ' :: validate request');
@@ -56,16 +55,16 @@ function validateRequest(operation, doc) {
     };
   } else {
     console.log("validateRequest: rule not found for operation: " + operation);
-=======
-  if(operation === 'tMF645serviceQualificationCreate') {
+
+    if(operation === 'tMF645serviceQualificationCreate') {
   	if(!doc.serviceQualificationItem) {
   	  return {code: 23, 
   	  		message: "Missing body field", 
   	  		description: "At least one 'serviceQualificationItem' expected" };
 		};
->>>>>>> pr/1
-  };
-  
+        };
+    };
+
   return error;
 
 };
