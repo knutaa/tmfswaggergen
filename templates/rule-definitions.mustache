@@ -24,7 +24,7 @@ const validationRules = {
                         "expectedCompletionDate", "startDate"]}},
     { $: {$eitherOf: ["orderItem"]}},
     { "relatedParty": {$eitherOf: ["id", "href"]}},
-    { "note": {$eitherOf: ["author", "text"]}}
+    { "note": {$eitherOf: ["author", "text"]}},
     { "orderItem": {$notEmpty: true}},
     { "orderItem": {$present: ["action","id"]}},
     { "orderItem": {$noneOf: ["state"]}},
