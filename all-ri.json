@@ -65438,7 +65438,7 @@
         },
         "provideUnavailabilityReason": {
           "description": "An indicator which when the value is \"true\" means that unavailability reason are expected for non available product offering.",
-          "type": "string"
+          "type": "boolean"
         },
         "@baseType": {
           "description": "Indicates the base type of the resource. Here can be 'ProductOfferingQualification'.",
