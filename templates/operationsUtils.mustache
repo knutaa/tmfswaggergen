@@ -34,12 +34,12 @@ function updateCreateDocument(operation, doc) {
   };
 
   if(operation === 'tMF641serviceOrderCreate') {
-    res.orderDate = (new Date()).toString(); 
-    res.startDate = (new Date()).toString(); 
-    res.state = 'acknowledged';
+    doc.orderDate = (new Date()).toString(); 
+    doc.startDate = (new Date()).toString(); 
+    doc.state = 'acknowledged';
   };
 
-  return res;
+  return doc;
 };
 
 
