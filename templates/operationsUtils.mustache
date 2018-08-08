@@ -8,26 +8,31 @@ const ruleDefinitions = require('../rules/rule-definitions.js');
 function updateCreateDocument(operation, doc) {
   
   console.log(operation + ' :: updateCreateDocument');
-  var res = doc;
 
   if(operation === 'tMF645serviceQualificationCreate') {
-    if(!res.serviceQualificationDate) {
-      res.serviceQualificationDate = (new Date()).toString(); 
+    if(!doc.serviceQualificationDate) {
+      doc.serviceQualificationDate = (new Date()).toString(); 
     }
-    res.state = 'acknowledged';
-    if(res.serviceQualificationItem) {
-      res.serviceQualificationItem.forEach(item => { item.state = res.state});
+    doc.state = 'acknowledged';
+    if(doc.serviceQualificationItem) {
+      doc.serviceQualificationItem.forEach(item => { item.state = doc.state});
     }
   };
-	if (operation === 'tMF641serviceOrderCreate'){
-		doc.state = 'Acknowledged';
-		doc.startDate = (new Date()).toString(); 
-		doc.orderDate = (new Date()).toString();
-		doc.oderItem.forEach(function(item,index){
-			doc.orderItem[index].state = 'Acknowledged';
-		});
-	}
+
+  if (operation === 'tMF641serviceOrderCreate'){
+    doc.state = 'acknowledged';
+    doc.startDate = (new Date()).toString(); 
+    doc.orderDate = (new Date()).toString();
+    doc.oderItem.forEach(function(item,index){
+      doc.orderItem[index].state = 'acknowledged';
+    });
+  };
   
+  if (operation === 'tMF679productOfferingQualificationCreate'){
+    doc.state = 'acknowledged';
+    doc.productOfferingQualificationDateTime = (new Date()).toString(); 		
+  };
+
   if(operation === 'tMF641serviceOrderCreate') {
     res.orderDate = (new Date()).toString(); 
     res.startDate = (new Date()).toString(); 
