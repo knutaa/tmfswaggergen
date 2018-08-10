@@ -103,6 +103,7 @@ function errorHandler (err, req, res, next) {
       const error = {code: 24, reason: 'Invalid body field'};
       res.end(JSON.stringify(error));
       console.log("errorHandler: sending error=" + JSON.stringify(error));
+    }  
   } else {
     next(err,req,res);
   }
