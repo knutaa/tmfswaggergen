@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = { updateCreateDocument, validateRequest };
 
 const ruleDefinitions = require('../rules/rule-definitions.js');
@@ -8,6 +7,21 @@ const ruleDefinitions = require('../rules/rule-definitions.js');
 function updateCreateDocument(operation, doc) {
   
   console.log(operation + ' :: updateCreateDocument');
+
+  if (operation === 'tMF679productOfferingQualificationCreate'){
+    doc.state = 'acknowledged';
+    doc.productOfferingQualificationDateTime = (new Date()).toString();
+    doc.productOfferingQualificationItem.forEach(item => {
+       item.state = doc.state;
+       item.qualificationItemResult = "qualified";
+    });
+  };
+
+  if (operation === 'tMF646appointmentCreate') {
+    doc.status = 'initialized';
+    doc.creationDate = (new Date()).toString();
+    doc.lastUpdate = (new Date()).toString();
+  };
 
   if(operation === 'tMF645serviceQualificationCreate') {
     if(!doc.serviceQualificationDate) {
@@ -28,11 +42,6 @@ function updateCreateDocument(operation, doc) {
     });
   };
   
-  if (operation === 'tMF679productOfferingQualificationCreate'){
-    doc.state = 'acknowledged';
-    doc.productOfferingQualificationDateTime = (new Date()).toString(); 		
-  };
-
   if(operation === 'tMF641serviceOrderCreate') {
     doc.orderDate = (new Date()).toString(); 
     doc.startDate = (new Date()).toString(); 
