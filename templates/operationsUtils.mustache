@@ -10,7 +10,7 @@ function updateCreateDocument(operation, doc) {
 
   if (operation === 'tMF679productOfferingQualificationCreate'){
     doc.state = 'acknowledged';
-    doc.productOfferingQualificationDateTime = (new Date()).toString();
+    doc.productOfferingQualificationDateTime = (new Date()).toISOString();
     doc.productOfferingQualificationItem.forEach(item => {
        item.state = doc.state;
        item.qualificationItemResult = "qualified";
@@ -19,13 +19,13 @@ function updateCreateDocument(operation, doc) {
 
   if (operation === 'tMF646appointmentCreate') {
     doc.status = 'initialized';
-    doc.creationDate = (new Date()).toString();
-    doc.lastUpdate = (new Date()).toString();
+    doc.creationDate = (new Date()).toISOString();
+    doc.lastUpdate = (new Date()).toISOString();
   };
 
   if(operation === 'tMF645serviceQualificationCreate') {
     if(!doc.serviceQualificationDate) {
-      doc.serviceQualificationDate = (new Date()).toString(); 
+      doc.serviceQualificationDate = (new Date()).toISOString(); 
     }
     doc.state = 'acknowledged';
     if(doc.serviceQualificationItem) {
@@ -35,16 +35,16 @@ function updateCreateDocument(operation, doc) {
 
   if (operation === 'tMF641serviceOrderCreate'){
     doc.state = 'acknowledged';
-    doc.startDate = (new Date()).toString(); 
-    doc.orderDate = (new Date()).toString();
+    doc.startDate = (new Date()).toISOString(); 
+    doc.orderDate = (new Date()).toISOString();
     doc.oderItem.forEach(function(item,index){
       doc.orderItem[index].state = 'acknowledged';
     });
   };
   
   if(operation === 'tMF641serviceOrderCreate') {
-    doc.orderDate = (new Date()).toString(); 
-    doc.startDate = (new Date()).toString(); 
+    doc.orderDate = (new Date()).toISOString(); 
+    doc.startDate = (new Date()).toISOString(); 
     doc.state = 'acknowledged';
   };
 
