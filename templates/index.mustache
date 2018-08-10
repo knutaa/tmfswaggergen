@@ -97,7 +97,7 @@ function errorHandler (err, req, res, next) {
       }
       res.end(JSON.stringify(error));
 
-    } else
+    } else {
       // err.status and err.body in case of syntax error in incoming request
       // not sending the body back
       const error = {code: 24, reason: 'Invalid body field'};
