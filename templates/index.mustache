@@ -3,6 +3,7 @@
 var fs = require('fs'),
     path = require('path'),
     http = require('http'),
+    untildify = require('untildify'),
     mongoUtils = require('./utils/mongoUtils');
 
 var app = require('connect')();
@@ -81,26 +82,6 @@ function errorHandler (err, req, res, next) {
     console.log("errorHandler: " + JSON.stringify(err));
     if(err.failedValidation) {
       res.setHeader('Content-Type', 'application/json');
-      // delete err.results.warnings;
-      // delete err.path;
-      // err.results.errors.forEach(function(err){
-      //   delete err.path;
-      //   delete err.description;
-      // });
-      // err is something like 
-      // {"code":"SCHEMA_VALIDATION_FAILED",
-      //       "failedValidation":true,
-      //       "results":{
-      //         "errors":[
-      //               {"code":"INVALID_TYPE",
-      //                "message":"Expected type array but found type object",
-      //                "path":["serviceQualificationItem"]}
-      //               ],
-      //         "warnings":[]},
-      //       "path":["paths","/serviceQualificationManagement/v3/serviceQualification",
-      //               "post","parameters","0"],
-      //       "paramName":"ServiceQualification"}
-
       // rewrite to the TMForum error code format
 
       var message = "";
@@ -115,17 +96,11 @@ function errorHandler (err, req, res, next) {
         message: message
       }
       res.end(JSON.stringify(error));
+
     } else
       // err.status and err.body in case of syntax error in incoming request
       // not sending the body back
-      if(err.status) {
-        res.statusCode = err.status;
-        delete err.body;
-      } else {
-        res.statusCode = 400;
-      }
       const error = {code: 24, reason: 'Invalid body field'};
-      // res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(error));
       console.log("errorHandler: sending error=" + JSON.stringify(error));
   } else {
