@@ -22,7 +22,7 @@
         "operationId": "tMF620listCatalog",
         "summary": "List or find 'Catalog' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -127,7 +127,7 @@
         "operationId": "tMF620createCatalog",
         "summary": "Creates a 'Catalog'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -167,7 +167,7 @@
         "operationId": "tMF620retrieveCatalog",
         "summary": "Retrieves a 'Catalog' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -212,7 +212,7 @@
         "operationId": "tMF620patchCatalog",
         "summary": "Updates partially a 'Catalog' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -263,7 +263,7 @@
         "operationId": "tMF620deleteCatalog",
         "summary": "Deletes a 'Catalog' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -304,7 +304,7 @@
         "operationId": "tMF620listCategory",
         "summary": "List or find 'Category' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -458,7 +458,7 @@
         "operationId": "tMF620createCategory",
         "summary": "Creates a 'Category'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -498,7 +498,7 @@
         "operationId": "tMF620retrieveCategory",
         "summary": "Retrieves a 'Category' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -543,7 +543,7 @@
         "operationId": "tMF620patchCategory",
         "summary": "Updates partially a 'Category' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -594,7 +594,7 @@
         "operationId": "tMF620deleteCategory",
         "summary": "Deletes a 'Category' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -635,7 +635,7 @@
         "operationId": "tMF620listProductOffering",
         "summary": "List or find 'ProductOffering' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1083,7 +1083,7 @@
         "operationId": "tMF620createProductOffering",
         "summary": "Creates a 'ProductOffering'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1123,7 +1123,7 @@
         "operationId": "tMF620retrieveProductOffering",
         "summary": "Retrieves a 'ProductOffering' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1168,7 +1168,7 @@
         "operationId": "tMF620patchProductOffering",
         "summary": "Updates partially a 'ProductOffering' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1219,7 +1219,7 @@
         "operationId": "tMF620deleteProductOffering",
         "summary": "Deletes a 'ProductOffering' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1260,7 +1260,7 @@
         "operationId": "tMF620listProductOfferingPrice",
         "summary": "List or find 'ProductOfferingPrice' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1586,7 +1586,7 @@
         "operationId": "tMF620createProductOfferingPrice",
         "summary": "Creates a 'ProductOfferingPrice'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1626,7 +1626,7 @@
         "operationId": "tMF620retrieveProductOfferingPrice",
         "summary": "Retrieves a 'ProductOfferingPrice' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1671,7 +1671,7 @@
         "operationId": "tMF620patchProductOfferingPrice",
         "summary": "Updates partially a 'ProductOfferingPrice' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1722,7 +1722,7 @@
         "operationId": "tMF620deleteProductOfferingPrice",
         "summary": "Deletes a 'ProductOfferingPrice' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -1763,7 +1763,7 @@
         "operationId": "tMF620listProductSpecification",
         "summary": "List or find 'ProductSpecification' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2113,7 +2113,7 @@
         "operationId": "tMF620createProductSpecification",
         "summary": "Creates a 'ProductSpecification'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2153,7 +2153,7 @@
         "operationId": "tMF620retrieveProductSpecification",
         "summary": "Retrieves a 'ProductSpecification' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2198,7 +2198,7 @@
         "operationId": "tMF620patchProductSpecification",
         "summary": "Updates partially a 'ProductSpecification' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2249,7 +2249,7 @@
         "operationId": "tMF620deleteProductSpecification",
         "summary": "Deletes a 'ProductSpecification' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2290,7 +2290,7 @@
         "operationId": "tMF620listImportJob",
         "summary": "List or find 'ImportJob' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2380,7 +2380,7 @@
         "operationId": "tMF620createImportJob",
         "summary": "Creates a 'ImportJob'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2420,7 +2420,7 @@
         "operationId": "tMF620retrieveImportJob",
         "summary": "Retrieves a 'ImportJob' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2465,7 +2465,7 @@
         "operationId": "tMF620deleteImportJob",
         "summary": "Deletes a 'ImportJob' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2506,7 +2506,7 @@
         "operationId": "tMF620listExportJob",
         "summary": "List or find 'ExportJob' objects",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2603,7 +2603,7 @@
         "operationId": "tMF620createExportJob",
         "summary": "Creates a 'ExportJob'",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2643,7 +2643,7 @@
         "operationId": "tMF620retrieveExportJob",
         "summary": "Retrieves a 'ExportJob' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2688,7 +2688,7 @@
         "operationId": "tMF620deleteExportJob",
         "summary": "Deletes a 'ExportJob' by Id",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2730,7 +2730,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -2771,7 +2771,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF620 ProductCatalog_admin"
+          "TMF620 ProductCatalog"
         ],
         "parameters": [
           {
@@ -3294,12 +3294,398 @@
         }
       }
     },
+    "/productOrdering/v4/productOrder": {
+      "post": {
+        "tags": [
+          "TMF622 ProductOrder"
+        ],
+        "operationId": "tMF622productOrderCreate",
+        "summary": "Create a product order",
+        "description": "This operation creates a product order entity. Mandatory and non mandatory attributes, additional rules and default values are provided in the specifications document.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "productOrder",
+            "required": true,
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TMF622POST_REQ_ProductOrder"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TMF622ProductOrder"
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "403": {
+            "description": "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6: Orange API is over capacity, retry later !",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "TMF622 ProductOrder"
+        ],
+        "operationId": "tMF622productOrderFind",
+        "summary": "List product orders",
+        "description": "This operation list product order entities. Attribute  selection  is enabled for all first level attributes. Filtering may  be available  depending  on the compliance  level supported  by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attributes selection",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TMF622ProductOrder"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "",
+                "type": "string"
+              },
+              "X-Result-Count": {
+                "description": "",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "403": {
+            "description": "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6: Orange API is over capacity, retry later !",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/productOrdering/v4/productOrder/{productOrderId}": {
+      "get": {
+        "tags": [
+          "TMF622 ProductOrder"
+        ],
+        "operationId": "tMF622productOrderGet",
+        "summary": "Retrieve a product order",
+        "description": "This operation retrieves  a product order entity. Attribute  selection  is enabled for all first level attributes. Filtering on sub-resources  may  be available  depending on the compliance  level supported by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "productOrderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attributes selection",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TMF622ProductOrder"
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "403": {
+            "description": "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6: Orange API is over capacity, retry later !",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "TMF622 ProductOrder"
+        ],
+        "operationId": "tMF622productOrderPatch",
+        "summary": "Patch a product order",
+        "description": "This    operation    allows    partial    updates    of    a    product    order    entity.    Support    of    json/merge (https://tools.ietf.org/html/rfc7386)  is  mandatory,  support  of  json/patch  (http://tools.ietf.org/html/rfc5789)  is optional.\nPatchable and not patchable attributes are provided in the specifications document.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "productOrderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "productOrder",
+            "required": true,
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TMF622ProductOrder"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TMF622ProductOrder"
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "403": {
+            "description": "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6: Orange API is over capacity, retry later !",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TMF622 ProductOrder"
+        ],
+        "operationId": "tMF622productOrderDelete",
+        "summary": "Delete a product order",
+        "description": "This operation deletes a product order entity. This operation is available only to ADMIN API users.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "productOrderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "403": {
+            "description": "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6: Orange API is over capacity, retry later !",
+            "schema": {
+              "$ref": "#/definitions/TMF622ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
     "/customerManagement/v3/customer": {
       "get": {
         "operationId": "tMF629listCustomer",
         "summary": "List or find 'Customer' objects",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -3382,7 +3768,7 @@
         "operationId": "tMF629createCustomer",
         "summary": "Creates a 'Customer'",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -3452,7 +3838,7 @@
         "operationId": "tMF629retrieveCustomer",
         "summary": "Retrieves a 'Customer' by Id",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -3521,7 +3907,7 @@
         "operationId": "tMF629patchCustomer",
         "summary": "Updates partially a 'Customer' by Id",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -3596,7 +3982,7 @@
         "operationId": "tMF629deleteCustomer",
         "summary": "Deletes a 'Customer' by Id",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -3662,7 +4048,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -3733,7 +4119,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF629 CustomerManagement_admin"
+          "TMF629 CustomerManagement"
         ],
         "parameters": [
           {
@@ -4695,7 +5081,7 @@
         "operationId": "tMF633listServiceCatalog",
         "summary": "List or find 'ServiceCatalog' objects",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -4800,7 +5186,7 @@
         "operationId": "tMF633createServiceCatalog",
         "summary": "Creates a 'ServiceCatalog'",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -4840,7 +5226,7 @@
         "operationId": "tMF633retrieveServiceCatalog",
         "summary": "Retrieves a 'ServiceCatalog' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -4885,7 +5271,7 @@
         "operationId": "tMF633patchServiceCatalog",
         "summary": "Updates partially a 'ServiceCatalog' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -4936,7 +5322,7 @@
         "operationId": "tMF633deleteServiceCatalog",
         "summary": "Deletes a 'ServiceCatalog' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -4977,7 +5363,7 @@
         "operationId": "tMF633listServiceCategory",
         "summary": "List or find 'ServiceCategory' objects",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5152,7 +5538,7 @@
         "operationId": "tMF633createServiceCategory",
         "summary": "Creates a 'ServiceCategory'",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5192,7 +5578,7 @@
         "operationId": "tMF633retrieveServiceCategory",
         "summary": "Retrieves a 'ServiceCategory' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5237,7 +5623,7 @@
         "operationId": "tMF633patchServiceCategory",
         "summary": "Updates partially a 'ServiceCategory' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5288,7 +5674,7 @@
         "operationId": "tMF633deleteServiceCategory",
         "summary": "Deletes a 'ServiceCategory' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5329,7 +5715,7 @@
         "operationId": "tMF633listServiceCandidate",
         "summary": "List or find 'ServiceCandidate' objects",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5476,7 +5862,7 @@
         "operationId": "tMF633createServiceCandidate",
         "summary": "Creates a 'ServiceCandidate'",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5516,7 +5902,7 @@
         "operationId": "tMF633retrieveServiceCandidate",
         "summary": "Retrieves a 'ServiceCandidate' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5561,7 +5947,7 @@
         "operationId": "tMF633patchServiceCandidate",
         "summary": "Updates partially a 'ServiceCandidate' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5612,7 +5998,7 @@
         "operationId": "tMF633deleteServiceCandidate",
         "summary": "Deletes a 'ServiceCandidate' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5653,7 +6039,7 @@
         "operationId": "tMF633listServiceSpecification",
         "summary": "List or find 'ServiceSpecification' objects",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5940,7 +6326,7 @@
         "operationId": "tMF633createServiceSpecification",
         "summary": "Creates a 'ServiceSpecification'",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -5980,7 +6366,7 @@
         "operationId": "tMF633retrieveServiceSpecification",
         "summary": "Retrieves a 'ServiceSpecification' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6025,7 +6411,7 @@
         "operationId": "tMF633patchServiceSpecification",
         "summary": "Updates partially a 'ServiceSpecification' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6076,7 +6462,7 @@
         "operationId": "tMF633deleteServiceSpecification",
         "summary": "Deletes a 'ServiceSpecification' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6117,7 +6503,7 @@
         "operationId": "tMF633listImportJob",
         "summary": "List or find 'ImportJob' objects",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6207,7 +6593,7 @@
         "operationId": "tMF633createImportJob",
         "summary": "Creates a 'ImportJob'",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6247,7 +6633,7 @@
         "operationId": "tMF633retrieveImportJob",
         "summary": "Retrieves a 'ImportJob' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6292,7 +6678,7 @@
         "operationId": "tMF633deleteImportJob",
         "summary": "Deletes a 'ImportJob' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6333,7 +6719,7 @@
         "operationId": "tMF633listExportJob",
         "summary": "List or find 'ExportJob' objects",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6430,7 +6816,7 @@
         "operationId": "tMF633createExportJob",
         "summary": "Creates a 'ExportJob'",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6470,7 +6856,7 @@
         "operationId": "tMF633retrieveExportJob",
         "summary": "Retrieves a 'ExportJob' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6515,7 +6901,7 @@
         "operationId": "tMF633deleteExportJob",
         "summary": "Deletes a 'ExportJob' by Id",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6557,7 +6943,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6598,7 +6984,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF633 ServiceCatalog_admin"
+          "TMF633 ServiceCatalog"
         ],
         "parameters": [
           {
@@ -6633,7 +7019,7 @@
         "operationId": "tMF634listResourceCatalog",
         "summary": "List or find 'ResourceCatalog' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -6773,7 +7159,7 @@
         "operationId": "tMF634createResourceCatalog",
         "summary": "Creates a 'ResourceCatalog'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -6813,7 +7199,7 @@
         "operationId": "tMF634retrieveResourceCatalog",
         "summary": "Retrieves a 'ResourceCatalog' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -6858,7 +7244,7 @@
         "operationId": "tMF634patchResourceCatalog",
         "summary": "Updates partially a 'ResourceCatalog' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -6909,7 +7295,7 @@
         "operationId": "tMF634deleteResourceCatalog",
         "summary": "Deletes a 'ResourceCatalog' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -6950,7 +7336,7 @@
         "operationId": "tMF634listResourceCategory",
         "summary": "List or find 'ResourceCategory' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7125,7 +7511,7 @@
         "operationId": "tMF634createResourceCategory",
         "summary": "Creates a 'ResourceCategory'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7165,7 +7551,7 @@
         "operationId": "tMF634retrieveResourceCategory",
         "summary": "Retrieves a 'ResourceCategory' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7210,7 +7596,7 @@
         "operationId": "tMF634patchResourceCategory",
         "summary": "Updates partially a 'ResourceCategory' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7261,7 +7647,7 @@
         "operationId": "tMF634deleteResourceCategory",
         "summary": "Deletes a 'ResourceCategory' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7302,7 +7688,7 @@
         "operationId": "tMF634listResourceCandidate",
         "summary": "List or find 'ResourceCandidate' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7449,7 +7835,7 @@
         "operationId": "tMF634createResourceCandidate",
         "summary": "Creates a 'ResourceCandidate'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7489,7 +7875,7 @@
         "operationId": "tMF634retrieveResourceCandidate",
         "summary": "Retrieves a 'ResourceCandidate' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7534,7 +7920,7 @@
         "operationId": "tMF634patchResourceCandidate",
         "summary": "Updates partially a 'ResourceCandidate' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7585,7 +7971,7 @@
         "operationId": "tMF634deleteResourceCandidate",
         "summary": "Deletes a 'ResourceCandidate' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7626,7 +8012,7 @@
         "operationId": "tMF634listResourceSpecification",
         "summary": "List or find 'ResourceSpecification' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7934,7 +8320,7 @@
         "operationId": "tMF634createResourceSpecification",
         "summary": "Creates a 'ResourceSpecification'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -7974,7 +8360,7 @@
         "operationId": "tMF634retrieveResourceSpecification",
         "summary": "Retrieves a 'ResourceSpecification' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8019,7 +8405,7 @@
         "operationId": "tMF634patchResourceSpecification",
         "summary": "Updates partially a 'ResourceSpecification' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8070,7 +8456,7 @@
         "operationId": "tMF634deleteResourceSpecification",
         "summary": "Deletes a 'ResourceSpecification' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8111,7 +8497,7 @@
         "operationId": "tMF634listLogicalResourceSpec",
         "summary": "List or find 'LogicalResourceSpec' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8419,7 +8805,7 @@
         "operationId": "tMF634createLogicalResourceSpec",
         "summary": "Creates a 'LogicalResourceSpec'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8459,7 +8845,7 @@
         "operationId": "tMF634retrieveLogicalResourceSpec",
         "summary": "Retrieves a 'LogicalResourceSpec' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8504,7 +8890,7 @@
         "operationId": "tMF634patchLogicalResourceSpec",
         "summary": "Updates partially a 'LogicalResourceSpec' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8555,7 +8941,7 @@
         "operationId": "tMF634deleteLogicalResourceSpec",
         "summary": "Deletes a 'LogicalResourceSpec' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8596,7 +8982,7 @@
         "operationId": "tMF634listPhysicalResourceSpec",
         "summary": "List or find 'PhysicalResourceSpec' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8946,7 +9332,7 @@
         "operationId": "tMF634createPhysicalResourceSpec",
         "summary": "Creates a 'PhysicalResourceSpec'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -8986,7 +9372,7 @@
         "operationId": "tMF634retrievePhysicalResourceSpec",
         "summary": "Retrieves a 'PhysicalResourceSpec' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9031,7 +9417,7 @@
         "operationId": "tMF634patchPhysicalResourceSpec",
         "summary": "Updates partially a 'PhysicalResourceSpec' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9082,7 +9468,7 @@
         "operationId": "tMF634deletePhysicalResourceSpec",
         "summary": "Deletes a 'PhysicalResourceSpec' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9123,7 +9509,7 @@
         "operationId": "tMF634listImportJob",
         "summary": "List or find 'ImportJob' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9213,7 +9599,7 @@
         "operationId": "tMF634createImportJob",
         "summary": "Creates a 'ImportJob'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9253,7 +9639,7 @@
         "operationId": "tMF634retrieveImportJob",
         "summary": "Retrieves a 'ImportJob' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9298,7 +9684,7 @@
         "operationId": "tMF634deleteImportJob",
         "summary": "Deletes a 'ImportJob' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9339,7 +9725,7 @@
         "operationId": "tMF634listExportJob",
         "summary": "List or find 'ExportJob' objects",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9436,7 +9822,7 @@
         "operationId": "tMF634createExportJob",
         "summary": "Creates a 'ExportJob'",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9476,7 +9862,7 @@
         "operationId": "tMF634retrieveExportJob",
         "summary": "Retrieves a 'ExportJob' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9521,7 +9907,7 @@
         "operationId": "tMF634deleteExportJob",
         "summary": "Deletes a 'ExportJob' by Id",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9563,7 +9949,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -9604,7 +9990,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF634 ResourceCatalog_admin"
+          "TMF634 ResourceCatalog"
         ],
         "parameters": [
           {
@@ -11535,7 +11921,7 @@
         "operationId": "tMF639listResource",
         "summary": "List or find 'Resource' objects",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -11618,7 +12004,7 @@
         "operationId": "tMF639createResource",
         "summary": "Creates a 'Resource'",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -11688,7 +12074,7 @@
         "operationId": "tMF639retrieveResource",
         "summary": "Retrieves a 'Resource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -11757,7 +12143,7 @@
         "operationId": "tMF639patchResource",
         "summary": "Updates partially a 'Resource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -11832,7 +12218,7 @@
         "operationId": "tMF639deleteResource",
         "summary": "Deletes a 'Resource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -11897,7 +12283,7 @@
         "operationId": "tMF639listLogicalResource",
         "summary": "List or find 'LogicalResource' objects",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -11980,7 +12366,7 @@
         "operationId": "tMF639createLogicalResource",
         "summary": "Creates a 'LogicalResource'",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12050,7 +12436,7 @@
         "operationId": "tMF639retrieveLogicalResource",
         "summary": "Retrieves a 'LogicalResource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12119,7 +12505,7 @@
         "operationId": "tMF639patchLogicalResource",
         "summary": "Updates partially a 'LogicalResource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12194,7 +12580,7 @@
         "operationId": "tMF639deleteLogicalResource",
         "summary": "Deletes a 'LogicalResource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12259,7 +12645,7 @@
         "operationId": "tMF639listPhysicalResource",
         "summary": "List or find 'PhysicalResource' objects",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12342,7 +12728,7 @@
         "operationId": "tMF639createPhysicalResource",
         "summary": "Creates a 'PhysicalResource'",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12412,7 +12798,7 @@
         "operationId": "tMF639retrievePhysicalResource",
         "summary": "Retrieves a 'PhysicalResource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12481,7 +12867,7 @@
         "operationId": "tMF639patchPhysicalResource",
         "summary": "Updates partially a 'PhysicalResource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12556,7 +12942,7 @@
         "operationId": "tMF639deletePhysicalResource",
         "summary": "Deletes a 'PhysicalResource' by Id",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12622,7 +13008,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -12693,7 +13079,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF639 ResourceInventory_admin"
+          "TMF639 ResourceInventory"
         ],
         "parameters": [
           {
@@ -15432,7 +15818,7 @@
         "operationId": "tMF651listAgreement",
         "summary": "List or find 'Agreement' objects",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15515,7 +15901,7 @@
         "operationId": "tMF651createAgreement",
         "summary": "Creates a 'Agreement'",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15585,7 +15971,7 @@
         "operationId": "tMF651retrieveAgreement",
         "summary": "Retrieves a 'Agreement' by Id",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15654,7 +16040,7 @@
         "operationId": "tMF651patchAgreement",
         "summary": "Updates partially a 'Agreement' by Id",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15729,7 +16115,7 @@
         "operationId": "tMF651deleteAgreement",
         "summary": "Deletes a 'Agreement' by Id",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15794,7 +16180,7 @@
         "operationId": "tMF651listAgreementSpecification",
         "summary": "List or find 'AgreementSpecification' objects",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15877,7 +16263,7 @@
         "operationId": "tMF651createAgreementSpecification",
         "summary": "Creates a 'AgreementSpecification'",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -15947,7 +16333,7 @@
         "operationId": "tMF651retrieveAgreementSpecification",
         "summary": "Retrieves a 'AgreementSpecification' by Id",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -16016,7 +16402,7 @@
         "operationId": "tMF651patchAgreementSpecification",
         "summary": "Updates partially a 'AgreementSpecification' by Id",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -16091,7 +16477,7 @@
         "operationId": "tMF651deleteAgreementSpecification",
         "summary": "Deletes a 'AgreementSpecification' by Id",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -16157,7 +16543,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -16228,7 +16614,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF651 AgreementManagement_admin"
+          "TMF651 AgreementManagement"
         ],
         "parameters": [
           {
@@ -16287,7 +16673,7 @@
         "operationId": "tMF652listResourceOrder",
         "summary": "List or find 'ResourceOrder' objects",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16370,7 +16756,7 @@
         "operationId": "tMF652createResourceOrder",
         "summary": "Creates a 'ResourceOrder'",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16440,7 +16826,7 @@
         "operationId": "tMF652retrieveResourceOrder",
         "summary": "Retrieves a 'ResourceOrder' by Id",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16509,7 +16895,7 @@
         "operationId": "tMF652patchResourceOrder",
         "summary": "Updates partially a 'ResourceOrder' by Id",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16584,7 +16970,7 @@
         "operationId": "tMF652deleteResourceOrder",
         "summary": "Deletes a 'ResourceOrder' by Id",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16650,7 +17036,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16721,7 +17107,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF652 ResourceOrderManagement_admin"
+          "TMF652 ResourceOrderManagement"
         ],
         "parameters": [
           {
@@ -16780,7 +17166,7 @@
         "operationId": "tMF653listServiceTest",
         "summary": "List or find 'ServiceTest' objects",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -16863,7 +17249,7 @@
         "operationId": "tMF653createServiceTest",
         "summary": "Creates a 'ServiceTest'",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -16933,7 +17319,7 @@
         "operationId": "tMF653retrieveServiceTest",
         "summary": "Retrieves a 'ServiceTest' by Id",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17002,7 +17388,7 @@
         "operationId": "tMF653patchServiceTest",
         "summary": "Updates partially a 'ServiceTest' by Id",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17077,7 +17463,7 @@
         "operationId": "tMF653deleteServiceTest",
         "summary": "Deletes a 'ServiceTest' by Id",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17142,7 +17528,7 @@
         "operationId": "tMF653listServiceTestSpecification",
         "summary": "List or find 'ServiceTestSpecification' objects",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17225,7 +17611,7 @@
         "operationId": "tMF653createServiceTestSpecification",
         "summary": "Creates a 'ServiceTestSpecification'",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17295,7 +17681,7 @@
         "operationId": "tMF653retrieveServiceTestSpecification",
         "summary": "Retrieves a 'ServiceTestSpecification' by Id",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17364,7 +17750,7 @@
         "operationId": "tMF653patchServiceTestSpecification",
         "summary": "Updates partially a 'ServiceTestSpecification' by Id",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17439,7 +17825,7 @@
         "operationId": "tMF653deleteServiceTestSpecification",
         "summary": "Deletes a 'ServiceTestSpecification' by Id",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17505,7 +17891,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -17576,7 +17962,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF653 ServiceTestManagement_admin"
+          "TMF653 ServiceTestManagement"
         ],
         "parameters": [
           {
@@ -19535,7 +19921,7 @@
         "operationId": "tMF655listChangeRequest",
         "summary": "List or find 'ChangeRequest' objects",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -19618,7 +20004,7 @@
         "operationId": "tMF655createChangeRequest",
         "summary": "Creates a 'ChangeRequest'",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -19688,7 +20074,7 @@
         "operationId": "tMF655retrieveChangeRequest",
         "summary": "Retrieves a 'ChangeRequest' by Id",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -19757,7 +20143,7 @@
         "operationId": "tMF655patchChangeRequest",
         "summary": "Updates partially a 'ChangeRequest' by Id",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -19832,7 +20218,7 @@
         "operationId": "tMF655deleteChangeRequest",
         "summary": "Deletes a 'ChangeRequest' by Id",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -19898,7 +20284,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -19969,7 +20355,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF655 ChangeManagement_admin"
+          "TMF655 ChangeManagement"
         ],
         "parameters": [
           {
@@ -20028,7 +20414,7 @@
         "operationId": "tMF657listServiceLevelObjective",
         "summary": "List or find 'ServiceLevelObjective' objects",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20111,7 +20497,7 @@
         "operationId": "tMF657createServiceLevelObjective",
         "summary": "Creates a 'ServiceLevelObjective'",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20181,7 +20567,7 @@
         "operationId": "tMF657retrieveServiceLevelObjective",
         "summary": "Retrieves a 'ServiceLevelObjective' by Id",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20250,7 +20636,7 @@
         "operationId": "tMF657patchServiceLevelObjective",
         "summary": "Updates partially a 'ServiceLevelObjective' by Id",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20325,7 +20711,7 @@
         "operationId": "tMF657deleteServiceLevelObjective",
         "summary": "Deletes a 'ServiceLevelObjective' by Id",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20390,7 +20776,7 @@
         "operationId": "tMF657listServiceLevelSpecification",
         "summary": "List or find 'ServiceLevelSpecification' objects",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20473,7 +20859,7 @@
         "operationId": "tMF657createServiceLevelSpecification",
         "summary": "Creates a 'ServiceLevelSpecification'",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20543,7 +20929,7 @@
         "operationId": "tMF657retrieveServiceLevelSpecification",
         "summary": "Retrieves a 'ServiceLevelSpecification' by Id",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20612,7 +20998,7 @@
         "operationId": "tMF657patchServiceLevelSpecification",
         "summary": "Updates partially a 'ServiceLevelSpecification' by Id",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20687,7 +21073,7 @@
         "operationId": "tMF657deleteServiceLevelSpecification",
         "summary": "Deletes a 'ServiceLevelSpecification' by Id",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20753,7 +21139,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20824,7 +21210,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF657 ServiceQualityManagement_admin"
+          "TMF657 ServiceQualityManagement"
         ],
         "parameters": [
           {
@@ -20882,7 +21268,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty program product specifications. A loyalty program product specification contains loyalty rules.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listProductSpecs",
         "produces": [
@@ -20931,7 +21317,7 @@
       "post": {
         "description": "This operation is used to create a new loyalty program product specification.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createProductSpec",
         "produces": [
@@ -21007,7 +21393,7 @@
       "get": {
         "description": "This operation is used to retrieve a single loyalty program product specification. A loyalty program product specification contains loyalty rules.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getProductSpec",
         "produces": [
@@ -21047,7 +21433,7 @@
       "delete": {
         "description": "Deletes a program product spec.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteProductSpec",
         "produces": [
@@ -21084,7 +21470,7 @@
       "patch": {
         "description": "Updates a loyalty program product spec.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateProductSpec",
         "produces": [
@@ -21140,7 +21526,7 @@
       "get": {
         "description": "This operation is used to retrieve all the loyalty actions. A loyalty action contains a loyalty execution point.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listActions",
         "produces": [
@@ -21189,7 +21575,7 @@
       "post": {
         "description": "This operation is used to create a new loyalty action.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createAction",
         "produces": [
@@ -21262,7 +21648,7 @@
       "get": {
         "description": "This operation is used to retrieve a loyalty action.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getAction",
         "produces": [
@@ -21302,7 +21688,7 @@
       "delete": {
         "description": "This operation is used to delete a loyalty action.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteAction",
         "produces": [
@@ -21339,7 +21725,7 @@
       "put": {
         "description": "Update the complete loyalty action.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateAction",
         "produces": [
@@ -21393,7 +21779,7 @@
       "patch": {
         "description": "This operation partially updates a loyalty action.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658patchAction",
         "produces": [
@@ -21449,7 +21835,7 @@
       "get": {
         "description": "This operation is used to retrieve all the loyalty conditions.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listConditions",
         "produces": [
@@ -21498,7 +21884,7 @@
       "post": {
         "description": "This operation is used to create a new loyalty condition.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createCondition",
         "produces": [
@@ -21571,7 +21957,7 @@
       "get": {
         "description": "•  This operation is used to retrieve a loyalty condition.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getCondition",
         "produces": [
@@ -21611,7 +21997,7 @@
       "put": {
         "description": "Update the complete loyalty condition.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateCondition",
         "produces": [
@@ -21665,7 +22051,7 @@
       "delete": {
         "description": "This operation is used to delete a loyalty condition.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteCondition",
         "produces": [
@@ -21702,7 +22088,7 @@
       "patch": {
         "description": "This operation partially updates a loyalty condition.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658patchCondition",
         "produces": [
@@ -21758,7 +22144,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty event types.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listEventTypes",
         "produces": [
@@ -21807,7 +22193,7 @@
       "post": {
         "description": "This operation is used to create a new loyalty event type.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createEventTypes",
         "produces": [
@@ -21880,7 +22266,7 @@
       "get": {
         "description": "This operation is used to retrieve a loyalty event type.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getEventType",
         "produces": [
@@ -21914,7 +22300,7 @@
       "put": {
         "description": "",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateEventTypes",
         "produces": [
@@ -21968,7 +22354,7 @@
       "delete": {
         "description": "This operation is used to delete a loyalty event type.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteEventTypes",
         "produces": [
@@ -22005,7 +22391,7 @@
       "patch": {
         "description": "",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateEventTypes1",
         "produces": [
@@ -22061,7 +22447,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty program product specification’s loyalty rule(s).",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listRules",
         "produces": [
@@ -22098,7 +22484,7 @@
       "post": {
         "description": "This operation is used to create a new loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createRule",
         "produces": [
@@ -22154,7 +22540,7 @@
       "get": {
         "description": "This operation is used to retrieve a loyalty program product specification loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getRule",
         "produces": [
@@ -22200,7 +22586,7 @@
       "put": {
         "description": "Update the complete loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateRule",
         "produces": [
@@ -22260,7 +22646,7 @@
       "delete": {
         "description": "This operation is used to delete a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteRule",
         "produces": [
@@ -22297,7 +22683,7 @@
       "patch": {
         "description": "This operation partially updates a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658patchRule",
         "produces": [
@@ -22359,7 +22745,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty rule’s loyalty conditions.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listRuleConditions",
         "produces": [
@@ -22402,7 +22788,7 @@
       "post": {
         "description": "",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658addRuleCondition",
         "produces": [
@@ -22452,7 +22838,7 @@
       "delete": {
         "description": "This operation is used to remove a loyalty condition from a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteRuleCondition",
         "produces": [
@@ -22503,7 +22889,7 @@
       "get": {
         "description": "his operation is used to retrieve the loyalty rule’s loyalty actions.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getRuleActions",
         "produces": [
@@ -22546,7 +22932,7 @@
       "post": {
         "description": "This operation is used to add a loyalty action to a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658addRuleAction",
         "produces": [
@@ -22596,7 +22982,7 @@
       "delete": {
         "description": "This operation is used to remove a loyalty action from a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteRuleAction",
         "produces": [
@@ -22647,7 +23033,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty rule’s supported loyalty events. ",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getRuleEventTypes",
         "produces": [
@@ -22690,7 +23076,7 @@
       "post": {
         "description": "This operation is used to add a loyalty event type to a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658addRuleEventType",
         "produces": [
@@ -22752,7 +23138,7 @@
       "delete": {
         "description": "This operation is used to remove a loyalty event type from a loyalty rule.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteRuleEventType",
         "produces": [
@@ -22803,7 +23189,7 @@
       "get": {
         "description": "This operation retrieves loyalty program members. The loyalty program member contains accounts and balances in logical containers.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getMembers",
         "produces": [
@@ -22852,7 +23238,7 @@
       "post": {
         "description": "This operation creates a new loyalty program member.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createMember",
         "produces": [
@@ -22925,7 +23311,7 @@
       "get": {
         "description": "This operation retrieves a loyalty program member by ID. The loyalty program member contains accounts and balances in logical containers.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getMember",
         "produces": [
@@ -22965,7 +23351,7 @@
       "patch": {
         "description": "This operation updates the attributes of a loyalty program member present in the request body.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateMember",
         "produces": [
@@ -23019,7 +23405,7 @@
       "delete": {
         "description": "This operation deletes a loyalty program member.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteMember",
         "produces": [
@@ -23058,7 +23444,7 @@
       "get": {
         "description": "This operation retrieves loyalty program member accounts. The account resource is also returned within each balance entity.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listMemberBalances",
         "produces": [
@@ -23095,7 +23481,7 @@
       "post": {
         "description": "This operation creates a new loyalty program member account balance.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createMemberBalance",
         "produces": [
@@ -23151,7 +23537,7 @@
       "get": {
         "description": "This operation retrieves a loyalty program member account. The account resource is also returned within each balance entity.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getMemberBalance",
         "produces": [
@@ -23197,7 +23583,7 @@
       "delete": {
         "description": "This operation deletes a loyalty program member account.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateMemberBalance",
         "produces": [
@@ -23240,7 +23626,7 @@
       "patch": {
         "description": "This operation updates the attributes of a loyalty program member loyalty balance present in the request body.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteMemberBalance",
         "produces": [
@@ -23302,7 +23688,7 @@
       "get": {
         "description": "This operation retrieves loyalty program member accounts.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listMemberAccounts",
         "produces": [
@@ -23341,7 +23727,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty program member’s loyalty program products.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listProducts",
         "produces": [
@@ -23378,7 +23764,7 @@
       "post": {
         "description": "This operation is used to create a new loyalty program product.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658createProduct",
         "produces": [
@@ -23434,7 +23820,7 @@
       "get": {
         "description": "This operation is used to retrieve the loyalty program member’s loyalty program product.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getProduct",
         "produces": [
@@ -23480,7 +23866,7 @@
       "delete": {
         "description": "This operation is used to delete a loyalty program product.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658deleteProduct",
         "produces": [
@@ -23523,7 +23909,7 @@
       "patch": {
         "description": "This operation partially updates a loyalty program member’s loyalty program product.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658updateProduct",
         "produces": [
@@ -23585,7 +23971,7 @@
       "get": {
         "description": "This operation is used to retrieve all the loyalty execution points on a loyalty product. These execution points are records of loyalty actions executed.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getExecutionPoints",
         "produces": [
@@ -23636,7 +24022,7 @@
       "get": {
         "description": "This operation retrieves a loyalty account loyalty earn transaction on a spesific account balance.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getEarnTransaction",
         "produces": [
@@ -23684,7 +24070,7 @@
       "get": {
         "description": "This operation retrieves a loyalty account loyalty earn transactions on a spesific account balance.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listEarnTransactions",
         "produces": [
@@ -23727,7 +24113,7 @@
       "post": {
         "description": "This operation creates a new loyalty earn transaction.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658earnLoyaltyBalance",
         "produces": [
@@ -23781,7 +24167,7 @@
       "get": {
         "description": "This operation retrieves a single loyalty account loyalty burn transaction on a spesific account balance.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658getBurnTransaction",
         "produces": [
@@ -23835,7 +24221,7 @@
       "get": {
         "description": "This operation retrieves a loyalty account loyalty burn transactions on a spesific account balance.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658listBurnTransactions",
         "produces": [
@@ -23878,7 +24264,7 @@
       "post": {
         "description": "This operation creates a new loyalty burn transaction.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658burnLoyaltyBalance",
         "produces": [
@@ -23932,7 +24318,7 @@
       "post": {
         "description": "This operation specifies a loyalty event that has occurred.",
         "tags": [
-          "TMF658 LoyaltyManagement_admin"
+          "TMF658 LoyaltyManagement"
         ],
         "operationId": "tMF658notifyLoyaltyEvent",
         "produces": [
@@ -23997,7 +24383,7 @@
         "operationId": "tMF662listCatalog",
         "summary": "List or find 'Catalog' objects",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24102,7 +24488,7 @@
         "operationId": "tMF662createCatalog",
         "summary": "Creates a 'Catalog'",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24142,7 +24528,7 @@
         "operationId": "tMF662retrieveCatalog",
         "summary": "Retrieves a 'Catalog' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24187,7 +24573,7 @@
         "operationId": "tMF662updateCatalog",
         "summary": "Updates partially a 'Catalog' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24238,7 +24624,7 @@
         "operationId": "tMF662deleteCatalog",
         "summary": "Deletes a 'Catalog' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24279,7 +24665,7 @@
         "operationId": "tMF662listCategory",
         "summary": "List or find 'Category' objects",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24377,7 +24763,7 @@
         "operationId": "tMF662createCategory",
         "summary": "Creates a 'Category'",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24417,7 +24803,7 @@
         "operationId": "tMF662retrieveCategory",
         "summary": "Retrieves a 'Category' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24462,7 +24848,7 @@
         "operationId": "tMF662updateCategory",
         "summary": "Updates partially a 'Category' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24513,7 +24899,7 @@
         "operationId": "tMF662deleteCategory",
         "summary": "Deletes a 'Category' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24554,7 +24940,7 @@
         "operationId": "tMF662listEntityCatalogItem",
         "summary": "List or find 'EntityCatalogItem' objects",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24659,7 +25045,7 @@
         "operationId": "tMF662createEntityCatalogItem",
         "summary": "Creates a 'EntityCatalogItem'",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24699,7 +25085,7 @@
         "operationId": "tMF662retrieveEntityCatalogItem",
         "summary": "Retrieves a 'EntityCatalogItem' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24744,7 +25130,7 @@
         "operationId": "tMF662updateEntityCatalogItem",
         "summary": "Updates partially a 'EntityCatalogItem' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24795,7 +25181,7 @@
         "operationId": "tMF662deleteEntityCatalogItem",
         "summary": "Deletes a 'EntityCatalogItem' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -24836,7 +25222,7 @@
         "operationId": "tMF662listEntitySpecification",
         "summary": "List or find 'EntitySpecification' objects",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25032,7 +25418,7 @@
         "operationId": "tMF662createEntitySpecification",
         "summary": "Creates a 'EntitySpecification'",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25072,7 +25458,7 @@
         "operationId": "tMF662retrieveEntitySpecification",
         "summary": "Retrieves a 'EntitySpecification' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25117,7 +25503,7 @@
         "operationId": "tMF662updateEntitySpecification",
         "summary": "Updates partially a 'EntitySpecification' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25168,7 +25554,7 @@
         "operationId": "tMF662deleteEntitySpecification",
         "summary": "Deletes a 'EntitySpecification' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25209,7 +25595,7 @@
         "operationId": "tMF662listAssociationSpecification",
         "summary": "List or find 'AssociationSpecification' objects",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25384,7 +25770,7 @@
         "operationId": "tMF662createAssociationSpecification",
         "summary": "Creates a 'AssociationSpecification'",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25424,7 +25810,7 @@
         "operationId": "tMF662retrieveAssociationSpecification",
         "summary": "Retrieves a 'AssociationSpecification' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25469,7 +25855,7 @@
         "operationId": "tMF662updateAssociationSpecification",
         "summary": "Updates partially a 'AssociationSpecification' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25520,7 +25906,7 @@
         "operationId": "tMF662deleteAssociationSpecification",
         "summary": "Deletes a 'AssociationSpecification' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25561,7 +25947,7 @@
         "operationId": "tMF662listAssociation",
         "summary": "List or find 'Association' objects",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25722,7 +26108,7 @@
         "operationId": "tMF662createAssociation",
         "summary": "Creates a 'Association'",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25762,7 +26148,7 @@
         "operationId": "tMF662retrieveAssociation",
         "summary": "Retrieves a 'Association' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25807,7 +26193,7 @@
         "operationId": "tMF662updateAssociation",
         "summary": "Updates partially a 'Association' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25858,7 +26244,7 @@
         "operationId": "tMF662deleteAssociation",
         "summary": "Deletes a 'Association' by Id",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25900,7 +26286,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25941,7 +26327,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF662 EntityCatalog_admin"
+          "TMF662 EntityCatalog"
         ],
         "parameters": [
           {
@@ -25976,7 +26362,7 @@
         "operationId": "tMF663listShoppingCart",
         "summary": "List or find 'ShoppingCart' objects",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26059,7 +26445,7 @@
         "operationId": "tMF663createShoppingCart",
         "summary": "Creates a 'ShoppingCart'",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26129,7 +26515,7 @@
         "operationId": "tMF663retrieveShoppingCart",
         "summary": "Retrieves a 'ShoppingCart' by Id",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26198,7 +26584,7 @@
         "operationId": "tMF663patchShoppingCart",
         "summary": "Updates partially a 'ShoppingCart' by Id",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26273,7 +26659,7 @@
         "operationId": "tMF663deleteShoppingCart",
         "summary": "Deletes a 'ShoppingCart' by Id",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26339,7 +26725,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26410,7 +26796,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF663 ShoppingCart_admin"
+          "TMF663 ShoppingCart"
         ],
         "parameters": [
           {
@@ -26469,7 +26855,7 @@
         "operationId": "tMF666listPartyAccount",
         "summary": "List or find 'PartyAccount' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26552,7 +26938,7 @@
         "operationId": "tMF666createPartyAccount",
         "summary": "Creates a 'PartyAccount'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26622,7 +27008,7 @@
         "operationId": "tMF666retrievePartyAccount",
         "summary": "Retrieves a 'PartyAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26691,7 +27077,7 @@
         "operationId": "tMF666patchPartyAccount",
         "summary": "Updates partially a 'PartyAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26766,7 +27152,7 @@
         "operationId": "tMF666deletePartyAccount",
         "summary": "Deletes a 'PartyAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26831,7 +27217,7 @@
         "operationId": "tMF666listBillingAccount",
         "summary": "List or find 'BillingAccount' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26914,7 +27300,7 @@
         "operationId": "tMF666createBillingAccount",
         "summary": "Creates a 'BillingAccount'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -26984,7 +27370,7 @@
         "operationId": "tMF666retrieveBillingAccount",
         "summary": "Retrieves a 'BillingAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27053,7 +27439,7 @@
         "operationId": "tMF666patchBillingAccount",
         "summary": "Updates partially a 'BillingAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27128,7 +27514,7 @@
         "operationId": "tMF666deleteBillingAccount",
         "summary": "Deletes a 'BillingAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27193,7 +27579,7 @@
         "operationId": "tMF666listSettlementAccount",
         "summary": "List or find 'SettlementAccount' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27276,7 +27662,7 @@
         "operationId": "tMF666createSettlementAccount",
         "summary": "Creates a 'SettlementAccount'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27346,7 +27732,7 @@
         "operationId": "tMF666retrieveSettlementAccount",
         "summary": "Retrieves a 'SettlementAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27415,7 +27801,7 @@
         "operationId": "tMF666patchSettlementAccount",
         "summary": "Updates partially a 'SettlementAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27490,7 +27876,7 @@
         "operationId": "tMF666deleteSettlementAccount",
         "summary": "Deletes a 'SettlementAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27555,7 +27941,7 @@
         "operationId": "tMF666listFinancialAccount",
         "summary": "List or find 'FinancialAccount' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27638,7 +28024,7 @@
         "operationId": "tMF666createFinancialAccount",
         "summary": "Creates a 'FinancialAccount'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27708,7 +28094,7 @@
         "operationId": "tMF666retrieveFinancialAccount",
         "summary": "Retrieves a 'FinancialAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27777,7 +28163,7 @@
         "operationId": "tMF666patchFinancialAccount",
         "summary": "Updates partially a 'FinancialAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27852,7 +28238,7 @@
         "operationId": "tMF666deleteFinancialAccount",
         "summary": "Deletes a 'FinancialAccount' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -27917,7 +28303,7 @@
         "operationId": "tMF666listBillingCycleSpecification",
         "summary": "List or find 'BillingCycleSpecification' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28000,7 +28386,7 @@
         "operationId": "tMF666createBillingCycleSpecification",
         "summary": "Creates a 'BillingCycleSpecification'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28070,7 +28456,7 @@
         "operationId": "tMF666retrieveBillingCycleSpecification",
         "summary": "Retrieves a 'BillingCycleSpecification' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28139,7 +28525,7 @@
         "operationId": "tMF666patchBillingCycleSpecification",
         "summary": "Updates partially a 'BillingCycleSpecification' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28214,7 +28600,7 @@
         "operationId": "tMF666deleteBillingCycleSpecification",
         "summary": "Deletes a 'BillingCycleSpecification' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28279,7 +28665,7 @@
         "operationId": "tMF666listBillFormat",
         "summary": "List or find 'BillFormat' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28362,7 +28748,7 @@
         "operationId": "tMF666createBillFormat",
         "summary": "Creates a 'BillFormat'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28432,7 +28818,7 @@
         "operationId": "tMF666retrieveBillFormat",
         "summary": "Retrieves a 'BillFormat' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28501,7 +28887,7 @@
         "operationId": "tMF666patchBillFormat",
         "summary": "Updates partially a 'BillFormat' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28576,7 +28962,7 @@
         "operationId": "tMF666deleteBillFormat",
         "summary": "Deletes a 'BillFormat' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28641,7 +29027,7 @@
         "operationId": "tMF666listBillPresentationMedia",
         "summary": "List or find 'BillPresentationMedia' objects",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28724,7 +29110,7 @@
         "operationId": "tMF666createBillPresentationMedia",
         "summary": "Creates a 'BillPresentationMedia'",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28794,7 +29180,7 @@
         "operationId": "tMF666retrieveBillPresentationMedia",
         "summary": "Retrieves a 'BillPresentationMedia' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28863,7 +29249,7 @@
         "operationId": "tMF666patchBillPresentationMedia",
         "summary": "Updates partially a 'BillPresentationMedia' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -28938,7 +29324,7 @@
         "operationId": "tMF666deleteBillPresentationMedia",
         "summary": "Deletes a 'BillPresentationMedia' by Id",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -29004,7 +29390,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -29075,7 +29461,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF666 AccountManagement_admin"
+          "TMF666 AccountManagement"
         ],
         "parameters": [
           {
@@ -29134,7 +29520,7 @@
         "operationId": "tMF668listPartnershipType",
         "summary": "List or find 'PartnershipType' objects",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29217,7 +29603,7 @@
         "operationId": "tMF668createPartnershipType",
         "summary": "Creates a 'PartnershipType'",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29287,7 +29673,7 @@
         "operationId": "tMF668retrievePartnershipType",
         "summary": "Retrieves a 'PartnershipType' by Id",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29356,7 +29742,7 @@
         "operationId": "tMF668patchPartnershipType",
         "summary": "Updates partially a 'PartnershipType' by Id",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29431,7 +29817,7 @@
         "operationId": "tMF668deletePartnershipType",
         "summary": "Deletes a 'PartnershipType' by Id",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29497,7 +29883,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29568,7 +29954,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF668 PartnershipType_admin"
+          "TMF668 PartnershipType"
         ],
         "parameters": [
           {
@@ -29627,7 +30013,7 @@
         "operationId": "tMF669listPartyRole",
         "summary": "List or find 'PartyRole' objects",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -29710,7 +30096,7 @@
         "operationId": "tMF669createPartyRole",
         "summary": "Creates a 'PartyRole'",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -29780,7 +30166,7 @@
         "operationId": "tMF669retrievePartyRole",
         "summary": "Retrieves a 'PartyRole' by Id",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -29849,7 +30235,7 @@
         "operationId": "tMF669patchPartyRole",
         "summary": "Updates partially a 'PartyRole' by Id",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -29924,7 +30310,7 @@
         "operationId": "tMF669deletePartyRole",
         "summary": "Deletes a 'PartyRole' by Id",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -29990,7 +30376,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -30061,7 +30447,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF669 PartyRole_admin"
+          "TMF669 PartyRole"
         ],
         "parameters": [
           {
@@ -30663,7 +31049,7 @@
         "operationId": "tMF671listPromotion",
         "summary": "List or find 'Promotion' objects",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -30746,7 +31132,7 @@
         "operationId": "tMF671createPromotion",
         "summary": "Creates a 'Promotion'",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -30816,7 +31202,7 @@
         "operationId": "tMF671retrievePromotion",
         "summary": "Retrieves a 'Promotion' by Id",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -30885,7 +31271,7 @@
         "operationId": "tMF671patchPromotion",
         "summary": "Updates partially a 'Promotion' by Id",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -30960,7 +31346,7 @@
         "operationId": "tMF671deletePromotion",
         "summary": "Deletes a 'Promotion' by Id",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -31026,7 +31412,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -31097,7 +31483,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF671 Promotion_admin"
+          "TMF671 Promotion"
         ],
         "parameters": [
           {
@@ -31420,7 +31806,7 @@
     "/geographicAddressManagement/v1/geographicAddress": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressFind",
         "summary": "List geographic addresses",
@@ -31507,7 +31893,7 @@
     "/geographicAddressManagement/v1/geographicAddress/{geographicAddressId}": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressGet",
         "summary": "Retrieve a geographic address",
@@ -31572,7 +31958,7 @@
     "/geographicAddressManagement/v1/geographicAddressValidation": {
       "post": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressValidationCreate",
         "summary": "Create a geographic address validation request",
@@ -31630,7 +32016,7 @@
       },
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressValidationFind",
         "summary": "List geographic address validation requests",
@@ -31717,7 +32103,7 @@
     "/geographicAddressManagement/v1/geographicAddressValidation/{geographicAddressValidationId}": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressValidationGet",
         "summary": "Retrieve a geographic address validation request",
@@ -31780,7 +32166,7 @@
       },
       "patch": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressValidationPatch",
         "summary": "Update partially a geographic address validation request",
@@ -31845,7 +32231,7 @@
       },
       "delete": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicAddressValidationDelete",
         "summary": "Delete a geographic address validation request",
@@ -31900,7 +32286,7 @@
     "/geographicAddressManagement/v1/geographicAddress/{geographicAddressId}/geographicSubAddress": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicSubAddressFind",
         "summary": "List subaddresses of a geographic address",
@@ -31968,7 +32354,7 @@
     "/geographicAddressManagement/v1/geographicAddress/{geographicAddressId}/geographicSubAddress/{geographicSubAddressId}": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673geographicSubAddressGet",
         "summary": "Retrieve a sub-address of a geographic address",
@@ -32040,7 +32426,7 @@
     "/geographicAddressManagement/v1/area": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673areaFind",
         "summary": "List areas",
@@ -32150,7 +32536,7 @@
     "/geographicAddressManagement/v1/street": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673streetFind",
         "summary": "List streets",
@@ -32253,7 +32639,7 @@
     "/geographicAddressManagement/v1/streetSegment": {
       "get": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673streetSegmentFind",
         "summary": "List street segments",
@@ -32349,7 +32735,7 @@
     "/geographicAddressManagement/v1/hub": {
       "post": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673hubCreate",
         "summary": "Register a listener",
@@ -32409,7 +32795,7 @@
     "/geographicAddressManagement/v1/hub/{hubId}": {
       "delete": {
         "tags": [
-          "TMF673 GeographicAddress_regular"
+          "TMF673 GeographicAddress"
         ],
         "operationId": "tMF673hubDelete",
         "summary": "Unregister a listener",
@@ -32464,7 +32850,7 @@
     "/geographicSiteManagement/v1/geographicSite": {
       "post": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674geographicSiteCreate",
         "summary": "Create a geographic site",
@@ -32522,7 +32908,7 @@
       },
       "get": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674geographicSiteFind",
         "summary": "List geographic sites",
@@ -32609,7 +32995,7 @@
     "/geographicSiteManagement/v1/geographicSite/{geographicSiteId}": {
       "get": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674geographicSiteGet",
         "summary": "Retrieve a geographic site",
@@ -32672,7 +33058,7 @@
       },
       "put": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674geographicSiteUpdate",
         "summary": "Update completely a geographic site",
@@ -32737,7 +33123,7 @@
       },
       "patch": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674geographicSitePatch",
         "summary": "Update partially a geographic site",
@@ -32802,7 +33188,7 @@
       },
       "delete": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674geographicSiteDelete",
         "summary": "Delete a geographic site",
@@ -32857,7 +33243,7 @@
     "/geographicSiteManagement/v1/hub": {
       "post": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674hubCreate",
         "summary": "Register a listener",
@@ -32917,7 +33303,7 @@
     "/geographicSiteManagement/v1/hub/{hubId}": {
       "delete": {
         "tags": [
-          "TMF674 GeographicSite_regular"
+          "TMF674 GeographicSite"
         ],
         "operationId": "tMF674hubDelete",
         "summary": "Unregister a listener",
@@ -32972,7 +33358,7 @@
     "/geographicLocation/v1/geographicLocation": {
       "get": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675geographicLocationFind",
         "summary": "List geographic locations",
@@ -33061,7 +33447,7 @@
     "/geographicLocation/v1/geographicLocation/{geographicLocationId}": {
       "get": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675geographicLocationGet",
         "summary": "Retrieve a geographic location",
@@ -33126,7 +33512,7 @@
     "/geographicLocation/v1/retrieveGeographicLocation": {
       "post": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675retrieveGeographicLocationCreate",
         "summary": "Create a retrieve geographic location entity",
@@ -33184,7 +33570,7 @@
       },
       "get": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675retrieveGeographicLocationFind",
         "summary": "List retrieve geographic location entities",
@@ -33273,7 +33659,7 @@
     "/geographicLocation/v1/retrieveGeographicLocation/{retrieveGeographicLocationId}": {
       "get": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675retrieveGeographicLocationGet",
         "summary": "Retrieve a retrieve geographic location entity",
@@ -33338,7 +33724,7 @@
     "/geographicLocation/v1/retrieveLocationRelation": {
       "post": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675retrieveLocationRelationCreate",
         "summary": "Create a retrieve location relation entity",
@@ -33396,7 +33782,7 @@
       },
       "get": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675retrieveLocationRelationFind",
         "summary": "List retrieve location relation entities",
@@ -33485,7 +33871,7 @@
     "/geographicLocation/v1/retrieveLocationRelation/{retrieveLocationRelationId}": {
       "get": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675retrieveLocationRelationGet",
         "summary": "Retrieve a retrieve location relation entity",
@@ -33550,7 +33936,7 @@
     "/geographicLocation/v1/hub": {
       "post": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675hubCreate",
         "summary": "Register a listener",
@@ -33610,7 +33996,7 @@
     "/geographicLocation/v1/hub/{hubId}": {
       "delete": {
         "tags": [
-          "TMF675 GeographicLocation_regular"
+          "TMF675 GeographicLocation"
         ],
         "operationId": "tMF675hubDelete",
         "summary": "Unregister a listener",
@@ -35655,7 +36041,7 @@
         "operationId": "tMF680listRecommendation",
         "summary": "List or find 'Recommendation' objects",
         "tags": [
-          "TMF680 Recommendation_admin"
+          "TMF680 Recommendation"
         ],
         "parameters": [
           {
@@ -35740,7 +36126,7 @@
         "operationId": "tMF680retrieveRecommendation",
         "summary": "Retrieves a 'Recommendation' by Id",
         "tags": [
-          "TMF680 Recommendation_admin"
+          "TMF680 Recommendation"
         ],
         "parameters": [
           {
@@ -35812,7 +36198,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF680 Recommendation_admin"
+          "TMF680 Recommendation"
         ],
         "parameters": [
           {
@@ -35883,7 +36269,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF680 Recommendation_admin"
+          "TMF680 Recommendation"
         ],
         "parameters": [
           {
@@ -35942,7 +36328,7 @@
         "operationId": "tMF681listCommunicationMessage",
         "summary": "List or find 'CommunicationMessage' objects",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36025,7 +36411,7 @@
         "operationId": "tMF681createCommunicationMessage",
         "summary": "Creates a 'CommunicationMessage'",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36095,7 +36481,7 @@
         "operationId": "tMF681createsanewCommunicationMessageandsendit",
         "summary": "Creates a 'CommunicationMessage' and send it",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36171,7 +36557,7 @@
         "operationId": "tMF681retrieveCommunicationMessage",
         "summary": "Retrieves a 'CommunicationMessage' by Id",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36240,7 +36626,7 @@
         "operationId": "tMF681patchCommunicationMessage",
         "summary": "Updates partially a 'CommunicationMessage' by Id",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36315,7 +36701,7 @@
         "operationId": "tMF681deleteCommunicationMessage",
         "summary": "Deletes a 'CommunicationMessage' by Id",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36380,7 +36766,7 @@
         "operationId": "tMF681sendsaCommunicationMessage",
         "summary": "Sends 'CommunicationMessage' ",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36455,7 +36841,7 @@
         "summary": "Register a listener",
         "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -36526,7 +36912,7 @@
         "summary": "Unregister a listener",
         "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
         "tags": [
-          "TMF681 Communication_admin"
+          "TMF681 Communication"
         ],
         "parameters": [
           {
@@ -40302,6 +40688,1051 @@
         "@schemaLocation": {
           "type": "string",
           "description": "(optional) A link to the schema describing a REST resource."
+        }
+      }
+    },
+    "TMF622PriorityType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "TMF622ActionType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "add",
+        "modify",
+        "noChange",
+        "delete"
+      ]
+    },
+    "TMF622StateType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "acknowledged",
+        "inProgress",
+        "cancelled",
+        "completed",
+        "rejected",
+        "pending",
+        "held",
+        "failed",
+        "partial"
+      ]
+    },
+    "TMF622RelationShipType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "reliesOn",
+        "brings",
+        "hasParent",
+        "hasChild"
+      ]
+    },
+    "TMF622PriceType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "recuring",
+        "oneTime",
+        "usage"
+      ]
+    },
+    "TMF622ErrorRepresentation": {
+      "description": "This structure is a representation of an error.",
+      "required": [
+        "code",
+        "reason",
+        "message"
+      ],
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "reason": {
+          "description": "",
+          "type": "string"
+        },
+        "message": {
+          "description": "",
+          "type": "string"
+        },
+        "status": {
+          "description": "",
+          "type": "string"
+        },
+        "referenceError": {
+          "description": "",
+          "type": "string"
+        },
+        "@type": {
+          "description": "",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622BillingAccountRef": {
+      "description": "A BillingAccount is a detailed description of a bill structure.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the billing account",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the billing account",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the billing account",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622Place": {
+      "description": "Place defines the places where the products are sold or delivered.",
+      "required": [
+        "role"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the place",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the place",
+          "type": "string"
+        },
+        "name": {
+          "description": "A user-friendly name for the place, such as 'Paris Store', 'Main Home'.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the place",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Type of Place.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622AppointmentRef": {
+      "description": "If the product order item requires an appointment between the service provider and the customer.",
+      "required": [
+        "href",
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "Hyperlink to access the appointment",
+          "type": "string"
+        },
+        "id": {
+          "description": "id of the appointment",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622ProductOrder": {
+      "description": "",
+      "required": [
+        "id",
+        "orderItem"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID created on repository side (OM system)",
+          "type": "string"
+        },
+        "href": {
+          "description": "Hyperlink to access the order",
+          "type": "string"
+        },
+        "externalId": {
+          "description": "ID given by the consumer and only understandable by him (to facilitate his searches afterwards).",
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/definitions/TMF622PriorityType"
+        },
+        "description": {
+          "description": "Description of the product order",
+          "type": "string"
+        },
+        "category": {
+          "description": "Used to categorize the order from a business perspective that can be useful for the OM system (e.g. 'enterprise', 'residential', ...).",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/TMF622StateType"
+        },
+        "orderDate": {
+          "description": "Date when the order was created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "completionDate": {
+          "description": "Date when the order was completed.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestedStartDate": {
+          "description": "Order start date wished by the requestor",
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestedCompletionDate": {
+          "description": "Requested delivery date from the requestor perspective",
+          "type": "string",
+          "format": "date-time"
+        },
+        "expectedCompletionDate": {
+          "description": "Expected delivery date amended by the provider",
+          "type": "string",
+          "format": "date-time"
+        },
+        "notificationContact": {
+          "description": "Contact attached to the order to send back information regarding this order",
+          "type": "string"
+        },
+        "@baseType": {
+          "description": "Indicates the base type of the resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "channel": {
+          "$ref": "#/definitions/TMF622Channel"
+        },
+        "note": {
+          "$ref": "#/definitions/TMF622Note"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622RelatedPartyRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622PaymentRef"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622BillingAccountRef"
+        },
+        "orderTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderPrice"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622Note": {
+      "description": "Extra information about a given entity",
+      "required": [
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "text": {
+          "description": "Texte of the note",
+          "type": "string"
+        },
+        "date": {
+          "description": "Date of the note",
+          "type": "string",
+          "format": "date-time"
+        },
+        "author": {
+          "description": "Author of the note",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622RelatedPartyRef": {
+      "description": "A related party defines party or party role linked to a specific entity.",
+      "required": [
+        "id",
+        "href",
+        "role"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the related party",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the related party, could be a party reference or a party role reference.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the related party",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role played by the related party",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the base (class) type of the party.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622OrderItem": {
+      "description": "An identified part of the order. A product order is decomposed into one or more order items.",
+      "required": [
+        "id",
+        "action"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)",
+          "type": "string"
+        },
+        "action": {
+          "$ref": "#/definitions/TMF622ActionType"
+        },
+        "state": {
+          "$ref": "#/definitions/TMF622StateType"
+        },
+        "quantity": {
+          "description": "Quantity ordered",
+          "type": "integer",
+          "format": "int64"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here it can be a type of productOrderItem.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "An URL to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "appointment": {
+          "$ref": "#/definitions/TMF622AppointmentRef"
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622BillingAccountRef"
+        },
+        "itemPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderPrice"
+          }
+        },
+        "itemTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderPrice"
+          }
+        },
+        "productOffering": {
+          "$ref": "#/definitions/TMF622ProductOfferingRef"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF622Product"
+        },
+        "orderItemRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderItemRelationShip"
+          }
+        },
+        "qualification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622QualificationRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622PaymentRef"
+          }
+        },
+        "itemTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderTerm"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622OrderPrice": {
+      "description": "An amount, usually of money, that represents the actual price paid by the Customer for this item or this order.",
+      "required": [
+        "priceType",
+        "price"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A short descriptive name such as \"Subscription price\".",
+          "type": "string"
+        },
+        "description": {
+          "description": "A narrative that explains in detail the semantics of this order item price",
+          "type": "string"
+        },
+        "priceType": {
+          "$ref": "#/definitions/TMF622PriceType"
+        },
+        "unitOfMeasure": {
+          "description": "Could be minutes, gigaBytes,...",
+          "type": "string"
+        },
+        "recurringChargePeriod": {
+          "description": "Could be month, week,...",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicate the type of orderPrice.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this orderPrice extension.",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/TMF622Price"
+        },
+        "priceAlteration": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622PriceAlteration"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622BillingAccountRef"
+        }
+      }
+    },
+    "TMF622ProductOfferingRef": {
+      "description": "A product offering represents entities that are order-able from the provider of the catalog, this resource includes pricing information.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product offering.",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product offering.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product offering.",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the class (type) of product offering.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622Product": {
+      "description": "Configure the product characteristics (only configurable characteristics and necessary only if a non default value is selected) and/or identify the product that needs to be modified/deleted.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "href": {
+          "description": "",
+          "type": "string"
+        },
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "place": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622Place"
+          }
+        },
+        "characteristic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622ProductCharacteristic"
+          }
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622RelatedPartyRef"
+          }
+        },
+        "productRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622ProductRelationship"
+          }
+        },
+        "productSpecification": {
+          "$ref": "#/definitions/TMF622ProductSpecificationRef"
+        },
+        "@type": {
+          "description": "",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622OrderItemRelationShip": {
+      "description": "Linked order items to the one instantiate.",
+      "required": [
+        "type",
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/TMF622RelationShipType"
+        },
+        "id": {
+          "description": "The identifier of the related ordered item.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622ProductCharacteristic": {
+      "description": "Characteristics of the product to instantiate or to modify.",
+      "required": [
+        "name",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the characteristic.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the characteristic.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of resource",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "This field provided a link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622ProductRelationship": {
+      "description": "",
+      "required": [
+        "type",
+        "product"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/TMF622RelationShipType"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF622Product"
+        }
+      }
+    },
+    "TMF622Channel": {
+      "description": "The channel defines the channel for selling product offerings where order has been submitted.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of  the channel",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the channel",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the channel",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the channel - could be 'initChannel', 'submitChannel' for example.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622PriceAlteration": {
+      "description": "Is an amount, usually of money, that modifies the price charged for an order item.",
+      "required": [
+        "priceType"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "type": "string"
+        },
+        "priceType": {
+          "$ref": "#/definitions/TMF622PriceType"
+        },
+        "unitOfMeasure": {
+          "description": "",
+          "type": "string"
+        },
+        "recurringChargePeriod": {
+          "description": "",
+          "type": "string"
+        },
+        "applicationDuration": {
+          "description": "",
+          "type": "string"
+        },
+        "priority": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "$ref": "#/definitions/TMF622Price"
+        },
+        "@type": {
+          "description": "",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622Price": {
+      "description": "Provides all amounts (tax included, duty free, tax rate), used currency and percentage to apply for Price Alteration.",
+      "type": "object",
+      "properties": {
+        "taxIncludedAmount": {
+          "$ref": "#/definitions/TMF622Money"
+        },
+        "dutyFreeAmount": {
+          "$ref": "#/definitions/TMF622Money"
+        },
+        "taxRate": {
+          "description": "Tax rate.",
+          "type": "number",
+          "format": "float"
+        },
+        "percentage": {
+          "description": "Percentage to apply for ProdOfferPriceAlteration.",
+          "type": "number",
+          "format": "float"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the price.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622QualificationRef": {
+      "description": "It could be a serviceQualification or a productOfferingQualification that has been executed previously and captured in the productOrder to provide 'eligibility' information.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of a pre-existing qualification.",
+          "type": "string"
+        },
+        "href": {
+          "description": "href of the qualification.",
+          "type": "string"
+        },
+        "qualificationItemId": {
+          "description": "Id of an item of a qualification.",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of resource. Here it can be a type of qualification. (could a service qualification or a product offering qualification).",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622PaymentRef": {
+      "description": "If an immediate payment has been done at the product order submission, the payment information are captured and stored (as a reference) in the order.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of a payment.",
+          "type": "string"
+        },
+        "href": {
+          "description": "Hyperlink to access to a payment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of a payment.",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of resource. Here can be 'cash', 'BankCard', ‘Check’, etc...",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622OrderTerm": {
+      "description": "Description of a productTerm linked to this orderItem. This represent a commitment with a duration.\nDuration or name must be provided.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the productOrderTerm.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the productOrderTerm.",
+          "type": "string"
+        },
+        "duration": {
+          "$ref": "#/definitions/TMF622Quantity"
+        },
+        "@type": {
+          "description": "Indicated the type of Term.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622Quantity": {
+      "description": "",
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "",
+          "type": "number",
+          "format": "float"
+        },
+        "unit": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622ProductSpecificationRef": {
+      "description": "A ProductSpecification is a detailed description of a tangible or intangible object made available externally in the form of a ProductOffering to customers or other parties playing a party role.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product specification.",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product specification.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the product specification.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product specification.",
+          "type": "string"
+        },
+        "targetResourceSchema": {
+          "$ref": "#/definitions/TMF622TargetResourceSchema"
+        }
+      }
+    },
+    "TMF622Money": {
+      "description": "A base / value business entity used to represent money.",
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "A positive floating point number.",
+          "type": "number",
+          "format": "float"
+        },
+        "unit": {
+          "description": "Currency (ISO4217 norm uses 3 letters to define the currency).",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622POST_REQ_OrderItem": {
+      "description": "",
+      "required": [
+        "id",
+        "action"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)",
+          "type": "string"
+        },
+        "action": {
+          "$ref": "#/definitions/TMF622ActionType"
+        },
+        "quantity": {
+          "description": "Quantity ordered",
+          "type": "integer",
+          "format": "int64"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here it can be a type of productOrderItem.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "An URL to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "appointment": {
+          "$ref": "#/definitions/TMF622AppointmentRef"
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622BillingAccountRef"
+        },
+        "itemPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderPrice"
+          }
+        },
+        "itemTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderPrice"
+          }
+        },
+        "productOffering": {
+          "$ref": "#/definitions/TMF622ProductOfferingRef"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF622Product"
+        },
+        "orderItemRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderItemRelationShip"
+          }
+        },
+        "qualification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622QualificationRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622PaymentRef"
+          }
+        },
+        "itemTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderTerm"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622POST_REQ_ProductOrder": {
+      "description": "",
+      "required": [
+        "orderItem"
+      ],
+      "type": "object",
+      "properties": {
+        "externalId": {
+          "description": "ID given by the consumer and only understandable by him (to facilitate his searches afterwards).",
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/definitions/TMF622PriorityType"
+        },
+        "description": {
+          "description": "Description of the product order",
+          "type": "string"
+        },
+        "category": {
+          "description": "Used to categorize the order from a business perspective that can be useful for the OM system (e.g. 'enterprise', 'residential', ...).",
+          "type": "string"
+        },
+        "requestedStartDate": {
+          "description": "Order start date wished by the requestor",
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestedCompletionDate": {
+          "description": "Requested delivery date from the requestor perspective",
+          "type": "string",
+          "format": "date-time"
+        },
+        "notificationContact": {
+          "description": "Contact attached to the order to send back information regarding this order",
+          "type": "string"
+        },
+        "@baseType": {
+          "description": "Indicates the base type of the resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "channel": {
+          "$ref": "#/definitions/TMF622Channel"
+        },
+        "note": {
+          "$ref": "#/definitions/TMF622Note"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622RelatedPartyRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622PaymentRef"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622BillingAccountRef"
+        },
+        "orderTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622OrderPrice"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622POST_REQ_OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622TargetResourceSchema": {
+      "description": "Target to the schema describing the product spec resource (and type)",
+      "required": [
+        "@type",
+        "@schemaLocation"
+      ],
+      "type": "object",
+      "properties": {
+        "@type": {
+          "description": "Indicates the (class) type of resource",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "This field provided a link to the schema describing this REST resource",
+          "type": "string"
         }
       }
     },
@@ -65496,7 +66927,7 @@
         },
         "provideUnavailabilityReason": {
           "description": "An indicator which when the value is \"true\" means that unavailability reason are expected for non available product offering.",
-          "type": "string"
+          "type": "boolean"
         },
         "@baseType": {
           "description": "Indicates the base type of the resource. Here can be 'ProductOfferingQualification'.",
