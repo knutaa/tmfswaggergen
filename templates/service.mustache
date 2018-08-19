@@ -5,21 +5,28 @@
 //Paging and Range based Iterator to be added
 //Notification to be added add listener and implement hub
 
-var util = require('util');
+const util = require('util');
+const uuid = require('uuid');
 
-var uuid = require('uuid');
+const mongoUtils = require('../utils/mongoUtils');
+const swaggerUtils = require('../utils/swaggerUtils');
 
-var mongoUtils = require('../utils/mongoUtils');
-var operationsUtils = require('../utils/operationsUtils');
+const {sendDoc} = require('../utils/mongoUtils');
 
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
+const {setBaseProperties, traverse, 
+       addHref, processCommonAttributes } = require('../utils/operationsUtils');
 
-// Mongo URL
+const {validateRequest} = require('../utils/ruleUtils');
 
-// This is a global variable we'll use for handing the MongoDB client around
-// var mongodb;
- 
+const {processAssignmentRules} = require('../utils/operations');
+
+const {getResourceType} = require('../utils/swaggerUtils');
+
+const {TError, TErrorEnum, sendError} = require('../utils/errorUtils');
+
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
 {{#operations}}
 {{#operation}}
 exports.{{{operationId}}} = function(req, res, next) {
@@ -42,297 +49,262 @@ exports.{{{operationId}}} = function(req, res, next) {
   {{/returnType}}
    **/
 
-  console.log('{{{operationId}}} :: ' + req.method + ' ' + req.url);
-
-  mongoUtils.connectDb( function(err,mongodb) {
-    if(err != null) {
-      console.error('ERROR: Unable to connect to database: ' + err);
-      return sendError(res, 500,  {code: 1001, message: 'No connection to mongodb'});
-    }
+  console.log('{{{operationId}}} :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
 
   {{#isRestfulIndex}}
-    /* matching isRestfulIndex */
-
-    var args = req.swagger.params;
-
-    const method = req.method.toLowerCase();
-    const allowedParams = req.swagger.path[method].parameters;
-   
-    // Get the documents collection and filtering ?
-
-    const collectionId = '{{{baseNameLowerCamelCase}}}' + '_' + camelize('{{{resource}}}');
-    var collection = mongodb.collection(collectionId);
-
-    if(collection == null) {
-        return sendError(res, 500, {code: 1001, message: "No collection '" + collectionId + "'" });
-    }
-
-    // var query = mongoUtils.rewriteQuery(allowedParams,req.query);
-    // query = mongoUtils.modifyQuery('{{operationId}}',req,query);
-    const query = mongoUtils.getMongoQuery(req);
+  /* matching isRestfulIndex */
  
-    // Find some documents based on criteria plus attribute selection
-    collection.find(query.criteria, query.options).toArray(function (err, docs) {
-        // using the query.options for attribute selection and not the mongoUtils.fieldFilter
-        if(err != null) {
-          return sendError(res,500, {code: 1001, message: 'internal error' });
+  const query = mongoUtils.getMongoQuery(req);
+
+  const resourceType = getResourceType(req);
+
+  const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
+  
+  // Find some documents based on criteria plus attribute selection
+  mongoUtils.connect().then(db => {
+    db.collection(resourceType)
+      .find(query.criteria, query.options).toArray()
+      .then(doc => sendDoc(res, 200, doc))
+      .catch(error => {
+        console.log("{{{operationId}}}: error=" + error);
+        sendError(res, internalError);
+      });
+  })
+  .catch(error => {
+    console.log("{{{operationId}}}: error=" + error);
+    sendError(res, internalError);
+  });
+
+  {{/isRestfulIndex}}
+  {{#isRestfulDestroy}}
+  /* matching isRestfulDestroy */
+
+  const {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
+
+  const query = {
+    id: {{{pathId}}}
+  };
+
+  const resourceType = getResourceType(req); 
+
+  const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
+
+  mongoUtils.connect().then(db => {
+    db.collection(resourceType)
+      .deleteOne(query)
+      .then(doc => {
+        if (doc.result.n == 1) {
+           sendDoc(res, 204, doc);
+        } else { 
+           sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
         }
-        sendDoc(res, 200, docs);
+      }).catch(error => sendError(res, internalError))
+  })
+  .catch(error => sendError(res, internalError));
+
+  {{/isRestfulDestroy}}
+  {{#isRestfulShow}}
+  /* matching isRestfulShow */
+
+  var {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
+
+  var query = mongoUtils.getMongoQuery(req);
+  query.criteria.id = {{{pathId}}}
+
+  const resourceType = getResourceType(req); 
+
+  const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
+
+  mongoUtils.connect().then(db => {
+    db.collection(resourceType)
+      .findOne(query.criteria, query.options)
+      .then(doc => {
+        if(doc) {
+          sendDoc(res, 200, doc)
+        } else {
+          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+        }
+      })
+      .catch(error => {
+        console.log("{{{operationId}}}: error=" + error);
+        sendError(res, internalError);
+      });
+  })
+  .catch(error => {
+    console.log("{{{operationId}}}: error=" + error);
+    sendError(res, internalError);
+  });
+
+  {{/isRestfulShow}}
+  {{#isRestfulCreate}}
+  /* matching isRestfulCreate - argument {{{baseNameLowerCamelCase}}} */
+  
+  const resourceType = getResourceType(req);
+
+  swaggerUtils.getPayload(req)
+    .then(payload => validateRequest('{{{operationId}}}',payload))
+    .then(payload => processCommonAttributes(req, resourceType, payload))
+    .then(payload => processAssignmentRules('{{{operationId}}}',payload))
+    .then(payload => traverse(req,resourceType,payload,[]))
+    .then(payload => {
+
+      const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
+
+      mongoUtils.connect().then(db => {
+        db.collection(resourceType)
+          .insertOne(payload)
+          .then(() => sendDoc(res, 201, payload))
+          .catch((error) => sendError(res, internalError))
+      })
+      .catch((error) => sendError(res, internalError));
+
+    })
+    .catch( error => {
+      console.log("{{{operationId}}}: error=" + error.toString());
+      sendError(res, error);
     });
-    {{/isRestfulIndex}}
-    {{#isRestfulDestroy}}
-    /* matching isRestfulDestroy */
-    var {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
+  {{/isRestfulCreate}}
+  {{#isRestfulUpdate}}
+  /* matching isRestfulUpdate */
 
-    var query = {
-      id: {{{pathId}}}
-    };
+  const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to update resource");
 
-    const collectionId = '{{{baseNameLowerCamelCase}}}' + '_' + camelize('{{{resource}}}');
-    var collection = mongodb.collection(collectionId);
-    collection.deleteOne(query, function(err, obj) {
-      
-      if(err != null) {
-        return sendError(res, 500, {code: 1001, message: 'internal error'});
-      }
+  const resourceType = getResourceType(req);
+  swaggerUtils.getPayload(req)
+    .then(payload => validateRequest('{{{operationId}}}',payload))
+    .then(payload => {
 
-      if (obj.result.n == 1) {
-          return sendDoc(res, 204, obj);
-      } else { // if (obj.result.n == 0) {
-          return sendError(res, 404, 
-            { code: 1001, 
-              message: 'Entry not found', 
-              description: 'provide a different id',
-              infoURL: '-' });
+      const {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
+      const query = {
+       id: {{{pathId}}}
       };
 
-    });
-    
-    {{/isRestfulDestroy}}
-    {{#isRestfulShow}}
-    /* matching isRestfulShow */
-
-    var {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
-
-    var query = mongoUtils.getMongoQuery(req);
-    query.criteria.id = {{{pathId}}}
-
-    const collectionId = '{{{baseNameLowerCamelCase}}}' + '_' + camelize('{{{resource}}}');
-    var collection = mongodb.collection(collectionId);
-    collection.findOne(query.criteria, query.options, function (err, doc) {
-   
-      if(err != null) {
-        return sendError(res, 500, {code: 1001, message: 'internal error' });
-      } 
-   
-      if (doc == null) {
-        return sendError(res, 404, {code: 1001, message: 'provide a different id'});
-      }
-
-      sendDoc(res, 200, doc);
-   
-    });
-    {{/isRestfulShow}}
-    {{#isRestfulCreate}}
-    /* matching isRestfulCreate - argument {{{baseNameLowerCamelCase}}} */
-    var payloadType = mongoUtils.getPayloadType(req); 
-    var payload = mongoUtils.getPayload(req); 
-
-    if(payload == null) {
-      return sendError(res, 400, {code: 1001, message: "Missing arguments" });
-    };
-
-    const payloadError = operationsUtils.validateRequest('{{{operationId}}}',payload);
-    if(payloadError) {
-      return sendError(res, 400, payloadError);
-    };
-
-    if (payload.id == undefined) {
-      payload.id = uuid.v4();
-    };
-
-    const self = req.url + "/" + payload.id;
-
-    payload.href = mongoUtils.getURLScheme() + "://" + req.headers.host + self;
-
-    payload = operationsUtils.updateCreateDocument('{{{operationId}}}',payload);
-
-    const collectionId = '{{{baseNameLowerCamelCase}}}' + '_' + camelize(payloadType);
-    var collection = mongodb.collection(collectionId);
-    // Insert  documents
-    collection.insert(payload, function (err, result) {
-        if(err != null) {
-          return sendError(res, 500, {code: 1001, message: 'internal error'});
-        }
-        sendDoc(res, 201, payload);
-    });
-
-    {{/isRestfulCreate}}
-    {{#isRestfulUpdate}}
-    /* matching isRestfulUpdate */
-    var payloadType = mongoUtils.Type(req); 
-    const newDoc = mongoUtils.getPayload(req); 
-
-    if(newDoc === null) {
-      return sendError(res, 400, {code: 1001, message: 'Missing arguments'});
-    };
-    
-    const payloadError = operationsUtils.validateRequest('{{{operationId}}}',newDoc);
-    if(payloadError) {
-      return sendError(res, 400, payloadError);
-    };
-
-    var id = String(req.swagger.params.{{{pathId}}}.value);
-
-    const query = {
-     id: id
-    };
-    
-    const collectionId = '{{{baseNameLowerCamelCase}}}' + '_' + camelize('{{{resource}}}');
-    var collection = mongodb.collection(collectionId);
-
-    console.log('newDoc: ' + JSON.stringify(newDoc));
-
-    collection.replaceOne(query, newDoc, function (err, result) {
-      if(err != null) {
-        return sendError(res, 500, {code: 1001, message: 'internal error - unable to update resource' });
-      }
-      collection.findOne(query, function (err, doc) {
-        if(doc) {
-          sendDoc(res, 201, doc);
-        } else {
-          sendError(res, 500, {code: 1001, message: 'internal error - unable to update resource' });
-        }
+      mongoUtils.connect().then(db => {
+        db.collection(resourceType)
+          .replaceOne(query, payload)
+          .findOne(query)
+          .then((doc) => sendDoc(res, 200, doc))
+          .catch((error) => sendError(res, internalError))
+      })
+      .catch(error => {
+        console.log("{{{operationId}}}: error=" + error.toString());
+        sendError(res, internalError);
       });
+    })
+    .catch(error => {
+      console.log("{{{operationId}}}: error=" + error.toString());
+      sendError(res, error);
     });
 
-    {{/isRestfulUpdate}}
-    {{#isRestfulPatch}}
-    /* matching isRestfulPatch */
-    var payloadType = mongoUtils.getPayloadType(req); 
-    var payload = mongoUtils.getPayload(req); 
+  {{/isRestfulUpdate}}
+  {{#isRestfulPatch}}
+  /* matching isRestfulPatch */
 
-    if(payload == null) {
-      return sendError(res, 400, {code: 1001 , message : 'missing arguments' });
-    }
-    
-    const payloadError = operationsUtils.validateRequest('{{{operationId}}}',payload);
-    if(payloadError) {
-      return sendError(res, 400, payloadError);
-    };
+  const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to update resource");
 
-    var id = String(req.swagger.params.{{{pathId}}}.value);
+  const resourceType = getResourceType(req);
 
-    const query = {
-     id: id
-    }
+  const {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
+  const query = {
+   id: {{{pathId}}}
+  };
 
-    var patchDoc = {
-      $set: payload
-    }
+  swaggerUtils.getPayload(req)
+    .then(payload => validateRequest('{{{operationId}}}',payload))
+    .then(payload => traverse(req,resourceType,payload))
+    .then(payload => {
 
-    const collectionId = '{{{baseNameLowerCamelCase}}}' + '_' + camelize('{{{resource}}}');
-    var collection = mongodb.collection(collectionId);
-    
-    collection.update(query, patchDoc, function (err, doc) {
-      if(err != null) {
-        return sendError(res, 500, {code: 1001, message: 'internal error' });
-      }
-
-      collection.findOne(query, function (err, doc) {
-        if(doc) {
-          sendDoc(res, 201, doc);
-        } else {
-          sendError(res, 500, {code: 1001, message: 'internal error - unable to update resource' });
-        }
+      mongoUtils.connect().then(db => {
+        // first check if resource exists
+        db.collection(resourceType)
+        .findOne(query)
+        .then(doc => {
+          if (doc==undefined) {
+            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+          }
+          // then update and return the complete resource
+          db.collection(resourceType)
+            .updateOne(query, {$set: payload}, {upsert: false})
+            .then(() => {
+              db.collection(resourceType).findOne(query)
+                .then((doc) => sendDoc(res, 201, doc))
+                .catch((error) => {
+                  console.log("{{{operationId}}} error=" + error);
+                  return sendError(res, internalError);
+                });
+            })
+            .catch((error) => {
+              console.log("{{{operationId}}} error=" + error);
+              return sendError(res, internalError);
+            })
+          })
+        .catch((error) => {
+          console.log("{{{operationId}}} error=" + error);
+          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+        });        
+      })
+      .catch((error) => {
+        console.log("{{{operationId}}} error=" + error);
+        return sendError(res, internalError);
       });
-      
-    });
-
-    {{/isRestfulPatch}}
-    {{#isUnregisterHub}}
-    /* matching isUnregisterHub */
-    var examples = {};
-    examples['application/json'] = {
-    "query" : "aeiou",
-    "callback" : "aeiou",
-    "id" : "aeiou"
-    };
-    if(Object.keys(examples).length > 0) {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-    }
-    else {
-      res.end({});
-    }
-
-    {{/isUnregisterHub}}
-    {{#isRegisterHub}}
-    /* matching isRegisterHub */
-    var examples = {};
-    examples['application/json'] = {
-    "query" : "aeiou",
-    "callback" : "aeiou",
-    "id" : "aeiou"
-    };
-    if(Object.keys(examples).length > 0) {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-    }
-    else {
-      res.end({});
-    }
-    {{/isRegisterHub}}
-    {{#isAction}}
-    /* matching isAction */
-
-    res.setHeader('Content-Type', 'application/json');
-    res.statusCode = 200;
-    res.end({});
-    {{/isAction}}
-    {{^isRestful}}
-    /* NOT matching isRestful */
-
-    res.setHeader('Content-Type', 'application/json');
-    res.statusCode = 500;
-    res.end({});
-    {{/isRestful}}
-
+  })
+  .catch(error => {
+    console.log("{{{operationId}}} error=" + error);
+    return sendError(res, error);
   });
+
+  {{/isRestfulPatch}}
+  {{#isUnregisterHub}}
+  /* matching isUnregisterHub */
+  var examples = {};
+  examples['application/json'] = {
+  "query" : "aeiou",
+  "callback" : "aeiou",
+  "id" : "aeiou"
+  };
+  if(Object.keys(examples).length > 0) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+  }
+  else {
+    res.end({});
+  }
+
+  {{/isUnregisterHub}}
+  {{#isRegisterHub}}
+  /* matching isRegisterHub */
+  var examples = {};
+  examples['application/json'] = {
+  "query" : "aeiou",
+  "callback" : "aeiou",
+  "id" : "aeiou"
+  };
+  if(Object.keys(examples).length > 0) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+  }
+  else {
+    res.end({});
+  }
+  {{/isRegisterHub}}
+  {{#isAction}}
+  /* matching isAction */
+
+  res.setHeader('Content-Type', 'application/json');
+  res.statusCode = 200;
+  res.end({});
+  {{/isAction}}
+  {{^isRestful}}
+  /* NOT matching isRestful */
+
+  res.setHeader('Content-Type', 'application/json');
+  res.statusCode = 500;
+  res.end({});
+  {{/isRestful}}
+
 };
 
 {{/operation}}
 {{/operations}}
 
-function sendError(res,code,error) {
-  res.statusCode = code;
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(error));
-}
 
-function sendDoc(res,code,doc) {
-
-  // delete internal mongo _id from all documents
-  if(Array.isArray(doc)) {
-    // remove _id from all documents
-    doc.forEach(x => {
-      delete x._id;
-    });
-  } else {
-    delete doc._id;
-  }
-
-  if(doc.href) {
-    res.setHeader('Location',  doc.href);
-  }
-
-  res.statusCode = code;
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(doc));
-}
-
-function camelize(str) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-  }).replace(/\s+/g, '');
-}

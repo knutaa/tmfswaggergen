@@ -1,0 +1,242 @@
+'use strict';
+
+const queryToMongo = require('query-to-mongo');
+const MongoClient = require('mongodb').MongoClient;
+
+module.exports = { connectDb, fieldFilter, rewriteQuery, modifyQuery, 
+                   getPayloadType, getPayload, getURLScheme, getMongoQuery };
+
+var mongodb = null; 
+
+function connectDb(callback) {
+  // console.log('connectdb: ' + mongodb);
+  if(mongodb) {
+      mongodb.stats(function(err, stats) {
+        if(stats != null) {
+          // console.log('db.stats: ok ' + stats);
+          callback(null,mongodb);
+        } else {
+          // console.log('connectdb: retry after error: ' + err);
+          connectHelper(callback);
+        }
+      });
+  } else {
+    connectHelper(callback);
+  }
+};
+
+function connectHelper(callback) {
+  {{#localDatabase}}
+  {{! Local MongoDB is used}}
+  var config = require('../service/config.json');
+
+  var argv = require('minimist')(process.argv);
+  var dbhost = argv.dbhost ? argv.dbhost: config.db_host;
+  const mongourl = config.db_prot + "://" + dbhost + ":" + config.db_port + "/" + config.db_name;
+  MongoClient.connect(mongourl, { useNewUrlParser: true }, function (err, db) {
+  {{/localDatabase}}
+
+  {{^localDatabase}}
+  {{! MongoDB in combination with Bluemix is used}}
+
+  //This is copied from the tutorial
+  // Now lets get cfenv and ask it to parse the environment variable
+  var cfenv = require('cfenv');
+  var appenv = cfenv.getAppEnv();
+
+  // Within the application environment (appenv) there's a services object
+  var services = appenv.services;
+
+  // The services object is a map named by service so we extract the one for MongoDB
+  var mongodb_services = services["compose-for-mongodb"];
+
+  // This check ensures there is a services for MongoDB databases
+  assert(!util.isUndefined(mongodb_services), "Must be bound to compose-for-mongodb services");
+
+  // We now take the first bound MongoDB service and extract it's credentials object
+  var credentials = mongodb_services[0].credentials;
+
+  // Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
+  // We convert that from a string into a Buffer entry in an array which we use when
+  // connecting.
+  var ca = [new Buffer(credentials.ca_certificate_base64, 'base64')];
+
+  MongoClient.connect(credentials.uri, {
+          mongos: {
+              ssl: true,
+              sslValidate: true,
+              sslCA: ca,
+              poolSize: 1,
+              reconnectTries: 1
+          }, 
+          useNewUrlParser: true
+      }, function(err, db) {
+  {{/localDatabase}}
+    {{! This sectin is used for both local and online MongoDB}}
+      if (err) {
+        mongodb = null;
+        callback(err,null);
+      } else {
+        mongodb = db.db("tmf");
+        callback(null,mongodb);
+      }
+    }
+  );
+};
+
+function fieldFilter ( urlString ) {
+    var fieldList = []
+    if ( urlString != undefined && urlString.value != undefined) {
+      fieldList =  urlString.value.split(",")
+    }
+
+    var filter = '{'
+    if (fieldList.length > 0) {
+      fieldList.forEach( function(item) {
+        var filterItem = '"' + item + '": 1,'
+        filter = filter.concat( filterItem )
+      })
+      filter = filter.concat('"id": 1,')
+    }
+    filter = filter.concat('"_id": 0 }')
+
+    return JSON.parse(filter);
+};
+
+/*
+* Inspired by the to-Dot module, but embedded
+*
+* Returning stringified result
+*/ 
+function toDot (obj) {
+  var ret = {};
+
+  if (typeof(obj) === 'undefined' || obj === null) {
+    return ret;
+  } 
+
+  (function traverse(obj, prop) {
+    var keys = Object.keys(obj);
+
+    for (var i = 0, l = keys.length; i < l; i++) {
+      var key = keys[i];
+      var val = obj[key];
+      key = prop ? prop + '.' + key : key;
+
+      if (val && typeof val == 'object') {
+        traverse(val, key);
+      } else {
+        ret[key] = val;
+      }
+    }
+  })(obj);
+
+  return ret;
+};
+
+function getMongoQuery(req) {
+  return queryToMongo(req._parsedUrl.query);
+}
+
+function rewriteQuery(allowedParams,query) {
+  var res = toDot(query);
+  // console.log("rewriteQuery: start=" + JSON.stringify(res));
+  allowedParams.forEach(function(param) {
+    // console.log("check: " + param.name);
+    if(res[param.name] != null) {
+      if(param.type === "integer") {
+        // console.log("rewrite: " + param.name);
+        res[param.name] = Number(res[param.name]);
+      } else if(param.type === "string") {
+        res[param.name] = quotedString(res[param.name]);
+      }
+    } 
+  });
+  return queryToMongo(res);
+};
+
+function quotedString(s) {
+  return s;
+}
+
+function modifyQuery(operation,req,query) {
+  var res = query;
+  if(operation === 'tMF654retrieveTopupByProduct') {
+    console.log('modifyQuery:: ' + operation + ' :: adding query for product.id');
+    const args = req.swagger.params;
+    if(args != null && Object.values(args).length>0) {
+      const id = Object.values(args)[0].value;
+      res.criteria = { "product.id": id};
+      return res;
+    }
+  }
+
+  if(operation === 'tMF654retrieveTopupStatus') {
+    console.log('modifyQuery:: ' + operation + ' :: adding query for parent id');
+    const args = req.swagger.params;
+    if(args != null && Object.values(args).length>0) {
+      const id = Object.values(args)[0].value;
+      res.criteria = { "id": id};
+      res.options = { "fields": {"href": 1, "id": 1}};
+      return res;
+    }
+  }
+
+  return res;
+}
+
+function getPayload(req) {
+  const payloadType=getPayloadType(req);
+  if(payloadType) {
+    if(req.swagger.params[payloadType] != null) {
+      return req.swagger.params[payloadType].value;
+    }
+  };
+  return null;
+}
+
+function getPayloadType(req) {
+  var payloadType=null;
+  req.swagger.operationParameters.every(function(param) {
+    if(param.schema.in === 'body') {
+      payloadType = param.schema.name;
+      return false; // break 
+    }
+    return true; // continue with next
+  });
+  return payloadType;
+};
+
+function getURLScheme() {
+  {{#localDatabase}}
+  return "http";
+  {{/localDatabase}}
+  {{^localDatabase}}
+  return "https";
+  {{/localDatabase}}
+}
+
+// inspired by https://stackoverflow.com/questions/11293857/fastest-way-to-copy-file-in-node-js
+function copyFile(source, target, cb) {
+  var cbCalled = false;
+
+  var rd = fs.createReadStream(source);
+  rd.on("error", function(err) {
+    done(err);
+  });
+  var wr = fs.createWriteStream(target);
+  wr.on("error", function(err) {
+    done(err);
+  });
+  wr.on("close", function(ex) {
+    done();
+  });
+  rd.pipe(wr);
+
+  function done(err) {
+    if (!cbCalled) {
+      cb(err);
+      cbCalled = true;
+    }
+  }
+}

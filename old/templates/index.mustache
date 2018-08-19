@@ -1,0 +1,110 @@
+'use strict';
+
+var fs = require('fs'),
+    path = require('path'),
+    http = require('http'),
+    untildify = require('untildify'),
+    mongoUtils = require('./utils/mongoUtils');
+
+var app = require('connect')();
+var swaggerTools = require('swagger-tools');
+var jsyaml = require('js-yaml');
+var serverPort = {{serverPort}};
+
+// Correct the url in swagger-ui-dist that points to some demo (like the petstore)
+// And add additional useful options
+fs.copyFileSync(path.join(__dirname, './index.html_replacement'),
+        path.join(__dirname, './node_modules/swagger-ui-dist/index.html'), (err) => {
+  if(err) {
+    console.log('Unable to replace swagger-ui-dist/index.html file - something wrong with the installation ??');
+    process.exit(1);
+  }
+})
+
+// swaggerRouter configuration
+var options = {
+  swaggerUi: path.join(__dirname, '/swagger.json'),
+  controllers: path.join(__dirname, './controllers'),
+  useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
+};
+
+// The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
+var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
+var swaggerDoc = jsyaml.safeLoad(spec);
+
+// Initialize the Swagger middleware
+swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+
+  // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
+  app.use(middleware.swaggerMetadata());
+
+ // app.use(function (req, res, next) {
+ //     res.header("Access-Control-Allow-Origin", "*"); // CORS should be parametrized by configuration
+ //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ //     next();
+ // });
+
+  // Validate Swagger requests
+  app.use(middleware.swaggerValidator({
+        validateResponse: false
+  }));
+
+  // Error handling for validation
+  app.use(errorHandler);
+
+  // Route validated requests to appropriate controller
+  app.use(middleware.swaggerRouter(options));
+
+  // Serve the Swagger documents and Swagger UI
+  // using the more up-to-date swagger-ui-dist - not the default app.use(middleware.swaggerUi())
+  app.use(middleware.swaggerUi({ swaggerUiDir: path.join(__dirname, 'node_modules', 'swagger-ui-dist') }));
+
+  // Start the server
+  http.createServer(app).listen(serverPort, function () {
+    console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+    console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
+  });
+
+});
+
+// handles timed out requests
+function haltOnTimedout(req, res, next) {
+    if (!req.timedout) {
+        next();
+    } else {
+        debug("\nrequest timed out!\n");
+        next("the request timed out", null, null, null, 504);
+    }
+}
+
+function errorHandler (err, req, res, next) {
+  if(err) {
+    console.log("errorHandler: " + JSON.stringify(err));
+    if(err.failedValidation) {
+      res.setHeader('Content-Type', 'application/json');
+      // rewrite to the TMForum error code format
+
+      var message = "";
+      err.results.errors.forEach(item => {
+        message = message + "Issue: " + item.message + ": " + item.path.join() + ' '; 
+      });
+      message = message.replace(/ $/g,'');
+      
+      const error = {
+        code: 24, 
+        reason: 'Invalid body field',
+        message: message
+      }
+      res.end(JSON.stringify(error));
+
+    } else {
+      // err.status and err.body in case of syntax error in incoming request
+      // not sending the body back
+      const error = {code: 24, reason: 'Invalid body field'};
+      res.end(JSON.stringify(error));
+      console.log("errorHandler: sending error=" + JSON.stringify(error));
+    }  
+  } else {
+    next(err,req,res);
+  }
+};
