@@ -68,7 +68,6 @@ exports.{{{operationId}}} = function(req, res, next) {
       .find(query.criteria, query.options).toArray()
       .then(doc => {
         sendDoc(res, 200, doc);
-        notificationUtils.publish(req,doc);
       })
       .catch(error => {
         console.log("{{{operationId}}}: error=" + error);
@@ -100,6 +99,7 @@ exports.{{{operationId}}} = function(req, res, next) {
       .then(doc => {
         if (doc.result.n == 1) {
            sendDoc(res, 204, {});
+           notificationUtils.publish(req,doc);
         } else { 
            sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
         }
@@ -188,7 +188,7 @@ exports.{{{operationId}}} = function(req, res, next) {
       };
 
       payload.id = query.id;
-      
+
       mongoUtils.connect().then(db => {
 
         db.collection(resourceType)
