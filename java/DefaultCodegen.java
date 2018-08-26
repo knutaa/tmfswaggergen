@@ -2319,6 +2319,7 @@ public class DefaultCodegen {
 
         // TMForum-specific
         op.isAction = op.isAction();
+        op.tmfHub = op.tmfHub();
         // TMForum-specific end
         
         return op;
@@ -3036,9 +3037,9 @@ public class DefaultCodegen {
     
         co.baseNameLowerCamelCase = tag.substring(0, 1).toLowerCase() + tag.substring(1);
         
-        LOGGER.warn("path: " + co.path + " without basename: " + co.pathWithoutBaseName());
+        // LOGGER.warn("path: " + co.path + " without basename: " + co.pathWithoutBaseName());
         
-        LOGGER.warn("path: " + co.path + " count: " + count + " hasId: " + co.hasId + " pathId: " + co.pathId);
+        // LOGGER.warn("path: " + co.path + " count: " + count + " hasId: " + co.hasId + " pathId: " + co.pathId);
 
         // TMForum-specific end
     }
@@ -3572,6 +3573,17 @@ public class DefaultCodegen {
             return "value";
         }
 
+//// KJ 
+//        if (name.startsWith("@") && name.length()>1) {
+//            name = "With" + name.substring(1,2).toUpperCase() + name.substring(2);
+//        }
+//        if (name.contains(".@")) {
+//            String[] parts = name.split(".@");
+//            name = parts[0] + 
+//                   "with" + 
+//                   parts[1].substring(0,1).toUpperCase() + parts[1].substring(1);            
+//        }
+        
         // input[] => input
         name = name.replaceAll("\\[\\]", ""); // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
 

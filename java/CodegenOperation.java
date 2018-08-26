@@ -23,7 +23,7 @@ public class CodegenOperation {
     
     // TMForum-specific
     public boolean isAction;
-    public boolean isUnregisterHub, isRegisterHub, hasId;
+    public boolean isUnregisterHub, isRegisterHub, tmfHub, hasId;
     // TMForum-specific end
     
     public String path, operationId, returnType, httpMethod, returnBaseType,
@@ -171,7 +171,7 @@ public class CodegenOperation {
     public boolean isRestfulCreate() {
         // TMForum-specific
         // return "POST".equalsIgnoreCase(httpMethod) && "".equals(pathWithoutBaseName());
-        return "POST".equalsIgnoreCase(httpMethod) && !isRegisterHub(); 
+        return "POST".equalsIgnoreCase(httpMethod); // && !isRegisterHub(); 
         // TMForum-specific end
     }
 
@@ -221,7 +221,7 @@ public class CodegenOperation {
     public boolean isRestfulDestroy() {
         // TMForum-specific  
         // return "DELETE".equalsIgnoreCase(httpMethod) && isMemberPath();
-        return "DELETE".equalsIgnoreCase(httpMethod) && hasId && !isUnregisterHub(); 
+        return "DELETE".equalsIgnoreCase(httpMethod) && hasId; // && !isUnregisterHub(); 
         // TMForum-specific end  
     }
 
@@ -250,6 +250,12 @@ public class CodegenOperation {
     	String[] parts = path.split("/");
         int len = parts.length;
         return "DELETE".equalsIgnoreCase(httpMethod) && hasId() && len >= 2 && "hub".equals(parts[len-2]);
+    }
+    
+    public boolean tmfHub() {
+    	String[] parts = path.split("/");
+        int len = parts.length;
+        return  (len>=2) && ("hub".equals(parts[len-2]) || "hub".equals(parts[len-1]));
     }
     
     /**
@@ -283,7 +289,7 @@ public class CodegenOperation {
      * @return true if Restful-style, false otherwise
      */
     public boolean isRestful() {
-        return isAction() || isRegisterHub() || isUnregisterHub()
+        return isAction() // || isRegisterHub() || isUnregisterHub()
                 || isRestfulIndex() || isRestfulShow() || isRestfulCreate() 
                 || isRestfulUpdate() || isRestfulDestroy() || isRestfulPatch();
     }

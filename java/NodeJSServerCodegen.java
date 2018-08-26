@@ -352,8 +352,20 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
         
         writeOptional(outputFolder, new SupportingFile("mongoUtils.mustache", "utils", "mongoUtils.js"));
         
-        writeOptional(outputFolder, new SupportingFile("operationsUtils.mustache", "utils", "operationsUtils.js"));
+        writeOptional(outputFolder, new SupportingFile("operationsUtils.js", "utils", "operationsUtils.js"));
+ 
+        writeOptional(outputFolder, new SupportingFile("operations.js", "utils", "operations.js"));
+                
+        writeOptional(outputFolder, new SupportingFile("swaggerUtils.mustache", "utils", "swaggerUtils.js"));
+
+        writeOptional(outputFolder, new SupportingFile("rules.js", "utils", "rules.js"));
         
+        writeOptional(outputFolder, new SupportingFile("ruleUtils.js", "utils", "ruleUtils.js"));    
+        
+        writeOptional(outputFolder, new SupportingFile("errorUtils.js", "utils", "errorUtils.js"));
+   
+        writeOptional(outputFolder, new SupportingFile("notificationUtils.js", "utils", "notificationUtils.js"));
+ 
         if(!localDatabase) {
             writeOptional(outputFolder, new SupportingFile("manifest.mustache", "", "manifest.yml"));
         }
@@ -378,7 +390,7 @@ public class NodeJSServerCodegen extends DefaultCodegen implements CodegenConfig
         // TMForum-specific 
         // If a local Database is used the following attributes have to be set as well
     	// Host: localhost:8080
-    	// basePath: /docs
+    	// basePath: /tmf-api
     	// schemes: http
         if (localDatabase) {
         	swagger.setHost("localhost:8080");

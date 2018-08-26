@@ -10,6 +10,7 @@ const uuid = require('uuid');
 
 const mongoUtils = require('../utils/mongoUtils');
 const swaggerUtils = require('../utils/swaggerUtils');
+const notificationUtils = require('../utils/notificationUtils');
 
 const {sendDoc} = require('../utils/mongoUtils');
 
@@ -51,6 +52,7 @@ exports.{{{operationId}}} = function(req, res, next) {
 
   console.log('{{{operationId}}} :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
 
+  {{^tmfHub}}
   {{#isRestfulIndex}}
   /* matching isRestfulIndex */
  
@@ -64,7 +66,10 @@ exports.{{{operationId}}} = function(req, res, next) {
   mongoUtils.connect().then(db => {
     db.collection(resourceType)
       .find(query.criteria, query.options).toArray()
-      .then(doc => sendDoc(res, 200, doc))
+      .then(doc => {
+        sendDoc(res, 200, doc);
+        notificationUtils.publish(req,doc);
+      })
       .catch(error => {
         console.log("{{{operationId}}}: error=" + error);
         sendError(res, internalError);
@@ -94,7 +99,7 @@ exports.{{{operationId}}} = function(req, res, next) {
       .deleteOne(query)
       .then(doc => {
         if (doc.result.n == 1) {
-           sendDoc(res, 204, doc);
+           sendDoc(res, 204, {});
         } else { 
            sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
         }
@@ -153,7 +158,10 @@ exports.{{{operationId}}} = function(req, res, next) {
       mongoUtils.connect().then(db => {
         db.collection(resourceType)
           .insertOne(payload)
-          .then(() => sendDoc(res, 201, payload))
+          .then(() => {
+            sendDoc(res, 201, payload);
+            notificationUtils.publish(req,payload);
+          })
           .catch((error) => sendError(res, internalError))
       })
       .catch((error) => sendError(res, internalError));
@@ -179,12 +187,27 @@ exports.{{{operationId}}} = function(req, res, next) {
        id: {{{pathId}}}
       };
 
+      payload.id = query.id;
+      
       mongoUtils.connect().then(db => {
+
         db.collection(resourceType)
+        .findOne(query)
+        .then((old) => {
+          db.collection(resourceType)
           .replaceOne(query, payload)
-          .findOne(query)
-          .then((doc) => sendDoc(res, 200, doc))
+          .then(resp => {
+            if(resp.result!=undefined && resp.result.n==1) {
+              sendDoc(res, 200, payload);
+              notificationUtils.publish(req,payload,old);
+              return;
+            } else {
+              return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"Unable to update resource"));
+            }
+          })
           .catch((error) => sendError(res, internalError))
+        })
+        .catch((error) => sendError(res, TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id")));
       })
       .catch(error => {
         console.log("{{{operationId}}}: error=" + error.toString());
@@ -218,16 +241,19 @@ exports.{{{operationId}}} = function(req, res, next) {
         // first check if resource exists
         db.collection(resourceType)
         .findOne(query)
-        .then(doc => {
-          if (doc==undefined) {
-            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+        .then(old => {
+          if (old==undefined) {
+            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
           }
           // then update and return the complete resource
           db.collection(resourceType)
             .updateOne(query, {$set: payload}, {upsert: false})
             .then(() => {
               db.collection(resourceType).findOne(query)
-                .then((doc) => sendDoc(res, 201, doc))
+                .then((doc) => {
+                  sendDoc(res, 201, doc);
+                  notificationUtils.publish(req,doc,old);
+                })
                 .catch((error) => {
                   console.log("{{{operationId}}} error=" + error);
                   return sendError(res, internalError);
@@ -240,7 +266,7 @@ exports.{{{operationId}}} = function(req, res, next) {
           })
         .catch((error) => {
           console.log("{{{operationId}}} error=" + error);
-          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
         });        
       })
       .catch((error) => {
@@ -254,39 +280,41 @@ exports.{{{operationId}}} = function(req, res, next) {
   });
 
   {{/isRestfulPatch}}
-  {{#isUnregisterHub}}
-  /* matching isUnregisterHub */
-  var examples = {};
-  examples['application/json'] = {
-  "query" : "aeiou",
-  "callback" : "aeiou",
-  "id" : "aeiou"
-  };
-  if(Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  }
-  else {
-    res.end({});
-  }
+  {{/tmfHub}}
 
-  {{/isUnregisterHub}}
-  {{#isRegisterHub}}
-  /* matching isRegisterHub */
-  var examples = {};
-  examples['application/json'] = {
-  "query" : "aeiou",
-  "callback" : "aeiou",
-  "id" : "aeiou"
-  };
-  if(Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  }
-  else {
-    res.end({});
-  }
-  {{/isRegisterHub}}
+  {{#tmfHub}}
+  {{#isRestfulIndex}}
+  /* matching tmfHub & isRestfulIndex */
+
+  notificationUtils.index(req, res, next);
+  {{/isRestfulIndex}}
+  {{#isRestfulShow}}
+  /* matching tmfHub & isRestfulShow */
+
+  notificationUtils.show(req, res, next);  
+  {{/isRestfulShow}}
+  {{#isRestfulCreate}}
+  /* matching tmfHub & isRestfulCreate */
+
+  notificationUtils.register(req, res, next);  
+  {{/isRestfulCreate}}
+  {{#isRestfulPatch}}
+  /* matching tmfHub & isRestfulPatch */
+
+  notificationUtils.patch(req, res, next);  
+  {{/isRestfulPatch}}
+  {{#isRestfulUpdate}}
+  /* matching tmfHub & isRestfulUpdate */
+
+  notificationUtils.update(req, res, next);  
+  {{/isRestfulUpdate}}
+  {{#isRestfulDestroy}}
+  /* matching tmfHub & isRestfulDestroy */
+
+  notificationUtils.unregister(req, res, next);  
+  {{/isRestfulDestroy}}
+  {{/tmfHub}}
+
   {{#isAction}}
   /* matching isAction */
 

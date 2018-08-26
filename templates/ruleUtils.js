@@ -298,9 +298,7 @@ function checkAndRule(criteria,obj,path,lastLabel) {
   return error;
 };
 
- 
-var Set = require("collections/set");
- 
+  
 function generateState(stateRules, states) {
   var state=null;
   stateRules.forEach(item => {
