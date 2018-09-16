@@ -28,7 +28,8 @@ function getTypeDefinition(type) {
  	return def;
 }
 
-function getResourceType(req) {
+
+function getResponseType(req) {
 	var type;
 	const swaggerDoc = getSwaggerDoc();
 
@@ -105,6 +106,18 @@ function getPayloadType(req) {
   return payloadType;
 };
 
+function getPayloadSchema(req) {
+  var schema=null;
+  req.swagger.operationParameters.every(function(param) {
+    if(param.schema.in === 'body') {
+      schema = param.schema.schema;
+      return false; // break 
+    }
+    return true; // continue with next
+  });
+  return schema;
+};
+
 function getURLScheme() {
   {{#localDatabase}}
   return "http";
@@ -125,12 +138,57 @@ function hasProperty (obj, path) {
   return (obj !== undefined);
 }
 
+const SERVICE_TYPE = "service_type";
+
+function getRequestServiceType(req) {
+	var res;
+  if(req.swagger.params[SERVICE_TYPE]!==undefined) {
+  	res=req.swagger.params[SERVICE_TYPE];
+  }  
+  return res;
+}
+
+function updateQueryServiceType(query, req, idparam) {
+
+  // console.log("query: " + JSON.stringify(query,null,2));
+
+  if(req.swagger.params[SERVICE_TYPE]!==undefined) {
+    query.criteria._serviceType = req.swagger.params[SERVICE_TYPE].value;
+    if(idparam===SERVICE_TYPE) {
+      delete query.criteria.id;
+    }
+  }  
+  return query;
+}
+
+function updatePayloadServiceType(payload, req, idparam) {
+
+  if(req.swagger.params[SERVICE_TYPE]!==undefined) {
+    payload._serviceType = req.swagger.params[SERVICE_TYPE].value;
+  } 
+  return payload;
+}
+
+function cleanPayloadServiceType(payload) {
+  delete payload._serviceType;
+  return payload
+}
+
+
+
 module.exports = { 
                    getSwaggerDoc, 
                    getTypeDefinition,
-                   getResourceType, 
+                   getResponseType, 
 				   				 getPayloadType, 
+				   				 getPayloadSchema, 
 				   				 getPayload, 
 				   				 getURLScheme,
-				   				 getHost 
+				   				 getHost,
+
+									 getRequestServiceType,
+                   updateQueryServiceType,
+                   updatePayloadServiceType,
+                   cleanPayloadServiceType
+
 				   			 };

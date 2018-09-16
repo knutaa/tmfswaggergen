@@ -13,8 +13,10 @@ const swaggerUtils = require('./swaggerUtils');
 const mongoUtils = require('./mongoUtils');
 
 const { TError, TErrorEnum, sendError } = require('./errorUtils');
-const { getResourceType } = require('./swaggerUtils');
+const { getResponseType, getPayloadType, getPayloadSchema, getRequestServiceType } = require('./swaggerUtils');
 const { traverse, processCommonAttributes } = require('./operationsUtils');
+const { processAssignmentRulesByType } = require('./operations');
+
 const { sendDoc } = require('./mongoUtils');
 
 const HUB = "HUB";
@@ -91,21 +93,29 @@ function register(req, res, next) {
 
   console.log('register :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
  
-  const resourceType = getResourceType(req);
+  const resourceType = getResponseType(req);
+  const requestSchema = getPayloadSchema(req);
 
   swaggerUtils.getPayload(req)
+    .then(payload => traverse(req,requestSchema,payload,[]))
     .then(payload => processCommonAttributes(req, resourceType, payload))
-    .then(payload => traverse(req,resourceType,payload,[]))
+    .then(payload => processAssignmentRulesByType(req, resourceType, payload))
     .then(payload => {
 
       var doc = copy(payload);
       doc._serviceGroup = getServiceGroup(req);
 
       try {
-        const queryParam = (payload.query===undefined) ? "" : payload.query;
+        var queryParam = (doc.query===undefined) ? "" : doc.query;
+
+        // add any additional parameters in the request to the query
+        queryParam = addToQuery(queryParam,doc);
+
         const query = mongoUtils.getMongoQuery(queryParam); 
         doc._query = JSON.stringify(query);
+
       } catch(err) {
+        console.log("notificationUtils::register: error=" + err);
         sendError(res, TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to process request"));
         return;
       }
@@ -134,7 +144,8 @@ function patch(req, res, next) {
     const key = Object.keys(req.swagger.params)[0];
     const id = String(req.swagger.params[key].value);
 
-    const resourceType = getResourceType(req);
+    const resourceType = getResponseType(req);
+    const requestSchema = getPayloadSchema(req);
 
     const query = {
       id: id,
@@ -144,13 +155,22 @@ function patch(req, res, next) {
     const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
 
     swaggerUtils.getPayload(req)
-    .then(payload => traverse(req,resourceType,payload))
+    .then(payload => traverse(req,requestSchema,payload))
     .then(payload => {
 
+      var doc = copy(payload);
+
       try {
-        if(payload.query!==undefined) {
-          payload._query = JSON.stringify(mongoUtils.getMongoQuery(payload.query));
+
+        var queryParam = (doc.query===undefined) ? "" : doc.query;
+
+        // add any additional parameters in the request to the query
+        queryParam = addToQuery(queryParam,doc);
+
+        if(queryParam!=="") {     
+          doc._query = JSON.stringify(mongoUtils.getMongoQuery(queryParam));
         }
+
       } catch(err) {
         sendError(res, TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to process request"));
         return;
@@ -158,14 +178,14 @@ function patch(req, res, next) {
 
       mongoUtils.connect().then(db => {
         db.collection(HUB)
-        .updateOne(query, {$set: payload}, {upsert: false})
+        .updateOne(query, {$set: doc}, {upsert: false})
         .then((resp) => {
           
           console.log("patch: updateOne resp=" + JSON.stringify(resp));
 
           db.collection(HUB).findOne(query)
             .then((doc) => {
-              return sendDoc(res, 201, clean(doc));
+              return sendDoc(res, 201, payload);
             })
             .catch((error) => {
               return sendError(res, internalError);
@@ -196,7 +216,8 @@ function update(req, res, next) {
     const key = Object.keys(req.swagger.params)[0];
     const id = String(req.swagger.params[key].value);
 
-    const resourceType = getResourceType(req);
+    const resourceType = getResponseType(req);
+    const requestSchema = getPayloadSchema(req);
 
     const query = {
       id: id,
@@ -245,10 +266,30 @@ function createReplacement(query, payload) {
   doc._serviceGroup = query._serviceGroup;
   doc.id = query.id;
 
-  const queryParam = (doc.query===undefined) ? "" : doc.query;
-  doc._query = JSON.stringify(mongoUtils.getMongoQuery(queryParam));
+  // const queryParam = (doc.query===undefined) ? "" : doc.query;
+  // doc._query = JSON.stringify(mongoUtils.getMongoQuery(queryParam));
+
+  var queryParam = (doc.query===undefined) ? "" : doc.query;
+
+  // add any additional parameters in the request to the query
+  queryParam = addToQuery(queryParam,doc);
+
+  if(queryParam!=="") {     
+    doc._query = JSON.stringify(mongoUtils.getMongoQuery(queryParam));
+  }
 
   return doc;
+}
+
+function addToQuery(query, doc) {
+
+  Object.keys(doc).forEach(key => {
+    if(key!=='query' && key!=='loopback') {
+      const delim = (query!=="") ? "&" : "";
+      query = query + delim + key + "=" + doc[key];
+    }
+  })
+  return query;
 }
 
 function sendReplacementResult(res,result,doc) {
@@ -296,10 +337,9 @@ function unregister(req, res, next) {
 }
 
 
-
 function publish(req,doc,old) {
   const method = req.method; // POST, GET etc
-  const resourceType = getResourceType(req).replace(/^TMF.../,"");
+  const resourceType = getResponseType(req).replace(/^TMF.../,"");
 
   const message = createEventMessage(resourceType, method, doc, old);
 

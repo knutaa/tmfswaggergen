@@ -21,7 +21,9 @@ const {validateRequest} = require('../utils/ruleUtils');
 
 const {processAssignmentRules} = require('../utils/operations');
 
-const {getResourceType} = require('../utils/swaggerUtils');
+const {getPayloadType, getPayloadSchema, getResponseType} = require('../utils/swaggerUtils');
+
+const {updateQueryServiceType, updatePayloadServiceType, cleanPayloadServiceType} = require('../utils/swaggerUtils');
 
 const {TError, TErrorEnum, sendError} = require('../utils/errorUtils');
 
@@ -56,9 +58,11 @@ exports.{{{operationId}}} = function(req, res, next) {
   {{#isRestfulIndex}}
   /* matching isRestfulIndex */
  
-  const query = mongoUtils.getMongoQuery(req);
+  var query = mongoUtils.getMongoQuery(req);
 
-  const resourceType = getResourceType(req);
+  query = swaggerUtils.updateQueryServiceType(query, req,'{{{pathId}}}');
+
+  const resourceType = getResponseType(req);
 
   const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
   
@@ -67,6 +71,7 @@ exports.{{{operationId}}} = function(req, res, next) {
     db.collection(resourceType)
       .find(query.criteria, query.options).toArray()
       .then(doc => {
+        doc = cleanPayloadServiceType(doc);
         sendDoc(res, 200, doc);
       })
       .catch(error => {
@@ -85,11 +90,13 @@ exports.{{{operationId}}} = function(req, res, next) {
 
   const {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
 
-  const query = {
+  var query = {
     id: {{{pathId}}}
   };
 
-  const resourceType = getResourceType(req); 
+  query = swaggerUtils.updateQueryServiceType(query, req,'{{{pathId}}}');
+
+  const resourceType = getResponseType(req); 
 
   const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
 
@@ -116,7 +123,9 @@ exports.{{{operationId}}} = function(req, res, next) {
   var query = mongoUtils.getMongoQuery(req);
   query.criteria.id = {{{pathId}}}
 
-  const resourceType = getResourceType(req); 
+  query = swaggerUtils.updateQueryServiceType(query, req,'{{{pathId}}}');
+
+  const resourceType = getResponseType(req); 
 
   const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
 
@@ -125,6 +134,7 @@ exports.{{{operationId}}} = function(req, res, next) {
       .findOne(query.criteria, query.options)
       .then(doc => {
         if(doc) {
+          doc = cleanPayloadServiceType(doc);
           sendDoc(res, 200, doc)
         } else {
           sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
@@ -144,21 +154,27 @@ exports.{{{operationId}}} = function(req, res, next) {
   {{#isRestfulCreate}}
   /* matching isRestfulCreate - argument {{{baseNameLowerCamelCase}}} */
   
-  const resourceType = getResourceType(req);
+  const resourceType = getResponseType(req);
+  const requestSchema = getPayloadSchema(req);
 
   swaggerUtils.getPayload(req)
-    .then(payload => validateRequest('{{{operationId}}}',payload))
+    .then(payload => validateRequest(req, '{{{operationId}}}', payload))
+    .then(payload => traverse(req, requestSchema, payload,[],getPayloadType(req)))
     .then(payload => processCommonAttributes(req, resourceType, payload))
-    .then(payload => processAssignmentRules('{{{operationId}}}',payload))
-    .then(payload => traverse(req,resourceType,payload,[]))
+    .then(payload => processAssignmentRules('{{{operationId}}}', payload))
     .then(payload => {
 
       const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Internal database error");
+
+      payload = swaggerUtils.updatePayloadServiceType(payload, req,'{{{pathId}}}');
 
       mongoUtils.connect().then(db => {
         db.collection(resourceType)
           .insertOne(payload)
           .then(() => {
+
+            payload = cleanPayloadServiceType(payload);
+
             sendDoc(res, 201, payload);
             notificationUtils.publish(req,payload);
           })
@@ -177,17 +193,22 @@ exports.{{{operationId}}} = function(req, res, next) {
 
   const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to update resource");
 
-  const resourceType = getResourceType(req);
+  const resourceType = getResponseType(req);
+
   swaggerUtils.getPayload(req)
-    .then(payload => validateRequest('{{{operationId}}}',payload))
+    .then(payload => validateRequest(req,'{{{operationId}}}',payload))
     .then(payload => {
 
       const {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
-      const query = {
+      var query = {
        id: {{{pathId}}}
       };
 
+      query = swaggerUtils.updateQueryServiceType(query, req,'{{{pathId}}}');
+
       payload.id = query.id;
+
+      payload = swaggerUtils.updatePayloadServiceType(payload, req,'{{{pathId}}}');
 
       mongoUtils.connect().then(db => {
 
@@ -198,6 +219,9 @@ exports.{{{operationId}}} = function(req, res, next) {
           .replaceOne(query, payload)
           .then(resp => {
             if(resp.result!=undefined && resp.result.n==1) {
+
+              payload = swaggerUtils.cleanPayloadServiceType(payload);
+
               sendDoc(res, 200, payload);
               notificationUtils.publish(req,payload,old);
               return;
@@ -225,16 +249,19 @@ exports.{{{operationId}}} = function(req, res, next) {
 
   const internalError =  new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to update resource");
 
-  const resourceType = getResourceType(req);
+  const resourceType = getResponseType(req);
+  const requestSchema = getPayloadSchema(req);
 
   const {{{pathId}}} = String(req.swagger.params.{{{pathId}}}.value);
-  const query = {
+  var query = {
    id: {{{pathId}}}
   };
 
+  query = swaggerUtils.updateQueryServiceType(query, req, '{{{pathId}}}');
+
   swaggerUtils.getPayload(req)
-    .then(payload => validateRequest('{{{operationId}}}',payload))
-    .then(payload => traverse(req,resourceType,payload))
+    .then(payload => validateRequest(req,'{{{operationId}}}',payload))
+    .then(payload => traverse(req,requestSchema,payload,[],getPayloadType(req)))
     .then(payload => {
 
       mongoUtils.connect().then(db => {
@@ -245,12 +272,18 @@ exports.{{{operationId}}} = function(req, res, next) {
           if (old==undefined) {
             return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
           }
+
+          payload = swaggerUtils.updatePayloadServiceType(payload, req, '{{{pathId}}}');
+          
           // then update and return the complete resource
           db.collection(resourceType)
             .updateOne(query, {$set: payload}, {upsert: false})
             .then(() => {
               db.collection(resourceType).findOne(query)
                 .then((doc) => {
+
+                  doc = swaggerUtils.cleanPayloadServiceType(doc);
+
                   sendDoc(res, 201, doc);
                   notificationUtils.publish(req,doc,old);
                 })

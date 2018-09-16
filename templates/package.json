@@ -29,5 +29,9 @@
     "swagger-ui-dist": "^3.17.6",
     "untildify": "^3.0.3",
     "uuid": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=8.10",
+    "npm": ">=6.0"
   }
 }

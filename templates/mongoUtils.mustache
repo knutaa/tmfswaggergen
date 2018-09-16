@@ -8,14 +8,14 @@ const querystring = require('querystring');
 
 const MongoClient = require('mongodb').MongoClient;
 
-const {getResourceType, getTypeDefinition} = require('./swaggerUtils');
+const {getResponseType, getPayloadType, getTypeDefinition} = require('./swaggerUtils');
 
 var mongodb = null; 
 
 function connectHelper(callback) {
   {{#localDatabase}}
   {{! Local MongoDB is used}}
-  var config = require('../service/config.json');
+  var config = require('../config.json');
 
   var argv = require('minimist')(process.argv);
   var dbhost = argv.dbhost ? argv.dbhost: config.db_host;
@@ -100,11 +100,11 @@ function getMongoQuery(req) {
   // test for date-time in query and allow partial equality matching, e.g. ="2018-08-21"
   //
   try {
-    const resourceType = getResourceType(req);
-    const resourceDefinition = getTypeDefinition(resourceType);
+    const requestType = getPayloadType(req);
+    const typeDefinition = getTypeDefinition(requestType);
     const properties = Object.keys(res.criteria);
     properties.forEach(prop => {
-      var paramDef = resourceDefinition[prop];
+      var paramDef = typeDefinition[prop];
       if(paramDef.type === "string" && paramDef.format === "date-time") {
         const propVal = res.criteria[prop];
         // equality test if not the value is an object

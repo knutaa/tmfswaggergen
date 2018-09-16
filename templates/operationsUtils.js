@@ -5,20 +5,26 @@ const uuid = require('uuid');
 const swaggerUtils = require('../utils/swaggerUtils');
 const mongoUtils = require('../utils/mongoUtils');
 
+const config = require('../config.json');
+
 const {TError, TErrorEnum} = require('../utils/errorUtils');
 
-const {validateRequest} = require('../utils/ruleUtils');
-
-function traverse(req,type,obj,operations,key,level) {
-  level = level || 0;
+function traverse(req,schema,obj,operations,key,path) {
   operations = operations || [];
-  
+  path = path || "";
+
   return new Promise(function(resolve, reject) {
 
     // type is only undefined in not found in the parent schema
-    if(type==undefined) {
+    // allow for properties not in schema by setting config strict_schema to false
+    // defalt handling set to strict
+    var strict_schema = true;
+    if(config.strict_schema!=undefined) {
+      strict_schema=config.strict_schema;
+    }
+    if(strict_schema && schema==undefined) {
         const error = new TError(TErrorEnum.INVALID_BODY_FIELD, 
-                            "Property: " + key + " not allowed in resource");
+                            "Property: " + key + " not allowed in resource " + path);
         return reject(error);
     }
 
@@ -30,68 +36,82 @@ function traverse(req,type,obj,operations,key,level) {
     }
 
     // need the definition of type to proceed 
-    const typedef = swaggerUtils.getTypeDefinition(type);
-    if(typedef==undefined) {
-      return reject(new TError(TErrorEnum.UNPROCESSABLE_ENTITY, "Unknown type: " + type,req));
-    } 
+    // const typedef = swaggerUtils.getTypeDefinition(type);
+    // if(typedef==undefined) {
+    //   return reject(new TError(TErrorEnum.UNPROCESSABLE_ENTITY, "Unknown type: " + type,req));
+    // } 
 
     var promises;
 
+    var nextPath = function(p,n) { return (p==="") ? n : p + "." + n; };
+
+
     if(Array.isArray(obj)) {
-      promises = Object.keys(obj).map(idx => traverse(req,type,obj[idx],operations,idx,level+1));
+      
+      var subschema = schema;
+      promises = Object.keys(obj).map(idx => traverse(req,subschema,obj[idx],operations,idx,nextPath(path,idx)));
+
     } else {
+        
       promises = Object.keys(obj).map(prop => {
+        
+        var subschema;
+        if(schema.type!==undefined && schema.type==='object') {
+          subschema = schema.properties[prop];
+        } else if(schema.type!==undefined && schema.type==='array') {
+          subschema = schema.items.properties[prop];
+        } 
+        
+        if(strict_schema && subschema===undefined) {
+          return new Promise(function(resolve, reject) {
+                const error = new TError(TErrorEnum.INVALID_BODY_FIELD, 
+                            "Property: " + prop + " not allowed in resource " + path);
+                reject(error);
+            });
 
-        // console.log("traverse: type:" + type + " property:" + prop);
-
-        const schema = typedef[prop];
-        var subschema; 
- 
-        if(schema==undefined) {
-          // console.log("## set-up reject for unknown property: " + prop);
-          // return propertyNotAllowed(req, type, prop);
+        } else {
+          return traverse(req,subschema,obj[prop],operations,prop,nextPath(path,prop));
         }
-        // console.log("traverse: known property " + prop + " with schema " + JSON.stringify(schema));
 
-        else if(schema.type!==undefined && schema.type==="array") {
-          subschema = schema.items.$ref.split('/').slice(-1)[0];
-        } else if(schema.$ref!==undefined) {
-          subschema = schema.$ref.split('/').slice(-1)[0];
-        } else if(schema.type!==undefined) {
-          subschema = schema;
-        }
-        return traverse(req,subschema,obj[prop],operations,prop,level+1);
       });
     };
 
-    Promise.all(promises).then( data => {
-      var res = Array.isArray(obj) ? [] : {};
-      data.forEach(x => res[x.key]=x.val);
-      return res;
-    })
-    .then( obj => { 
+    //
+    // collect and return all schema errors before performing operations (if any) on the payload
+    //
+    executeAllPromises(promises).then(results => {
+      
+      if(results.errors.length>0) {
+        console.log("traverse: error:" + JSON.stringify(results.errors));
 
-      var todos = operations.map(func => func(obj,type,typedef));
+        const message = results.errors.reverse().map(error => error.message).join(', ');
 
-      Promise.all(todos).then((x) => { 
+        return reject(new TError(TErrorEnum.INVALID_BODY_FIELD, message));
 
-        // x.map( item => { console.log("x:item = " + JSON.stringify(item))});
+      } else {
+        var res = Array.isArray(obj) ? [] : {};
+        results.results.forEach(x => res[x.key]=x.val);
+        
+        var todos = operations.map(func => func(res,type,typedef));
 
-        const res = (key==undefined) ? obj : {key: key, val: obj};
-        return resolve(res);
+        Promise.all(todos).then((x) => { 
 
-      })
-      .catch(err => {
-        console.log("traverse: error:" + JSON.stringify(err));
-        const error = new TError(TErrorEnum.UNPROCESSABLE_ENTITY, err);
-        return reject(error);
-      })
+          const res = path==="" ? obj : {key: key, val: obj};
+          return resolve(res);
+
+        })
+        .catch(err => {
+          console.log("traverse: error:" + JSON.stringify(err));
+          return reject(err);
+        })
+
+      }
 
     })
     .catch(err => {
       console.log("traverse: error:" + JSON.stringify(err));
-      const error = new TError(TErrorEnum.UNPROCESSABLE_ENTITY, err);
-      return reject(error);
+      // const error = new TError(TErrorEnum.UNPROCESSABLE_ENTITY, err);
+      return reject(err);
     })
   })
 };
@@ -192,6 +212,54 @@ function setBaseProperties(req,payload) {
     payload.href = swaggerUtils.getURLScheme() + "://" + req.headers.host + self;
     resolve(payload)
   })
+}
+
+//
+// Support for collecting all errors from list of promises
+// (inspired by https://stackoverflow.com/questions/30362733/handling-errors-in-promise-all) 
+//  
+
+function executeAllPromises(promises) {
+  // Wrap all Promises in a Promise that will always "resolve"
+  var resolvingPromises = promises.map(function(promise) {
+    return new Promise(function(resolve) {
+      var payload = new Array(2);
+      promise.then(function(result) {
+          payload[0] = result;
+        })
+        .catch(function(error) {
+          payload[1] = error;
+        })
+        .then(function() {
+          /* 
+           * The wrapped Promise returns an array:
+           * The first position in the array holds the result (if any)
+           * The second position in the array holds the error (if any)
+           */
+          resolve(payload);
+        });
+    });
+  });
+
+  var errors = [];
+  var results = [];
+
+  // Execute all wrapped Promises
+  return Promise.all(resolvingPromises)
+    .then(function(items) {
+      items.forEach(function(payload) {
+        if (payload[1]) {
+          errors.push(payload[1]);
+        } else {
+          results.push(payload[0]);
+        }
+      });
+
+      return {
+        errors: errors,
+        results: results
+      };
+    });
 }
 
 module.exports = { traverse, processCommonAttributes, setBaseProperties, addHref };

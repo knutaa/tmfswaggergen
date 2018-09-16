@@ -1,7 +1,9 @@
 'use strict';
 
-const {validationRules} = require('../utils/rules');
+const {validationRules, validationRulesType2} = require('../utils/rules');
 const {TError, TErrorEnum} = require('../utils/errorUtils');
+
+const {getPayloadType} = require('../utils/swaggerUtils');
 
 //
 // Rule validation
@@ -28,10 +30,45 @@ const {TError, TErrorEnum} = require('../utils/errorUtils');
   // { "note": {$eitherOf: ["author", "text"]}}
 
 
-function validateRequest(operation, doc) {
+function validateRequest(req, operation, doc) {
   return new Promise(function(resolve, reject) {
     var error = null;
     var res = doc;
+
+    // first try the new Type2 rules
+
+    var payloadType = getPayloadType(req);
+    if(payloadType!==null) {
+      
+      if(payloadType.startsWith("TMF")) {
+        payloadType = payloadType.substring(6);
+      }
+
+      console.log(operation + ' :: validate request :: payloadType=' + payloadType);
+
+      const op = req.method.toUpperCase();  
+
+      if(validationRulesType2[payloadType]!==undefined) {
+         const rule = validationRulesType2[payloadType][op]
+         if(rule) {
+            console.log(operation + ' :: validate request :: validationRulesType2 found');
+
+            const error = processRules(rule,doc);
+            if(error.length>0) {
+              var errString = error.join("\n").replace(/"/g, "");
+              return reject(new TError(TErrorEnum.INVALID_BODY,errString))
+            } else {
+              return resolve(doc);
+            };
+          } else {
+            console.log(operation + ' :: validationRulesType2 does not include ' + op);
+            // flow through to 'old' ruleset
+        }
+      } else {
+        console.log(operation + ' :: validationRulesType2 does not include ' + payloadType);
+        // flow through to 'old' ruleset
+      }
+    }
 
     const rule = validationRules[operation];
     if(rule) {
