@@ -62,6 +62,8 @@ function getResponseType(req) {
 
 		if( p.post !== undefined && p.post.responses["201"] !== undefined) {
 			p = p.post.responses["201"];
+		} else if( p.post !== undefined && p.post.responses["200"] !== undefined) {
+			p = p.post.responses["200"];
 		} else if( p.get !== undefined && p.get.responses["200"] !== undefined) {
 			p = p.get.responses["200"];
 		}
