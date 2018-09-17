@@ -54,6 +54,8 @@ function getResponseType(req) {
 
 		var p = swaggerDoc.paths[pathpattern];
 
+		// console.log("getResponseType: p=" + JSON.stringify(p,null,2));
+
 		// not all APIs have support for GET all resources
 		// in these cases, we should be able to pick the correct type using the post path
 		// TODO: What if not a post operation for these cases?
@@ -82,6 +84,54 @@ function getResponseType(req) {
 	return type;
 }
 
+function getPayloadSchema(req) {
+	var schema;
+	var type;
+	const swaggerDoc = getSwaggerDoc();
+
+	var pathpattern = req.swagger.operationParameters[0].path[1];
+
+	if(swaggerDoc.paths[pathpattern] !== undefined ) {
+	
+		var p = swaggerDoc.paths[pathpattern];
+
+		// console.log("getPayloadSchema: p=" + JSON.stringify(p,null,2));
+		// console.log("getPayloadSchema: op=" + req.method);
+
+		p = p[req.method.toLowerCase()];
+
+	  p.parameters.every(function(param) {
+	    if(param.in === 'body') {
+	      schema = param.schema;
+	      return false; // break 
+	    }
+	    return true; // continue with next
+	  });
+	 
+		if(schema!==undefined) {
+			if(schema.$ref !== undefined) {
+				type = schema.$ref; 
+			} else if(schema.items.$ref !== undefined) {
+				type = schema.items.$ref;
+			}
+		} 
+
+		if(type !== undefined) {
+			// now type should be something like  "$ref": "#/definitions/TMF620Catalog"
+			// select the last part
+			type = type.split('/').slice(-1)[0];
+			schema = getTypeDefinition(type);
+
+			return schema;
+
+		}
+	}
+
+	return undefined;
+
+}
+
+
 function getPayload(req) {
   return new Promise(function(resolve, reject) {
     const payloadType=getPayloadType(req);
@@ -106,10 +156,12 @@ function getPayloadType(req) {
   return payloadType;
 };
 
-function getPayloadSchema(req) {
+function getPayloadSchema_old(req) {
   var schema=null;
   req.swagger.operationParameters.every(function(param) {
     if(param.schema.in === 'body') {
+    	console.log("getPayloadSchema:: keys=" + Object.keys(param.schema));
+    	console.log("getPayloadSchema:: schema=" + JSON.stringify(param.schema.schema,null,2));
       schema = param.schema.schema;
       return false; // break 
     }

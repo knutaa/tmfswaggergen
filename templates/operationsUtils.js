@@ -22,7 +22,7 @@ function traverse(req,schema,obj,operations,key,path) {
     if(config.strict_schema!=undefined) {
       strict_schema=config.strict_schema;
     }
-    if(strict_schema && schema==undefined) {
+    if(strict_schema && schema===undefined) {
         const error = new TError(TErrorEnum.INVALID_BODY_FIELD, 
                             "Property: " + key + " not allowed in resource " + path);
         return reject(error);
@@ -45,7 +45,6 @@ function traverse(req,schema,obj,operations,key,path) {
 
     var nextPath = function(p,n) { return (p==="") ? n : p + "." + n; };
 
-
     if(Array.isArray(obj)) {
       
       var subschema = schema;
@@ -55,13 +54,16 @@ function traverse(req,schema,obj,operations,key,path) {
         
       promises = Object.keys(obj).map(prop => {
         
-        var subschema;
-        if(schema.type!==undefined && schema.type==='object') {
-          subschema = schema.properties[prop];
-        } else if(schema.type!==undefined && schema.type==='array') {
-          subschema = schema.items.properties[prop];
-        } 
-        
+        var subschema = schema[prop];
+ 
+        if(subschema.type!==undefined && subschema.type==="array") {
+          const type = subschema.items.$ref.split('/').slice(-1)[0];
+          subschema = swaggerUtils.getTypeDefinition(type);
+        } else if(subschema.$ref!==undefined) {
+          const type = subschema.$ref.split('/').slice(-1)[0];
+          subschema = swaggerUtils.getTypeDefinition(type);
+        }         
+
         if(strict_schema && subschema===undefined) {
           return new Promise(function(resolve, reject) {
                 const error = new TError(TErrorEnum.INVALID_BODY_FIELD, 

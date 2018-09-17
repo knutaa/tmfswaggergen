@@ -178,10 +178,15 @@ exports.{{{operationId}}} = function(req, res, next) {
             sendDoc(res, 201, payload);
             notificationUtils.publish(req,payload);
           })
-          .catch((error) => sendError(res, internalError))
+          .catch((error) => {
+            console.log("{{{operationId}}}: error=" + error);
+            sendError(res, internalError);
+          })
       })
-      .catch((error) => sendError(res, internalError));
-
+      .catch((error) => {
+        console.log("{{{operationId}}}: error=" + error);
+        sendError(res, internalError);
+      })
     })
     .catch( error => {
       console.log("{{{operationId}}}: error=" + error.toString());
