@@ -55,8 +55,10 @@ function traverse(req,schema,obj,operations,key,path) {
       promises = Object.keys(obj).map(prop => {
         
         var subschema = schema[prop];
- 
-        if(subschema.type!==undefined && subschema.type==="array") {
+
+	if(subschema===undefined) {
+          // nothing right yet
+        } else if(subschema.type!==undefined && subschema.type==="array") {
           const type = subschema.items.$ref.split('/').slice(-1)[0];
           subschema = swaggerUtils.getTypeDefinition(type);
         } else if(subschema.$ref!==undefined) {
