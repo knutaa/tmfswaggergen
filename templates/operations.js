@@ -86,7 +86,11 @@ function processAssignmentRulesByType(req, type, doc) {
       // - "id"
       // - "serviceType"
 
-      const typedef = getTypeDefinition(type);
+      var typedef = getTypeDefinition(type);
+
+      if(typedef.properties!==undefined) {
+        typedef = typedef.properties;
+      }
       
       if(typedef.createdTime!==undefined && doc.createdTime===undefined) {
         doc.createdTime = (new Date()).toISOString();

@@ -54,16 +54,26 @@ function traverse(req,schema,obj,operations,key,path) {
         
       promises = Object.keys(obj).map(prop => {
         
-        var subschema = schema[prop];
+        var subschema = schema;
 
-	if(subschema===undefined) {
-          // nothing right yet
+        if(schema.properties!==undefined) {
+          subschema = schema.properties[prop];
+        }
+ 
+        if(subschema===undefined) {
+          // nothing to do right now
         } else if(subschema.type!==undefined && subschema.type==="array") {
           const type = subschema.items.$ref.split('/').slice(-1)[0];
           subschema = swaggerUtils.getTypeDefinition(type);
+
+          // console.log("traverse: array: type=" + type + " subschema=" + JSON.stringify(subschema,null,2));
+
         } else if(subschema.$ref!==undefined) {
           const type = subschema.$ref.split('/').slice(-1)[0];
           subschema = swaggerUtils.getTypeDefinition(type);
+
+          // console.log("traverse: object: type=" + type + " subschema=" + JSON.stringify(subschema,null,2));
+
         }         
 
         if(strict_schema && subschema===undefined) {

@@ -18,14 +18,17 @@ function getSwaggerDoc() {
 }
 
 function getTypeDefinition(type) {
-	var def;
-	const meta = getSwaggerDoc();
-  if(!(meta==undefined || meta.definitions==undefined || 
-       meta.definitions[type]==undefined || 
-       meta.definitions[type].properties==undefined)) {
- 				def = meta.definitions[type].properties;
- 	}
- 	return def;
+  var def;
+  const meta = getSwaggerDoc();
+
+  // console.log("getTypeDefinition:: meta=" + JSON.stringify(meta.definitions[type],null,2));
+
+  if(!(meta==undefined || meta.definitions==undefined || meta.definitions[type]==undefined)) { 
+   // meta.definitions[type].properties==undefined)) {
+    def = meta.definitions[type];
+  }
+  return def;
+
 }
 
 

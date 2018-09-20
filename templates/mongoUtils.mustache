@@ -101,11 +101,16 @@ function getMongoQuery(req) {
   //
   try {
     const requestType = getPayloadType(req);
-    const typeDefinition = getTypeDefinition(requestType);
     const properties = Object.keys(res.criteria);
+
+    var typeDefinition = getTypeDefinition(requestType);
+    if(typeDefinition.properties!==undefined) {
+      typeDefinition = typeDefinition.properties;
+    }
+
     properties.forEach(prop => {
       var paramDef = typeDefinition[prop];
-      if(paramDef.type === "string" && paramDef.format === "date-time") {
+      if(paramDef!==undefined && paramDef.type === "string" && paramDef.format === "date-time") {
         const propVal = res.criteria[prop];
         // equality test if not the value is an object
         if(!(propVal instanceof Object)) {
