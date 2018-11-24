@@ -178,37 +178,45 @@ function processCommonAttributes(req, type, obj) {
 
     const typedef = swaggerUtils.getTypeDefinition(type);
 
+    console.log("processCommonAttributes:: typedef=" + JSON.stringify(typedef,null,2));
+
     if(Array.isArray(obj)) {
       return resolve(obj);
     }
 
-    if(type==undefined) {
+    if(type===undefined) {
       return resolve(obj);
     }
+    
+    if(typedef===undefined || typedef.properties===undefined) {
+      return resolve(obj);
+    }
+    
+    const typeprops=typedef.properties;
 
-    if(typedef.id!==undefined && obj.id==undefined) {
+    if(typeprops.id!==undefined && obj.id==undefined) {
       obj.id = uuid.v4();
     };
 
-    if(typedef.href!==undefined && obj.href==undefined) {
+    if(typeprops.href!==undefined && obj.href==undefined) {
       const self = req.url.replace(/\/$/,"") + "/" + obj.id;
       obj.href = swaggerUtils.getURLScheme() + "://" + req.headers.host + self;
     }
     
-    if(typedef.lastUpdate!==undefined) {
+    if(typeprops.lastUpdate!==undefined) {
        obj.lastUpdate = (new Date()).toISOString();
     }
 
-    if(typedef["@schemaLocation"]!==undefined && obj["@schemaLocation"]==undefined) {
+    if(typeprops["@schemaLocation"]!==undefined && obj["@schemaLocation"]===undefined) {
       const url = swaggerUtils.getURLScheme() + "://" + swaggerUtils.getHost() + "/docs/#/" 
       obj["@schemaLocation"] = encodeURI(url);
     }
 
-    if(typedef["@type"]!==undefined && obj["@type"]==undefined) {
+    if(typeprops["@type"]!==undefined && obj["@type"]===undefined) {
       obj["@type"] = type;
     }
 
-    if(typedef["@baseType"]!==undefined && obj["@baseType"]==undefined) {
+    if(typeprops["@baseType"]!==undefined && obj["@baseType"]===undefined) {
       obj["@baseType"] = type;
     }
 
