@@ -39,8 +39,16 @@ function getResponseType(req) {
 	//
 	// All of this is just to get a proper type also for delete operations
 	// 
+  
+  // "operationPath": [
+  //   "paths",
+  //   "/orderManagement/2.0/serviceOrder",
+  //   "get"
+  // ],
 
-	var pathpattern = req.swagger.operationParameters[0].path[1];
+	// var pathpattern = req.swagger.operationParameters[0].path[1];
+
+  var pathpattern = req.swagger.operationPath[1];
 
 	if(swaggerDoc.paths[pathpattern] !== undefined ) {
 		// lookup the type of the base post or get operation for the url
